@@ -1,0 +1,1851 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+$font-family-base: "tahoma";
+body{
+font-family: "tahoma" !important;
+}
+
+h1, h2, button {
+font-family: "tahoma" !important;
+}
+.tabs-md .tabbar {
+    background: #ed1c24;
+}
+.tabs-md .tab-button {
+    min-height: 5.6rem;
+    font-weight: bold;
+    color: white;
+    border-left-color: #8a8383;
+    border-left-width: 1px;
+    border-left-style: solid;
+}
+.tab-button-text, .tab-button-icon{
+  max-width: 60%!important;
+}
+.tabs-md .tab-button-icon{
+  min-width: 1.4rem!important;
+}
+.tabs-md .tab-button-text {
+    font-size: 0.8rem;
+}
+.footer{
+	background-color:#363636;
+}
+.buttom_col{
+	border-left-color: #8a8383;
+    border-left-width: 1px;
+    border-left-style: solid;
+    color:white;
+    height: 100%;
+    padding:0px;
+    margin-top: 21px;
+    border-top-style: solid;
+    border-top-color: #ed1c24;
+}
+.buttom_button{
+    background-color:#363636;
+    padding:0px;
+    //opacity:0;
+}
+.ion-ios-cars,
+.ion-md-cars {
+  content: url(../assets/icon/cat_car.png);
+
+}
+.ion-ios-bikes,
+.ion-md-bikes {
+  content: url(../assets/icon/cat_bike.png);
+}
+.ion-ios-trucks,
+.ion-md-trucks {
+  content: url(../assets/icon/cat_trucks.png);
+}
+.ion-ios-boats,
+.ion-md-boats {
+  content: url(../assets/icon/cat_boats.png);
+}
+.ion-ios-phones,
+.ion-md-phones {
+  content: url(../assets/icon/cat_phones.png);
+  max-width: 0% !important;
+}
+.ion-ios-cars_numbers,
+.ion-md-cars_numbers {
+  content: url(../assets/icon/cat_cars.png);
+
+}
+
+.ion-ios-search,
+.ion-md-search {
+  content: url(../assets/icon/bra_search.png);
+  width: 2.5rem;
+}
+
+.ion-ios-m3ard,
+.ion-md-m3ard {
+  content: url(../assets/icon/bar_home.png);
+  width: 2.5rem;
+}
+.ion-ios-add_ad,
+.ion-md-add_ad {
+  content: url(../assets/icon/bar_add.png);
+  width: 3.5rem;
+}
+.ion-ios-chats,
+.ion-md-chats {
+  content: url(../assets/icon/bar_chats.png);
+  width: 2.5rem;
+}
+.ion-ios-my_account,
+.ion-md-my_account {
+  content: url(../assets/icon/bar_profile.png);
+  width: 2.5rem;
+}
+
+
+
+.button-md{
+    margin:0px;
+    /*height: 100%;*/
+    height: 5.6rem!important;
+    font-size: 0.8rem!important;
+}
+
+
+.a_size{
+  font-size: 1.2rem;
+}
+
+
+/*==============================================
+[Main stylesheet style.css]
+
+Author: Alaa Tekleh
+Version:  1.0
+Created:  5 March 2018
+Last updated: 5 March 2018
+Application: Auto Market
+================================================*/
+
+
+/*
+[Table of Contents]
+
+1. RESET
+2. GENERAL
+3. CUSTOM BUTTONS
+4. LEFT AND RIGHT SLIDE PANELS
+    4-1. LEFT SLIDE PANEL
+  4-2. RIGHT SLIDE PANEL
+5. MAIN NAVIGATION POPUP AND FOOTER TOOLBAR
+  5-1. MAIN NAVIGATION
+  5-2. FOOTER TOOLBAR
+6. HOME PAGE LAYOUT
+    6-1. HOME PAGE WITH SLIDER
+7. PAGES LAYOUT
+    7-1. PAGES HEADER
+    7-2. PROFILE LAYOUT
+8. FEATURED LISTS
+9. POPUPS
+10. WIDGETS
+    10-1 CARDS
+    10-2 MAPS
+    10-3 COMMENTS WIDGET
+    10-4 DATE PICKER 
+    10-5 PRAY TIME TABLE
+11. PHOTO GALLERY
+12. BLOG LAYOUT
+13. FORMS
+  13-1. CONTACT FORM
+  13-2. LOGIN / SIGNUP / FORGOT PASS FORM
+  13-3. COMMENT FORM
+14. TABS & ACCORDION
+15. MEDIA QUERIES
+    - @media screen and (max-width: 480px)
+16. HELPER CLASSES
+17. MISCELLANEOUS CLASSES 
+18. COLORS AND BACKGROUNDS
+19. ANIMATIONS 
+20. MISCELLANEOUS
+*/
+
+
+/*===============================================*/
+
+
+/* 2. GENERAL                */
+
+
+/*===============================================*/
+
+html,
+body {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Droid Arabic Kufi', sans-serif !important;
+    margin: 0;
+    padding: 0;
+    color: #232323;
+    font-size: 14px;
+    line-height: 1.4;
+    width: 100%;
+    -webkit-text-size-adjust: 100%;
+    overflow: hidden;
+    font-weight: 300;
+}
+ion-app {
+    font-family: 'Droid Arabic Kufi', sans-serif !important;
+}
+* {
+    box-sizing: border-box;
+}
+
+.clear {
+    clear: both;
+    display: block;
+}
+
+.clearleft {
+    clear: both;
+    float: left;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    padding: 0px;
+    margin: 0px;
+    line-height: 20px;
+}
+
+blockquote {
+    padding: 0 0 15px 0;
+    margin: 5px 0 15px 0;
+    font-size: 18px;
+    border-bottom: 3px solid #ececec;
+    line-height: 22px;
+    font-weight: 300;
+}
+
+blockquote span {
+    display: block;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    line-height: 22px;
+}
+
+.videocontainer {
+    max-width: 100%;
+    padding: 0;
+    display: block;
+    margin: 0;
+}
+
+#mobile_wrap {
+    max-width: 1024px;
+    margin: auto;
+}
+
+.container-title {
+    font-size: 18px;
+    color: #DC3832;
+    font-weight: 600;
+    margin: 0px;
+}
+
+.automarket-navbar .toolbar-background {
+    background-color: #DC3832 !important;
+}
+
+.automarket-navbar ion-title .toolbar-title {
+    color: #f1f1f1 !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0px !important;
+}
+
+
+/*===============================================*/
+
+
+/* 3. CUSTOM BUTTONS */
+
+
+/*===============================================*/
+
+
+/*===============================================*/
+
+
+/* 4. LEFT AND RIGHT SLIDE PANELS */
+
+
+/*===============================================*/
+
+
+/* 4-1. LEFT SLIDE PANEL */
+
+
+/* 4-2. RIGHT SLIDE PANEL */
+
+
+/*===============================================*/
+
+
+/* 5. MAIN NAVIGATION POPUP AND FOOTER TOOLBAR */
+
+
+/*===============================================*/
+
+
+/* 5-1. MAIN NAVIGATION */
+
+
+/*5-2. FOOTER TOOLBAR */
+
+
+/*===============================================*/
+
+
+/* 6. HOME PAGE LAYOUT */
+
+
+/*===============================================*/
+
+
+/* 6-1. HOME PAGE WITH SLIDER */
+
+
+/*===============================================*/
+
+
+/* 7. PAGES LAYOUT */
+
+
+/*===============================================*/
+
+
+/* 7-1 PHONENUMBER PAGE */
+
+.phone-number-content .scroll-content {
+    padding: 0px !important;
+}
+
+.phone-numeber-even-container {
+    background-color: #fff;
+}
+
+.phone-numeber-odd-container {
+    background-color: #ebebeb;
+}
+
+
+/* 7-2 ADVERTISMENT PAGE */
+
+.advertisment-container {
+    margin: 20px
+}
+
+.advertisment-type ion-label {
+    background-color: transparent !important;
+    color: #e7e7e7;
+}
+
+.advertisment-type ion-col {
+    text-align: center;
+    font-weight: 600;
+}
+
+.advertisment-type ion-col:not(.last) {
+    border-left: 1px solid #b5b5b5;
+}
+
+.advertisment-type ion-col ion-label {
+    color: #b5b5b5;
+}
+
+.advertisment-type ion-col.active ion-label {
+    color: #D53731;
+    text-decoration: underline;
+}
+
+.add-advertisment-form {
+    margin: 20px 0px 0px 0px !important;
+}
+
+.add-advertisment-form input,
+.add-advertisment-form ion-textarea {
+    text-align: right;
+    color: #c7c7c7;
+    font-weight: 600;
+}
+
+.add-advertisment-images ion-col {
+    height: 18vw;
+}
+
+.add-advertisment-images .image-container.main-image {
+    border: 1px solid #D53731;
+}
+
+.add-advertisment-images .image-container {
+    height: 100%;
+    width: 100%;
+    background-color: #555555;
+    position: relative;
+}
+
+.add-advertisment-images .image-container .empty-content {
+    display: block;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+}
+
+.add-advertisment-images .image-container .empty-content span {
+    display: block;
+    color: #e7e7e7;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+.add-advertisment-images .main-image-title {
+    text-align: center;
+    font-size: 8px;
+    color: #D53731;
+    font-weight: 600;
+    padding: 2px;
+}
+
+.submit-advertisment {
+    background-color: #D53731 !important;
+    font-weight: bold;
+    font-size: 20px !important;
+    height: 50px !important;
+    margin-top: 15px !important;
+}
+
+
+/* 7-3. PROFILE PAGE */
+
+.my-account-header {
+    height: 50px;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.my-account-content {
+    padding: 25px 20px;
+}
+
+.personal-info .personal-info-row {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px 0px;
+}
+
+.personal-info .personal-info-row .title {
+    color: #a1a1a1;
+    margin-left: 5px;
+}
+
+.personal-info .personal-info-row .value {
+    color: #fff;
+}
+
+.profile-image {
+    position: absolute;
+    top: 30px;
+    left: 3%;
+}
+
+.profile-image img {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+}
+
+.edit-my-account {
+    position: absolute;
+    left: 20px;
+    top: 278px;
+}
+
+.profile-list-item {
+    height: 100px;
+}
+
+.profile-list-item-icon {
+    margin-right: 15px !important;
+    position: relative;
+}
+
+.profile-list-item-icon ion-icon {
+    font-size: 48px !important;
+}
+
+.profile-list-item-description {
+    color: #fff;
+}
+
+.profile-content .list-md .item-block .item-inner {
+    border-bottom: 1px solid #000 !important;
+    border-top: 1px solid #444 !important;
+}
+
+.profile-content .custom-badge {
+    position: absolute;
+    top: 0px;
+    right: 27px;
+}
+.profile-list-item ion-label {
+    height: 100px !important;
+    display: flex;
+    align-items: center;
+}
+.profile-list-item .icon-container {
+    float: right;
+    width: 70px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.profile-list-item .description-container {
+    float: right;
+    padding-right: 25px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/* 7-4 EDIT PROFILE PAGE */
+
+.edit-profile-content input,
+.edit-profile-content ion-textarea,
+.edit-profile-content ion-datetime {
+    text-align: right;
+    color: #c7c7c7;
+    font-weight: 600;
+}
+
+.submit-edit-profile {
+    background-color: #D53731 !important;
+    font-weight: bold;
+    font-size: 20px !important;
+    height: 50px !important;
+    margin-top: 15px !important;
+}
+
+.close-label {
+    font-size: 18px;
+    font-weight: 500;
+    padding-left: 10px;
+    color: #e7e7e7;
+}
+
+
+/* 7-5 SHOWROOM PAGE */
+
+.showroom-header {
+    height: 50px;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.showroom-content {
+    padding: 25px 20px;
+}
+
+.showroom-info .showroom-info-row {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px 0px;
+}
+
+.showroom-info .showroom-info-row .title {
+    color: #fff;
+    margin-left: 5px;
+}
+
+.showroom-info .showroom-info-row .value {
+    color: #fff;
+}
+
+.showroom-image {
+    position: absolute;
+    top: 30px;
+    left: 3%;
+}
+
+.showroom-image img {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+}
+
+.showroom-header .section-subtitle {
+    color: #f7f7f7;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.showroom .icons-container {
+    text-align: center;
+    padding: 10px;
+}
+
+.showroom .icons-container ion-icon {
+    padding: 5px;
+    color: #f7f7f7;
+    font-size: 24px;
+}
+
+.showroom .icons-container ion-icon.like.liked {
+    color: #b70505;
+}
+
+.showroom-search {
+    height: 30px !important;
+}
+
+/* 7-6 LOGIN PAGE */
+.login-and-register-content ion-input {
+    color: #c1c1c1;
+}
+.login-section {
+    background-color: #363636;
+}
+.login-section .login-title {
+    color: #ebebeb;
+    font-size: 20px;
+}
+.login-section .login-subtitle {
+    color: #b4b4b4;
+    font-size: 12px;
+}
+.login-section ion-input,  .login-section ion-item {
+    background-color: #555555;
+}
+
+.login-section .login-button {
+    width: 200px !important;
+    height: 34px !important;
+    background-color: #ed1c24 !important;
+}
+
+.register-section {
+    background-color: #646464;
+}
+.register-section .register-title {
+    color: #ebebeb;
+    font-size: 20px;
+}
+.register-section .register-subtitle {
+    color: #cccccc;
+    font-size: 12px;
+}
+.register-section .register-button {
+    width: 200px !important;
+    height: 34px !important;
+    background-color: #363636 !important;
+}
+.register-section .account-type-row ion-item {
+    background-color: transparent !important;
+    padding-left: 10px;
+}
+.register-section .account-type-row ion-label {
+    color: #cccccc;
+}
+.register-section .account-type-checkbox {
+    margin: 0px !important;
+}
+.register-section .checkbox-md .checkbox-checked, .checkbox-ios .checkbox-checked {
+    border-color: #363636 !important;
+    background-color: #363636 !important;
+}
+.register-section .checkbox-md .checkbox-icon {
+    border-color: #363636 !important;
+    background-color: #363636 !important;
+}
+.register-section ion-input,  .register-section ion-item {
+    background-color: #363636;
+}
+/* 
+showroom
+showroom-header
+section-title
+section-subtitle
+showroom-content
+showroom-info
+showroom-info-row
+showroom-image
+icons-container 
+*/
+
+
+/*===============================================*/
+
+
+/* 8. FEATURED LISTS */
+
+
+/*===============================================*/
+
+
+/*===============================================*/
+
+
+/* 9. POPUPS */
+
+
+/*===============================================*/
+
+
+/*===============================================*/
+
+
+/* 10. WIDGETS */
+
+
+/*===============================================*/
+
+
+/* 10-1 CARD */
+
+.card-phone-number {
+    position: relative;
+    display: inline;
+}
+
+.card-phone-number .phone-details {
+    padding: 10px;
+    height: 30px;
+    background-color: #5b5b5b !important;
+    color: #eee;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.card-phone-number .phone-details span {
+    display: inline-block;
+}
+
+.card-phone-number.card-md {
+    margin: 0px !important;
+}
+
+.card-showroom {
+    position: relative;
+    display: block;
+}
+
+.card-showroom .showroom-details {
+    padding: 5px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.7) !important;
+    color: #eee;
+    font-weight: 500;
+    font-size: 1rem;
+    position: absolute;
+    width: 100%;
+    bottom: 1px;
+    height: 50px;
+}
+
+.card-showroom .showroom-details .item-date {
+    color: #a1a1a1;
+    font-size: 8px;
+}
+
+.card-showroom .showroom-details .item-location,
+.card-showroom .showroom-details .item-price {
+    font-size: 0.9rem;
+}
+
+.card-showroom .showroom-details ion-icon {
+    padding-right: 3px;
+}
+
+.card-showroom .showroom-details span {
+    display: inline-block;
+}
+
+.card-showroom.card-md {
+    margin: 0px !important;
+}
+
+
+/* 10-2 MAPS */
+
+
+/* 10-3 COMMENTS WIDGET */
+
+
+/* 10-4 DATE PICKER */
+
+.picker-prefix,
+.picker-suffix,
+.picker-opt.picker-opt-selected {
+    color: #D53731 !important;
+}
+
+.picker-md .picker-button,
+.picker-md .picker-button.activated {
+    color: #D53731 !important;
+}
+
+
+/* 10-5 ALERT DIALOG */
+
+.alert-head {
+    background-color: #D53731;
+    color: #d7d7d7;
+}
+
+.alert-md .alert-radio-icon {
+    left: 0px !important;
+    margin-right: 13px !important;
+}
+
+.alert-md [aria-checked=true] .alert-radio-icon {
+    border-color: #D53731 !important;
+}
+
+.alert-md .alert-radio-inner  {
+    background-color: #D53731 !important;
+}
+.alert-ios [aria-checked=true] .alert-radio-inner {
+    border-color: #D53731 !important;
+}
+.alert-md [aria-checked=true] .alert-radio-label, .alert-ios [aria-checked=true] .alert-radio-label {
+    color: #D53731 !important;
+}
+
+.alert-md .alert-button, .alert-ios .alert-button {
+    color: #D53731 !important;
+}
+
+/* 10-5 SELECT MENU */
+
+ion-select, .select-md {
+    padding: 13px 8px 13px 16px;
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+.dark-controls .select-text {
+    color: #c7c7c7 !important;
+    font-weight: 600 !important;
+}
+
+.dark-controls .select-placeholder.select-text {
+    color: #999999 !important;
+}
+
+.dark-controls .select-md .select-icon .select-icon-inner, .dark-controls ion-select .select-icon .select-icon-inner {
+    left: 5px;
+    top: 50%;
+    position: absolute;
+    width: auto !important;
+    height: auto !important;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    color: #e7e7e7;
+    font-family: "Ionicons";
+}
+
+.dark-controls .select-md .select-icon .select-icon-inner::before, .dark-controls ion-select .select-icon .select-icon-inner::before {
+    content: "\f3d0";
+    color: #c7c7c7;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.showroom-filters {
+    background-color: #e1e1e1;
+}
+
+.light-controls ion-item {
+    border: 1px solid #c2c2c2;
+}
+
+.light-controls ion-select {
+    background-color: #fff;
+}
+
+.light-controls .select-text {
+    color: #c7c7c7 !important;
+    font-weight: 600 !important;
+}
+
+.light-controls .select-placeholder.select-text {
+    color: #999999 !important;
+}
+
+.light-controls .select-md .select-icon .select-icon-inner, .light-controls  ion-select .select-icon .select-icon-inner{
+    left: 0px;
+    top: 52%;
+    /* margin-top: -10px; */
+    position: absolute;
+    width: auto !important;
+    height: auto !important;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    color: #e7e7e7;
+    font-family: "Ionicons";
+}
+
+.light-controls .select-md .select-icon .select-icon-inner::before, .light-controls  ion-select .select-icon .select-icon-inner::before {
+    content: "\f3d0";
+    color: #D53731;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/* 10-6 BADGES */
+
+.custom-badge {
+    border-radius: 50% !important;
+    background-color: #D53731 !important;
+    border: 1px solid #fff !important;
+    font-weight: bold !important;
+}
+
+
+/* 10-7 INPUT GROUP */
+
+.input-group .input-addon {
+    background-color: #ed1c24;
+    color: white;
+    width: 44px;
+    padding: 0px;
+    margin: 0px !important;
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.input-group .text-input {
+    text-align: right !important;
+    padding-right: 44px !important;
+}
+
+.input-group .item-inner {
+    padding-right: 0px !important;
+}
+
+/*===============================================*/
+
+
+/* 11. PHOTO GALLERY */
+
+
+/*===============================================*/
+
+
+/*===============================================*/
+
+
+/* 12. BLOG LAYOUT */
+
+
+/*===============================================*/
+
+
+/*===============================================*/
+
+
+/* 13. FORMS */
+
+
+/*===============================================*/
+
+
+/* 13.1 DARK CONTROL FORM STYLE */
+
+.dark-controls ion-item {
+    background-color: #555555;
+    padding: 0px;
+}
+
+.dark-controls .item-md.item-block .item-inner {
+    border: none !important;
+}
+
+/* 13.2 MATERIAL DESIGN */
+.text-input-md {
+    margin: 0px 8px !important;
+}
+
+
+/* 13-2. LOGIN / SIGNUP / FORGOT PASS FORM */
+
+
+/*===============================================*/
+
+
+/* 14. TABS & ACCORDION */
+
+
+/*===============================================*/
+
+
+/*===============================================*/
+
+
+/* 15. MEDIA QUERIES */
+
+
+/*===============================================*/
+
+@media screen and (max-width: 680px) {}
+
+@media screen and (max-width: 480px) {}
+
+
+/*===============================================*/
+
+
+/* 16. HELPER CLASSES */
+
+
+/*===============================================*/
+
+.uppercase {
+    text-transform: uppercase !important;
+}
+
+.lowercase {
+    text-transform: lowercase !important;
+}
+
+.capitalize {
+    text-transform: capitalize !important;
+}
+
+.nott {
+    text-transform: none !important;
+}
+
+.tright {
+    text-align: right !important;
+}
+
+.tleft {
+    text-align: left !important;
+}
+
+.fright {
+    float: right !important;
+}
+
+.fleft {
+    float: left !important;
+}
+
+.fnone {
+    float: none !important;
+}
+
+.ohidden {
+    position: relative;
+    overflow: hidden !important;
+}
+
+.nomargin {
+    margin: 0 !important;
+}
+
+.noborder {
+    border: none !important;
+}
+
+.noradius {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    -ms-border-radius: 0 !important;
+    -o-border-radius: 0 !important;
+    border-radius: 0 !important;
+}
+
+.noabsolute {
+    position: relative !important;
+}
+
+.padding-100 {
+    padding: 100px;
+}
+
+.padding-90 {
+    padding: 90px;
+}
+
+.padding-80 {
+    padding: 80px;
+}
+
+.padding-70 {
+    padding: 70px;
+}
+
+.padding-60 {
+    padding: 60px;
+}
+
+.padding-40 {
+    padding: 40px;
+}
+
+.padding-30 {
+    padding: 30px;
+}
+
+.padding-20 {
+    padding: 20px;
+}
+
+.padding-15 {
+    padding: 15px;
+}
+
+.padding-10 {
+    padding: 10px;
+}
+
+.padding-v-130 {
+    padding-top: 130px;
+    padding-bottom: 130px;
+}
+
+.padding-v-120 {
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+.padding-v-110 {
+    padding-top: 110px;
+    padding-bottom: 110px;
+}
+
+.padding-v-100 {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.padding-v-90 {
+    padding-top: 90px;
+    padding-bottom: 90px;
+}
+
+.padding-v-80 {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.padding-v-70 {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.padding-v-60 {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.padding-v-50 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.padding-v-40 {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.padding-v-30 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.padding-v-20 {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+
+.padding-v-10 {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+.padding-h-130 {
+    padding-left: 130px;
+    padding-right: 130px;
+}
+
+.padding-h-120 {
+    padding-left: 120px;
+    padding-right: 110px;
+}
+
+.padding-h-100 {
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.padding-h-90 {
+    padding-left: 90px;
+    padding-right: 90px;
+}
+
+.padding-h-80 {
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+.padding-h-70 {
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+.padding-h-60 {
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.padding-h-50 {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.padding-h-40 {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.padding-h-30 {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.padding-h-20 {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.padding-h-10 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.padding-h-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.padding-t-400 {
+    padding-top: 400px !important;
+}
+
+.padding-t-350 {
+    padding-top: 350px !important;
+}
+
+.padding-t-300 {
+    padding-top: 300px !important;
+}
+
+.padding-t-250 {
+    padding-top: 250px !important;
+}
+
+.padding-t-200 {
+    padding-top: 200px !important;
+}
+
+.padding-t-150 {
+    padding-top: 150px !important;
+}
+
+.padding-t-140 {
+    padding-top: 140px !important;
+}
+
+.padding-t-130 {
+    padding-top: 130px !important;
+}
+
+.padding-t-120 {
+    padding-top: 120px !important;
+}
+
+.padding-t-110 {
+    padding-top: 110px !important;
+}
+
+.padding-t-100 {
+    padding-top: 100px !important;
+}
+
+.padding-t-90 {
+    padding-top: 90px !important;
+}
+
+.padding-t-80 {
+    padding-top: 80px !important;
+}
+
+.padding-t-70 {
+    padding-top: 70px !important;
+}
+
+.padding-t-60 {
+    padding-top: 60px !important;
+}
+
+.padding-t-50 {
+    padding-top: 50px !important;
+}
+
+.padding-t-40 {
+    padding-top: 40px !important;
+}
+
+.padding-t-30 {
+    padding-top: 30px !important;
+}
+
+.padding-t-20 {
+    padding-top: 20px !important;
+}
+
+.padding-t-15 {
+    padding-top: 15px !important;
+}
+
+.padding-t-10 {
+    padding-top: 10px !important;
+}
+
+.padding-t-0 {
+    padding-top: 0px !important;
+}
+
+.padding-b-170 {
+    padding-bottom: 170px;
+}
+
+.padding-b-160 {
+    padding-bottom: 160px;
+}
+
+.padding-b-150 {
+    padding-bottom: 150px;
+}
+
+.padding-b-140 {
+    padding-bottom: 140px;
+}
+
+.padding-b-130 {
+    padding-bottom: 130px;
+}
+
+.padding-b-120 {
+    padding-bottom: 120px;
+}
+
+.padding-b-110 {
+    padding-bottom: 110px;
+}
+
+.padding-b-100 {
+    padding-bottom: 100px;
+}
+
+.padding-b-90 {
+    padding-bottom: 90px;
+}
+
+.padding-b-80 {
+    padding-bottom: 80px;
+}
+
+.padding-b-70 {
+    padding-bottom: 70px;
+}
+
+.padding-b-60 {
+    padding-bottom: 60px;
+}
+
+.padding-b-50 {
+    padding-bottom: 50px;
+}
+
+.padding-b-40 {
+    padding-bottom: 40px;
+}
+
+.padding-b-30 {
+    padding-bottom: 30px;
+}
+
+.padding-b-20 {
+    padding-bottom: 20px;
+}
+
+.padding-b-15 {
+    padding-bottom: 15px;
+}
+
+.padding-b-10 {
+    padding-bottom: 10px;
+}
+
+.padding-b-0 {
+    padding-bottom: 0px;
+}
+
+.padding-l-0 {
+    padding-left: 0px;
+}
+
+.padding-r-20 {
+    padding-right: 20px;
+}
+
+.padding-r-10 {
+    padding-right: 10px;
+}
+
+.margin-2 {
+    margin: 2px !important;
+}
+
+.margin-t-0 {
+    margin-top: 0px !important;
+}
+
+.margin-t-5 {
+    margin-top: 5px !important;
+}
+
+.margin-t-10 {
+    margin-top: 10px !important;
+}
+
+.margin-t-15 {
+    margin-top: 15px !important;
+}
+
+.margin-t-20 {
+    margin-top: 20px !important;
+}
+
+.margin-t-30 {
+    margin-top: 30px !important;
+}
+
+.margin-t-40 {
+    margin-top: 40px !important;
+}
+
+.margin-t-50 {
+    margin-top: 50px !important;
+}
+
+.margin-t-60 {
+    margin-top: 60px !important;
+}
+
+.margin-t-70 {
+    margin-top: 70px !important;
+}
+
+.margin-t-80 {
+    margin-top: 80px !important;
+}
+
+.margin-t-90 {
+    margin-top: 90px !important;
+}
+
+.margin-t-5-n {
+    margin-top: -5px !important;
+}
+
+.margin-t-10-n {
+    margin-top: -10px !important;
+}
+
+.margin-t-15-n {
+    margin-top: -15px !important;
+}
+
+.margin-t-20-n {
+    margin-top: -20px !important;
+}
+
+.margin-t-30-n {
+    margin-top: -30px !important;
+}
+
+.margin-b-0 {
+    margin-bottom: 0px !important;
+}
+
+.margin-b-5 {
+    margin-bottom: 5px !important;
+}
+
+.margin-b-10 {
+    margin-bottom: 10px !important;
+}
+
+.margin-b-15 {
+    margin-bottom: 15px !important;
+}
+
+.margin-b-20 {
+    margin-bottom: 20px !important;
+}
+
+.margin-b-30 {
+    margin-bottom: 30px !important;
+}
+
+.margin-b-40 {
+    margin-bottom: 40px !important;
+}
+
+.margin-b-50 {
+    margin-bottom: 50px !important;
+}
+
+.margin-b-60 {
+    margin-bottom: 60px !important;
+}
+
+.margin-b-70 {
+    margin-bottom: 70px !important;
+}
+
+.margin-b-80 {
+    margin-bottom: 80px !important;
+}
+
+.margin-b-90 {
+    margin-bottom: 90px !important;
+}
+
+.margin-h-10 {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+
+.margin-h-20 {
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+}
+
+.margin-h-15-n {
+    margin-left: -15px !important;
+    margin-right: -15px !important;
+}
+
+.margin-v-10 {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+.margin-v-20 {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+}
+
+.margin-v-30 {
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+}
+
+.margin-l-10 {
+    margin-left: 10px !important;
+}
+
+.margin-l-20 {
+    margin-left: 20px !important;
+}
+
+.margin-l-30 {
+    margin-left: 30px !important;
+}
+
+.margin-r-10 {
+    margin-right: 10px !important;
+}
+
+.margin-r-20 {
+    margin-right: 20px !important;
+}
+
+.margin-r-30 {
+    margin-right: 30px !important;
+}
+
+.margin-r-40 {
+    margin-right: 40px !important;
+}
+
+.margin-r-50 {
+    margin-right: 50px !important;
+}
+
+.z-index-1 {
+    z-index: 1 !important;
+}
+
+.z-index-2 {
+    z-index: 2 !important;
+}
+
+.z-index-3 {
+    z-index: 3 !important;
+}
+
+.z-index-4 {
+    z-index: 4 !important;
+}
+
+.z-index-5 {
+    z-index: 5 !important;
+}
+
+.z-index-6 {
+    z-index: 6 !important;
+}
+
+.z-index-7 {
+    z-index: 7 !important;
+}
+
+.z-index-8 {
+    z-index: 8 !important;
+}
+
+.z-index-9 {
+    z-index: 9 !important;
+}
+
+.z-index-10 {
+    z-index: 10 !important;
+}
+
+.noshadow {
+    box-shadow: none !important;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.nothidden {
+    display: block !important;
+}
+
+.inline-block {
+    float: none !important;
+    display: inline-block !important;
+}
+
+.center {
+    text-align: center !important;
+}
+
+.divcenter {
+    position: relative !important;
+    float: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.nobg {
+    background: none !important;
+}
+
+.nobgcolor {
+    background-color: transparent !important;
+}
+
+.t100 {
+    font-weight: 100 !important;
+}
+
+.t200 {
+    font-weight: 200 !important;
+}
+
+.t300 {
+    font-weight: 300 !important;
+}
+
+.t400 {
+    font-weight: 400 !important;
+}
+
+.t500 {
+    font-weight: 500 !important;
+}
+
+.t600 {
+    font-weight: 600 !important;
+}
+
+.t700 {
+    font-weight: 700 !important;
+}
+
+.ls1 {
+    letter-spacing: 1px !important;
+}
+
+.ls2 {
+    letter-spacing: 2px !important;
+}
+
+.ls3 {
+    letter-spacing: 3px !important;
+}
+
+.ls4 {
+    letter-spacing: 4px !important;
+}
+
+.ls5 {
+    letter-spacing: 5px !important;
+}
+
+.noheight {
+    height: 0 !important;
+}
+
+.nolineheight {
+    line-height: 0 !important;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+
+/*===============================================*/
+
+
+/* 17. MISCELLANEOUS CLASSES */
+
+
+/*===============================================*/
+
+
+/*===============================================*/
+
+
+/* 18. COLORS AND BACKGROUNDS */
+
+.white {
+    color: #f1f1f1 !important;
+}
+
+.red {
+    color: #D53731;
+}
+
+.bg-red {
+    background-color: #D53731 !important;
+}
+
+.bg-grey {
+    background-color: #383838 !important;
+}
+
+.bg-dark {
+    background-color: #252525 !important;
+}
+
+
+/*===============================================*/
+
+
+/*===============================================*/
+
+
+/* 19. ANIMATIONS */
+
+
+/*===============================================*/
+
+
+/*===============================================*/
+
+
+/* 20. MISCELLANEOUS */
+
+
+/*===============================================*/

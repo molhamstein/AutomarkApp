@@ -1,0 +1,258 @@
+<ion-header>
+  <ion-grid style="background-color:#363636;">
+  <ion-row >
+    <ion-col col-4>
+      <img class="img-responsive" full src="assets/icon/header_logo.png"/>
+    </ion-col>
+    <ion-col col-6>
+      <ion-row justify-content-end align-items-end>
+        <b style="color:white;">تسجيل الدخول    |</b>
+      </ion-row>
+    </ion-col>
+    <ion-col col-2>
+      <ion-row justify-content-end align-items-end>
+        <b style="color:white;">اتصل بنا</b><br>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+ 
+</ion-grid>
+</ion-header>
+<ion-content>
+	<ion-grid no-margin no-padding>
+		<ion-row>
+			<ion-col col-1>
+			</ion-col>
+			<ion-col col-10>
+				<ion-row style="padding-top: 3%;">
+					<ion-col col-6>
+						{{details.data.title_c}}
+					</ion-col>
+					
+					<ion-col col-6 align-self-end >
+						<ion-row justify-content-end align-items-end>
+							<b style="color:#ed1c24;">AED {{details.data.price_c}}</b>
+						</ion-row>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col col-4>
+						<ion-row>
+							<img (click)="show_model()" class="img_gallery" src="assets/imgs/download.jpg"/>
+						</ion-row>
+						<ion-row>
+							<img class="img_gallery" src="assets/imgs/download.jpg"/>
+						</ion-row>
+						<ion-row>
+							<img class="img_gallery" src="assets/imgs/download.jpg"/>
+						</ion-row>
+						<ion-row>
+							<img class="img_gallery" src="assets/imgs/download.jpg"/>
+						</ion-row>
+					</ion-col>
+					<ion-col col-8>
+						<img src="http://automark.ae/Public/uploads/upl_5a8197ac358a8.jpg"/>
+					</ion-col>
+				</ion-row>
+			</ion-col>
+			<ion-col col-1>
+			</ion-col>
+		</ion-row>
+		<ion-row style="background-color: #363636;padding-top: 10px;
+    padding-bottom: 10px;">
+			<ion-col col-12>
+				<ion-row>
+					<b style="color:#ebebeb;padding-right: 10px">المعلومات الأساسية</b>
+				</ion-row>
+				<ion-row>
+					<ion-col col-6>
+						<ion-row class="row_cos_">
+							 <ion-col col-6>
+							 	<b class="p_costume">النوع</b>
+							 </ion-col>
+							 <ion-col col-6>
+							 	<b class="p_costume2">هيونداي</b>
+							 </ion-col>
+						</ion-row>
+						<ion-row class="row_cos_"> 
+							 <ion-col col-6>
+							 	<b class="p_costume">الموديل</b>
+							 </ion-col>
+							 <ion-col col-6>
+							 		<b class="p_costume2">سانتفيه</b>
+							 </ion-col>
+						</ion-row >
+						<ion-row class="row_cos_">
+							 <ion-col col-6>
+							 	<b class="p_costume">الهيئة</b>
+							 </ion-col>
+							 <ion-col col-6>
+							 	<b class="p_costume2">شغلة</b>
+							 </ion-col>
+						</ion-row>
+						<ion-row class="row_cos_">
+							 <ion-col col-6>
+							 	<b class="p_costume">عام التصنيع</b>
+							 </ion-col>
+							 <ion-col col-6>
+							 	<b class="p_costume2">2009</b>
+							 </ion-col>
+						</ion-row>
+						<ion-row class="row_cos_">
+							 <ion-col col-6>
+							 	<b class="p_costume">اللون</b>
+							 </ion-col>
+							 <ion-col col-6>
+							 	<b class="p_costume2">فوشي</b>
+							 </ion-col>
+						</ion-row>
+					</ion-col>
+					<ion-col col-6>
+						<ion-row class="row_cos_">
+							 <ion-col col-6>
+							 	<b class="p_costume">عدد الكيلومترات</b>
+							 </ion-col>
+							 <ion-col col-6>
+							 	<b class="p_costume2">67000</b>
+							 </ion-col>
+						</ion-row>
+						<ion-row class="row_cos_">
+							 <ion-col col-6>
+							 	<b class="p_costume">الابوبا</b>
+							 </ion-col>
+							 <ion-col col-6>
+							 		<b class="p_costume2">5</b>
+							 </ion-col>
+						</ion-row>
+						<ion-row class="row_cos_">
+							 <ion-col col-6>
+							 	<b class="p_costume" >بلد المنشأ</b>
+							 </ion-col>
+							 <ion-col col-6>
+							 	<b class="p_costume2">كوريا</b>
+							 </ion-col>
+						</ion-row>
+						<ion-row class="row_cos_">
+							 <ion-col col-6>
+							 	<b class="p_costume">الضمان</b>
+							 </ion-col>
+							 <ion-col col-6>
+							 	<b class="p_costume2">خارج الضمان</b>
+							 </ion-col>
+						</ion-row>
+						<ion-row class="row_cos_">
+							 <ion-col col-6>
+							 	<b class="p_costume">حالة السيارة</b>
+							 </ion-col>
+							 <ion-col col-6>
+							 	<b class="p_costume2">جيد</b>
+							 </ion-col>
+						</ion-row>
+					</ion-col>
+				</ion-row>
+			</ion-col>
+		</ion-row>
+		<ion-row style="background-color: #ebebeb;padding-top: 10px;
+    padding-bottom: 10px;">
+			<ion-col col-12>
+				<ion-row>
+					<b style="color:#363636;padding-right: 10px">المعلومات الأضافية</b>
+				</ion-row>
+				<ion-row>
+					<p style="padding-right: 10px">  | Kadim Al Sahir - Lao Lam Takouni Anti Fi Hayati
+من البوم كتاب الحب للفنان كاظم الساهر
+From Kitab Al Hob Album - for Kadim Al Sahir </p>
+				</ion-row>
+			</ion-col>
+		</ion-row>
+
+		<ion-row>
+			<ion-col col-6>
+				<ion-row>
+					<ion-col col-3>
+						<b class="p_costume3">البائع :</b>
+					</ion-col>
+					<ion-col col-6>
+						<b class="p_costume4">وسيم حجازي</b>
+					</ion-col>
+					<ion-col col-3>	
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col col-3>
+						<b class="p_costume3">الموبايل :</b>
+					</ion-col>
+					<ion-col col-6>
+						<b class="p_costume4">00954851564</b>	
+					</ion-col>
+					<ion-col col-3>	
+					</ion-col>
+				</ion-row>
+			</ion-col>
+			<ion-col col-6>
+				<ion-row>
+					<ion-col col-1>	
+					</ion-col>
+					<ion-col col-3>
+						<b class="p_costume3">مشاركة :</b>
+					</ion-col>
+					<ion-col col-2 class="img_cos">
+						<img src="assets/icon/Details/g+.png">
+					</ion-col>
+					<ion-col col-2 class="img_cos">
+						<img src="assets/icon/Details/linkedin.png">
+					</ion-col>
+					<ion-col col-2 class="img_cos">
+						<img src="assets/icon/Details/twitter.png">
+					</ion-col>
+					<ion-col col-2 class="img_cos">
+						<img  style="width: 6px;" src="assets/icon/Details/facebook.png">
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col col-2>
+					</ion-col>
+					<ion-col col-5>
+						<a href="#" class="a_size">أتصل الأن</a>
+					</ion-col>
+					<ion-col col-5>
+						<a href="" class="a_size">أرسل رسالة</a>
+					</ion-col>
+				</ion-row> 
+			</ion-col>
+		</ion-row>
+			
+	</ion-grid>
+</ion-content>
+ 
+
+<ion-footer>
+
+
+      <ion-row style="height: 8rem;
+    background-color: white;">
+        <ion-col full class="buttom_col" >
+         <button (click) = "ShowMyAccount()" ion-button full class="buttom_button"> <div> <ion-icon name='my_account'></ion-icon> <br> <label>حسابي</label> </div> </button>
+        </ion-col>
+        <ion-col full class="buttom_col">
+          <button ion-button full class="buttom_button"> <div> <ion-icon name='chats'></ion-icon> <br> <label>محادثات</label> </div> </button>
+          
+        </ion-col >
+        <ion-col full class="buttom_col"  style="margin-top:0px!important;height:100%!important;border-top-style: solid!important;
+    border-top-color: white!important;border-style: hidden;    background-color: #ed1c24;">
+        <button ion-button full class="buttom_button" style="box-shadow: none;height: 6.6rem !important;background-image: url(assets/icon/bar_middle.png); background-repeat: no-repeat;
+    background-size: contain;width: 100%;background-size: 100% 100%;background-color:white!important;"> <div style="height:100%;padding-top: 21%;"> <ion-icon name='add_ad' style="padding-bottom: 7%;"></ion-icon><br><label>أضف إعلانك مجانا</label> </div> </button>
+          
+        </ion-col>
+        <ion-col full class="buttom_col">
+        <button ion-button full class="buttom_button"> <div> <ion-icon name='m3ard'></ion-icon> <br> <label>معارض</label> </div> </button>
+          
+        </ion-col>
+        <ion-col full class="buttom_col">
+        <button ion-button full (click) = "ShowFilter()" class="buttom_button"> <div> <ion-icon name='search'></ion-icon> <br> <label>بحث</label> </div> </button>
+          
+        </ion-col>
+      </ion-row>
+
+
+</ion-footer>

@@ -1,0 +1,254 @@
+<ion-header>
+  <ion-grid style="background-color:#363636;">
+  <ion-row >
+    <ion-col col-4>
+      <img class="img-responsive" full src="assets/icon/header_logo.png"/>
+    </ion-col>
+    <ion-col col-6>
+      <ion-row justify-content-end align-items-end>
+        <b style="color:white;">تسجيل الدخول    |</b>
+      </ion-row>
+    </ion-col>
+    <ion-col col-2>
+      <ion-row justify-content-end align-items-end>
+        <b style="color:white;">اتصل بنا</b><br>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+ 
+</ion-grid>
+</ion-header>
+
+<ion-content no-padding no-margin>
+  <div class="showroom">
+    <div class="showroom-header bg-dark">
+      <h2 class="section-title white padding-r-20"> المعارض
+        <span>&gt;</span>
+      </h2>
+      <h3 class="section-subtitle padding-r-10"> معرض الشاهد </h3>
+    </div>
+    <div class="showroom-content bg-red">
+      <div class="showroom-info">
+        <div class="showroom-info-row">
+          <span class="title">الاسم:</span>
+          <span class="value"> الشاهد للسيارات </span>
+        </div>
+        <div class="showroom-info-row">
+          <span class="title">العنوان:</span>
+          <span class="value"> القوز الصناعية - دبي </span>
+        </div>
+        <div class="showroom-info-row">
+          <span class="title">الأرضي:</span>
+          <span class="value"> +899098 9890 </span>
+        </div>
+        <div class="showroom-info-row">
+          <span class="title">الموبايل:</span>
+          <span class="value"> +899098 9890 </span>
+        </div>
+        <div class="showroom-info-row">
+          <span class="title">البريد الالكتروني:</span>
+          <span class="value"> medo@gmail.com </span>
+        </div>
+      </div>
+    </div> 
+    <div class="showroom-image">
+      <img src="assets/imgs/profile-image.jpg" />
+      <div class="icons-container">
+        <ion-icon name="mail"></ion-icon>
+        <ion-icon name="md-share"></ion-icon>
+        <span (click)="toggleLike()">
+          <ion-icon name="heart" class="like" [class.liked]="liked==true"></ion-icon>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="showroom-filters padding-v-10">
+    <h2 class="red padding-v-10" text-center>سيارات المعرض</h2>
+    <div class="filters-control light-controls">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            <ion-item no-padding>
+              <ion-label>النوع</ion-label>
+              <ion-select [placeholder]="'النوع'" okText="تم" cancelText="إغلاق">
+                <ion-option value="value1">كيا</ion-option>
+                <ion-option value="value2">ميرسيدس</ion-option>
+              </ion-select>
+            </ion-item>
+
+          </ion-col>
+          <ion-col col-4>
+            <ion-item no-padding>
+              <ion-label>الموديل</ion-label>
+              <ion-select [placeholder]="'الموديل'" okText="تم" cancelText="إغلاق">
+                <ion-option value="value1">ريو</ion-option>
+                <ion-option value="value2">سيراتو</ion-option>
+              </ion-select>
+            </ion-item>
+
+          </ion-col>
+          <ion-col col-4>
+            <ion-item no-padding>
+              <ion-label>السنة</ion-label>
+              <ion-select [placeholder]="'السنة'" okText="تم" cancelText="إغلاق">
+                <ion-option value="value1">2018</ion-option>
+                <ion-option value="value2">2017</ion-option>
+              </ion-select>
+            </ion-item>
+
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-center>
+          <ion-col col-5>
+            <button ion-button full class="showroom-search" color="dark"> ابحث </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+
+  <div class="showroom-items">
+    <ion-grid justify-content-center>
+      <ion-row>
+        
+        <ion-col col-4 col-sm-3 col-md-2>
+          <ion-card class="card-showroom">
+            <img src="assets/imgs/car.jpg" />
+            <div class="showroom-details">
+              <div class="item-title text-left"><strong>Chevrolet corvet</strong></div>
+              <div class="item-date text-left">10 November 1991</div>
+              <div class="item-footer">
+                <span class="item-location fleft"><ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
+                <span class="item-price fright">{{'1200' | number}} AED</span>
+              </div>
+            </div>
+          </ion-card>
+        </ion-col>
+        <ion-col col-4 col-sm-3 col-md-2>
+          <ion-card class="card-showroom">
+            <img src="assets/imgs/car.jpg" />
+            <div class="showroom-details">
+              <div class="item-title text-left"><strong>Chevrolet corvet</strong></div>
+              <div class="item-date text-left">10 November 1991</div>
+              <div class="item-footer">
+                <span class="item-location fleft"><ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
+                <span class="item-price fright">{{'1200' | number}} AED</span>
+              </div>
+            </div>
+          </ion-card>
+        </ion-col>
+        <ion-col col-4 col-sm-3 col-md-2>
+          <ion-card class="card-showroom">
+            <img src="assets/imgs/car.jpg" />
+            <div class="showroom-details">
+              <div class="item-title text-left"><strong>Chevrolet corvet</strong></div>
+              <div class="item-date text-left">10 November 1991</div>
+              <div class="item-footer">
+                <span class="item-location fleft"><ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
+                <span class="item-price fright">{{'1200' | number}} AED</span>
+              </div>
+            </div>
+          </ion-card>
+        </ion-col>
+        <ion-col col-4 col-sm-3 col-md-2>
+          <ion-card class="card-showroom">
+            <img src="assets/imgs/car.jpg" />
+            <div class="showroom-details">
+              <div class="item-title text-left"><strong>Chevrolet corvet</strong></div>
+              <div class="item-date text-left">10 November 1991</div>
+              <div class="item-footer">
+                <span class="item-location fleft"><ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
+                <span class="item-price fright">{{'1200' | number}} AED</span>
+              </div>
+            </div>
+          </ion-card>
+        </ion-col>
+        <ion-col col-4 col-sm-3 col-md-2>
+          <ion-card class="card-showroom">
+            <img src="assets/imgs/car.jpg" />
+            <div class="showroom-details">
+              <div class="item-title text-left"><strong>Chevrolet corvet</strong></div>
+              <div class="item-date text-left">10 November 1991</div>
+              <div class="item-footer">
+                <span class="item-location fleft"><ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
+                <span class="item-price fright">{{'1200' | number}} AED</span>
+              </div>
+            </div>
+          </ion-card>
+        </ion-col>
+        <ion-col col-4 col-sm-3 col-md-2>
+          <ion-card class="card-showroom">
+            <img src="assets/imgs/car.jpg" />
+            <div class="showroom-details">
+              <div class="item-title text-left"><strong>Chevrolet corvet</strong></div>
+              <div class="item-date text-left">10 November 1991</div>
+              <div class="item-footer">
+                <span class="item-location fleft"><ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
+                <span class="item-price fright">{{'1200' | number}} AED</span>
+              </div>
+            </div>
+          </ion-card>
+        </ion-col>
+        <ion-col col-4 col-sm-3 col-md-2>
+          <ion-card class="card-showroom">
+            <img src="assets/imgs/car.jpg" />
+            <div class="showroom-details">
+              <div class="item-title text-left"><strong>Chevrolet corvet</strong></div>
+              <div class="item-date text-left">10 November 1991</div>
+              <div class="item-footer">
+                <span class="item-location fleft"><ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
+                <span class="item-price fright">{{'1200' | number}} AED</span>
+              </div>
+            </div>
+          </ion-card>
+        </ion-col>
+        <ion-col col-4 col-sm-3 col-md-2>
+          <ion-card class="card-showroom">
+            <img src="assets/imgs/car.jpg" />
+            <div class="showroom-details">
+              <div class="item-title text-left"><strong>Chevrolet corvet</strong></div>
+              <div class="item-date text-left">10 November 1991</div>
+              <div class="item-footer">
+                <span class="item-location fleft"><ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
+                <span class="item-price fright">{{'1200' | number}} AED</span>
+              </div>
+            </div>
+          </ion-card>
+        </ion-col>
+        
+      </ion-row>
+    </ion-grid>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+
+
+      <ion-row style="height: 8rem;
+    background-color: white;">
+        <ion-col full class="buttom_col" >
+         <button (click) = "ShowMyAccount()" ion-button full class="buttom_button"> <div> <ion-icon name='my_account'></ion-icon> <br> <label>حسابي</label> </div> </button>
+        </ion-col>
+        <ion-col full class="buttom_col">
+          <button ion-button full class="buttom_button"> <div> <ion-icon name='chats'></ion-icon> <br> <label>محادثات</label> </div> </button>
+          
+        </ion-col >
+        <ion-col full class="buttom_col"  style="margin-top:0px!important;height:100%!important;border-top-style: solid!important;
+    border-top-color: white!important;border-style: hidden;    background-color: #ed1c24;">
+        <button (click) = "add_ad()" ion-button full class="buttom_button" style="box-shadow: none;height: 6.6rem !important;background-image: url(assets/icon/bar_middle.png); background-repeat: no-repeat;
+    background-size: contain;width: 100%;background-size: 100% 100%;background-color:white!important;"> <div style="height:100%;padding-top: 21%;"> <ion-icon name='add_ad' style="padding-bottom: 7%;"></ion-icon><br><label>أضف إعلانك مجانا</label> </div> </button>
+          
+        </ion-col>
+        <ion-col full class="buttom_col">
+        <button (click) = "showroom()" ion-button full class="buttom_button"> <div> <ion-icon name='m3ard'></ion-icon> <br> <label>معارض</label> </div> </button>
+          
+        </ion-col>
+        <ion-col full class="buttom_col">
+        <button ion-button full (click) = "ShowFilter()" class="buttom_button"> <div> <ion-icon name='search'></ion-icon> <br> <label>بحث</label> </div> </button>
+          
+        </ion-col>
+      </ion-row>
+
+
+</ion-footer>

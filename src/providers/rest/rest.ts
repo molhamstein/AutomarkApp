@@ -9,13 +9,13 @@ import { HttpModule } from '@angular/http';
 */
 @Injectable()
 export class RestProvider {
-	apiUrl = 'http://automark.ae:3000/api';
+  apiUrl = 'http://automark.ae:3000/api';
   constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
   }
 
   getCategories() {
-  	console.log("4");
+    console.log("4");
   return new Promise(resolve => {
     this.http.get(this.apiUrl+'/categories').subscribe(data => {
       resolve(data);
@@ -63,7 +63,7 @@ getcars_type(){
     });
   });
 }
-
+     
 getcars_model(model){ 
   return new Promise(resolve => {
     this.http.get(this.apiUrl+'/option_cars?filter[include]=value_option&filter[where][id_o]='+model).subscribe(data => {
@@ -71,11 +71,11 @@ getcars_model(model){
     }, err => {
       console.log(err);
     });
-  });
-}
-getitem_details(id){
+  });    
+}   
+getitem_details(id){         
   return new Promise(resolve => {
-    this.http.get(this.apiUrl+'/cars/'+id).subscribe(data => {
+    this.http.get(this.apiUrl+'/cars/cars_meta_option_by_id?id='+id+'&include=users').subscribe(data => {
       resolve(data);
     }, err => {
       console.log(err);

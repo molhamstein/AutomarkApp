@@ -7,18 +7,18 @@ import { RestProvider } from '../../providers/rest/rest';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
 @IonicPage()
 @Component({
   selector: 'page-item-details',
   templateUrl: 'item-details.html',
 })
 export class ItemDetailsPage {
-	details:any;
-	item_id:any;
-	images:any;
+  details:any;
+  item_id:any;
+  images:any;
+
   constructor(public navCtrl: NavController,public restProvider: RestProvider, public navParams: NavParams, private loadingCtrl: LoadingController) {
-  	this.item_id= navParams.data.item_id;
+    this.item_id= navParams.data.item_id;
   }  
 
   ionViewDidLoad() {
@@ -36,7 +36,7 @@ export class ItemDetailsPage {
    }
 
    getitem_details(){
-   	let loadingPopup = this.loadingCtrl.create({
+     let loadingPopup = this.loadingCtrl.create({
       content: 'جاري جلب البيانات ....'
     });
   
@@ -47,8 +47,9 @@ export class ItemDetailsPage {
       this.details = data2;
       //this.images = JSON.parse("[" + data2.data.images_c + "]"); 
       loadingPopup.dismiss();
-      console.log(this.images);            
-    });
+      //console.log(data2.data[0].id_c);            
+    }); 
    }
    
 }
+       

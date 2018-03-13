@@ -1,6 +1,18 @@
 page-contact {
 	$list-md-margin-start:2px;
 	$list-md-margin-end:2px;
+
+  .list-header-md{
+    margin-bottom: 0px;
+    min-height: 4rem;
+  }
+  .item-md{
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  ion-card img{
+    height: 80%!important;
+  }
 }
 .card-background-page {
 

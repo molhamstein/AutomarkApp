@@ -19,201 +19,233 @@
 </ion-grid>
 </ion-header>
 <ion-content>
-	<ion-grid no-margin no-padding>
+	<ion-grid no-margin no-padding >
 		<ion-row>
 			<ion-col col-1>
 			</ion-col>
 			<ion-col col-10>
 				<ion-row style="padding-top: 3%;">
 					<ion-col col-6>
-						{{details.data.title_c}}
+						{{details.data[0].title_c}}
 					</ion-col>
 					
 					<ion-col col-6 align-self-end >
 						<ion-row justify-content-end align-items-end>
-							<b style="color:#ed1c24;">AED {{details.data.price_c}}</b>
+							<b style="color:#ed1c24;">AED {{details.data[0].price_c}}</b>
 						</ion-row>
 					</ion-col>
 				</ion-row>
 				<ion-row>
 					<ion-col col-4>
-						<ion-row>
-							<img (click)="show_model()" class="img_gallery" src="assets/imgs/download.jpg"/>
+						<ion-row *ngFor="let image of details.data[0].images_c | slice:1">
+							<img (click)="show_model()" class="img_gallery" src="http://automark.ae/Public/uploads/{{image}}"/>
 						</ion-row>
-						<ion-row>
-							<img class="img_gallery" src="assets/imgs/download.jpg"/>
-						</ion-row>
-						<ion-row>
-							<img class="img_gallery" src="assets/imgs/download.jpg"/>
-						</ion-row>
-						<ion-row>
-							<img class="img_gallery" src="assets/imgs/download.jpg"/>
-						</ion-row>
+						
 					</ion-col>
 					<ion-col col-8>
-						<img src="http://automark.ae/Public/uploads/upl_5a8197ac358a8.jpg"/>
+						<img src="http://automark.ae/Public/uploads/{{details.data[0].images_c[0]}}"/>
 					</ion-col>
 				</ion-row>
 			</ion-col>
 			<ion-col col-1>
 			</ion-col>
 		</ion-row>
-		<ion-row style="background-color: #363636;padding-top: 10px;
-    padding-bottom: 10px;">
+		<ion-row style="background-color: #363636;padding: 12px;">
 			<ion-col col-12>
 				<ion-row>
 					<b style="color:#ebebeb;padding-right: 10px">المعلومات الأساسية</b>
 				</ion-row>
 				<ion-row>
 					<ion-col col-6>
-						<ion-row class="row_cos_">
-							 <ion-col col-6>
-							 	<b class="p_costume">النوع</b>
-							 </ion-col>
-							 <ion-col col-6>
-							 	<b class="p_costume2">هيونداي</b>
-							 </ion-col>
+						
+						<ion-row class="row_cos_" *ngFor="let item of details.data[0].cars_meta_details | slice:0:5">
+							<ion-col col-9>
+								<b class="p_costume">{{item.name_o_ar}}</b>
+							</ion-col>
+							<ion-col col-3 [ngSwitch] = "item.value_m">
+									  <b class="p_costume2" *ngSwitchCase="'4'">عادي</b>
+									  
+									  <b class="p_costume2" *ngSwitchCase="'5'">اوتوماتك</b>
+									  <b class="p_costume2" *ngSwitchCase="'6'">ممتازه</b>
+									  <b class="p_costume2" *ngSwitchCase="'7'">جيده</b>
+									  <b class="p_costume2" *ngSwitchCase="'8'">متوسطه</b>
+									  <b class="p_costume2" *ngSwitchCase="'9'">بحاجة الى صيانة</b>
+									  <b class="p_costume2" *ngSwitchCase="'10'">كوبيه</b>
+									 
+									  <b class="p_costume2" *ngSwitchCase="'11'">كشف</b>
+									  <b class="p_costume2" *ngSwitchCase="'12'">دفع رباعي</b>
+									   <b class="p_costume2" *ngSwitchCase="'13'">سيدان</b>
+									  <b class="p_costume2" *ngSwitchCase="'14'">صغيره</b>
+									   <b class="p_costume2" *ngSwitchCase="'15'">فاخرة</b>
+									<b class="p_costume2" *ngSwitchDefault>{{item.value_m}}</b>
+									  
+								 </ion-col>
+							 <!--<ion-col col-8 [ngSwitch] = "item.code_m">
+								  <b class="p_costume" *ngSwitchCase="'claas_car'">الفئة</b>
+								  
+								  <b class="p_costume" *ngSwitchCase="'case'">الحالة</b>
+								  <b class="p_costume" *ngSwitchCase="'kilometersconsumed'">الكيلومترات المقطوعة</b>
+								  <b class="p_costume" *ngSwitchCase="'transmission'">ناقل الحركة</b>
+								  <b class="p_costume" *ngSwitchCase="'fuel'">الوقود</b>
+								  <b class="p_costume" *ngSwitchCase="'badi_case'">حالة البدي</b>
+								  <b class="p_costume" *ngSwitchCase="'stat_mator'">حالة المكينة</b>
+								 
+								  <b class="p_costume" *ngSwitchCase="'supplier'">المورد</b>
+								  <b class="p_costume" *ngSwitchCase="'numberselender'">عدد السلندرات</b>
+								  <!--<b class="p_costume" *ngSwitchCase="'specifications'">الفccccئة</b>-->
+								  
+							<!-- </ion-col>
+							 <ion-col col-4 [ngSwitch] = "item.value_m">
+								  <b class="p_costume2" *ngSwitchCase="'4'">عادي</b>
+								  
+								  <b class="p_costume2" *ngSwitchCase="'5'">اوتوماتك</b>
+								  <b class="p_costume2" *ngSwitchCase="'6'">ممتازه</b>
+								  <b class="p_costume2" *ngSwitchCase="'7'">جيده</b>
+								  <b class="p_costume2" *ngSwitchCase="'8'">متوسطه</b>
+								  <b class="p_costume2" *ngSwitchCase="'9'">بحاجة الى صيانة</b>
+								  <b class="p_costume2" *ngSwitchCase="'10'">كوبيه</b>
+								 
+								  <b class="p_costume2" *ngSwitchCase="'11'">كشف</b>
+								  <b class="p_costume2" *ngSwitchCase="'12'">دفع رباعي</b>
+								   <b class="p_costume2" *ngSwitchCase="'13'">سيدان</b>
+								  <b class="p_costume2" *ngSwitchCase="'14'">صغيره</b>
+								   <b class="p_costume2" *ngSwitchCase="'15'">فاخرة</b>
+								<b class="p_costume2" *ngSwitchDefault>{{item.value_m}}</b>
+								  <!--<b class="p_costume" *ngSwitchCase="'specifications'">الفccccئة</b>-->
+								  
+							 <!--</ion-col>-->
 						</ion-row>
-						<ion-row class="row_cos_"> 
-							 <ion-col col-6>
-							 	<b class="p_costume">الموديل</b>
-							 </ion-col>
-							 <ion-col col-6>
-							 		<b class="p_costume2">سانتفيه</b>
-							 </ion-col>
-						</ion-row >
 						<ion-row class="row_cos_">
-							 <ion-col col-6>
-							 	<b class="p_costume">الهيئة</b>
-							 </ion-col>
-							 <ion-col col-6>
-							 	<b class="p_costume2">شغلة</b>
-							 </ion-col>
-						</ion-row>
-						<ion-row class="row_cos_">
-							 <ion-col col-6>
+							 <ion-col col-9>
 							 	<b class="p_costume">عام التصنيع</b>
 							 </ion-col>
-							 <ion-col col-6>
-							 	<b class="p_costume2">2009</b>
+							 <ion-col col-3>
+							 	<b class="p_costume2">{{details.data[0].year_c}}</b>
 							 </ion-col>
 						</ion-row>
-						<ion-row class="row_cos_">
-							 <ion-col col-6>
-							 	<b class="p_costume">اللون</b>
-							 </ion-col>
-							 <ion-col col-6>
-							 	<b class="p_costume2">فوشي</b>
-							 </ion-col>
-						</ion-row>
+						
 					</ion-col>
-					<ion-col col-6>
-						<ion-row class="row_cos_">
-							 <ion-col col-6>
-							 	<b class="p_costume">عدد الكيلومترات</b>
-							 </ion-col>
-							 <ion-col col-6>
-							 	<b class="p_costume2">67000</b>
-							 </ion-col>
+					<ion-col col-6> 
+						<ion-row class="row_cos_" *ngFor="let item of details.data[0].cars_meta_details | slice:5">
+							  <!--<ion-col col-8 [ngSwitch] = "item.code_m">
+								  <b class="p_costume" *ngSwitchCase="'claas_car'">الفئة</b>
+								  
+								  <b class="p_costume" *ngSwitchCase="'case'">الحالة</b>
+								  <b class="p_costume" *ngSwitchCase="'kilometersconsumed'">الكيلومترات المقطوعة</b>
+								  <b class="p_costume" *ngSwitchCase="'transmission'">ناقل الحركة</b>
+								  <b class="p_costume" *ngSwitchCase="'fuel'">الوقود</b>
+								  <b class="p_costume" *ngSwitchCase="'badi_case'">حالة البدي</b>
+								  <b class="p_costume" *ngSwitchCase="'stat_mator'">حالة المكينة</b>
+								 
+								  <b class="p_costume" *ngSwitchCase="'supplier'">المورد</b>
+								  <b class="p_costume" *ngSwitchCase="'numberselender'">عدد السلندرات</b>
+								  <!--<b class="p_costume" *ngSwitchCase="'specifications'">الفccccئة</b>-->
+								  
+							 <!--</ion-col>
+							 <ion-col col-4 [ngSwitch] = "item.value_m">
+								  <b class="p_costume2" *ngSwitchCase="'4'">عادي</b>
+								  
+								  <b class="p_costume2" *ngSwitchCase="'5'">اوتوماتك</b>
+								  <b class="p_costume2" *ngSwitchCase="'6'">ممتازه</b>
+								  <b class="p_costume2" *ngSwitchCase="'7'">جيده</b>
+								  <b class="p_costume2" *ngSwitchCase="'8'">متوسطه</b>
+								  <b class="p_costume2" *ngSwitchCase="'9'">بحاجة الى صيانة</b>
+								  <b class="p_costume2" *ngSwitchCase="'10'">كوبيه</b>
+								 
+								  <b class="p_costume2" *ngSwitchCase="'11'">كشف</b>
+								  <b class="p_costume2" *ngSwitchCase="'12'">دفع رباعي</b>
+								   <b class="p_costume2" *ngSwitchCase="'13'">سيدان</b>
+								  <b class="p_costume2" *ngSwitchCase="'14'">صغيره</b>
+								   <b class="p_costume2" *ngSwitchCase="'15'">فاخرة</b>
+								<b class="p_costume2" *ngSwitchDefault>{{item.value_m}}</b>
+								  
+							 </ion-col>-->
+							 <ion-col col-8 *ngIf="item.id_o !=26">
+								<b class="p_costume">{{item.name_o_ar}}</b>
+							</ion-col>
+							<ng-container *ngIf="item.id_o !=26">
+								<ion-col col-4 [ngSwitch] = "item.value_m">
+									  <b class="p_costume2" *ngSwitchCase="'4'">عادي</b>
+									  
+									  <b class="p_costume2" *ngSwitchCase="'5'">اوتوماتك</b>
+									  <b class="p_costume2" *ngSwitchCase="'6'">ممتازه</b>
+									  <b class="p_costume2" *ngSwitchCase="'7'">جيده</b>
+									  <b class="p_costume2" *ngSwitchCase="'8'">متوسطه</b>
+									  <b class="p_costume2" *ngSwitchCase="'9'">بحاجة الى صيانة</b>
+									  <b class="p_costume2" *ngSwitchCase="'10'">كوبيه</b>
+									 
+									  <b class="p_costume2" *ngSwitchCase="'11'">كشف</b>
+									  <b class="p_costume2" *ngSwitchCase="'12'">دفع رباعي</b>
+									   <b class="p_costume2" *ngSwitchCase="'13'">سيدان</b>
+									  <b class="p_costume2" *ngSwitchCase="'14'">صغيره</b>
+									   <b class="p_costume2" *ngSwitchCase="'15'">فاخرة</b>
+									<b class="p_costume2" *ngSwitchDefault>{{item.value_m}}</b>
+									  
+								 </ion-col>
+							</ng-container>
 						</ion-row>
-						<ion-row class="row_cos_">
-							 <ion-col col-6>
-							 	<b class="p_costume">الابوبا</b>
-							 </ion-col>
-							 <ion-col col-6>
-							 		<b class="p_costume2">5</b>
-							 </ion-col>
-						</ion-row>
-						<ion-row class="row_cos_">
-							 <ion-col col-6>
-							 	<b class="p_costume" >بلد المنشأ</b>
-							 </ion-col>
-							 <ion-col col-6>
-							 	<b class="p_costume2">كوريا</b>
-							 </ion-col>
-						</ion-row>
-						<ion-row class="row_cos_">
-							 <ion-col col-6>
-							 	<b class="p_costume">الضمان</b>
-							 </ion-col>
-							 <ion-col col-6>
-							 	<b class="p_costume2">خارج الضمان</b>
-							 </ion-col>
-						</ion-row>
-						<ion-row class="row_cos_">
-							 <ion-col col-6>
-							 	<b class="p_costume">حالة السيارة</b>
-							 </ion-col>
-							 <ion-col col-6>
-							 	<b class="p_costume2">جيد</b>
-							 </ion-col>
-						</ion-row>
+					
 					</ion-col>
 				</ion-row>
 			</ion-col>
 		</ion-row>
-		<ion-row style="background-color: #ebebeb;padding-top: 10px;
-    padding-bottom: 10px;">
+		<ion-row style="background-color: #ebebeb;padding: 12px;">
 			<ion-col col-12>
 				<ion-row>
 					<b style="color:#363636;padding-right: 10px">المعلومات الأضافية</b>
 				</ion-row>
-				<ion-row>
-					<p style="padding-right: 10px">  | Kadim Al Sahir - Lao Lam Takouni Anti Fi Hayati
-من البوم كتاب الحب للفنان كاظم الساهر
-From Kitab Al Hob Album - for Kadim Al Sahir </p>
+				<ion-row  *ngFor="let item of details.data[0].cars_meta_details">
+
+					<p *ngIf="item.id_o ==26" style="padding-right: 10px">{{item.value_m}}</p>
 				</ion-row>
 			</ion-col>
 		</ion-row>
 
-		<ion-row>
+		<ion-row style="padding: 12px;">
 			<ion-col col-6>
 				<ion-row>
-					<ion-col col-3>
+					<ion-col col-5  no-padding no-margin>
 						<b class="p_costume3">البائع :</b>
 					</ion-col>
-					<ion-col col-6>
-						<b class="p_costume4">وسيم حجازي</b>
+					<ion-col col-7  no-padding no-margin>
+						<b class="p_costume4">{{details.data[0].users.name_u}} {{details.data[0].users.lastname_u}}</b>
 					</ion-col>
-					<ion-col col-3>	
-					</ion-col>
+					
 				</ion-row>
 				<ion-row>
-					<ion-col col-3>
+					<ion-col col-5  no-padding no-margin>
 						<b class="p_costume3">الموبايل :</b>
 					</ion-col>
-					<ion-col col-6>
-						<b class="p_costume4">00954851564</b>	
+					<ion-col col-7  no-padding no-margin>
+						<b class="p_costume4">{{details.data[0].users.mobile_u}}</b>	
 					</ion-col>
-					<ion-col col-3>	
-					</ion-col>
+					
 				</ion-row>
 			</ion-col>
 			<ion-col col-6>
 				<ion-row>
-					<ion-col col-1>	
+				
+					<ion-col col-4 no-padding no-margin>
+						<b class="p_costume3" style="padding-right:0px!important;">مشاركة :</b>
 					</ion-col>
-					<ion-col col-3>
-						<b class="p_costume3">مشاركة :</b>
+					<ion-col col-2 >
+						<img class="img_cos" src="assets/icon/Details/g+.png">
 					</ion-col>
-					<ion-col col-2 class="img_cos">
-						<img src="assets/icon/Details/g+.png">
+					<ion-col col-2  >
+						<img  class="img_cos" src="assets/icon/Details/linkedin.png">
 					</ion-col>
-					<ion-col col-2 class="img_cos">
-						<img src="assets/icon/Details/linkedin.png">
+					<ion-col col-2 >
+						<img class="img_cos" src="assets/icon/Details/twitter.png">
 					</ion-col>
-					<ion-col col-2 class="img_cos">
-						<img src="assets/icon/Details/twitter.png">
-					</ion-col>
-					<ion-col col-2 class="img_cos">
-						<img  style="width: 6px;" src="assets/icon/Details/facebook.png">
+					<ion-col col-2  >
+						<img  class="img_cos" style="width: 6px;" src="assets/icon/Details/facebook.png">
 					</ion-col>
 				</ion-row>
 				<ion-row>
 					<ion-col col-2>
 					</ion-col>
 					<ion-col col-5>
-						<a href="#" class="a_size">أتصل الأن</a>
+						<a href="#" class="a_size">أتصل الأن&ensp;|</a>
 					</ion-col>
 					<ion-col col-5>
 						<a href="" class="a_size">أرسل رسالة</a>

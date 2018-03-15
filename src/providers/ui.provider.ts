@@ -25,12 +25,9 @@ export class UiProvider {
             duration: 3000,
             position: 'bottom'
         });
-
         toast.onDidDismiss(() => {
             console.log('Dismissed toast');
         });
-
         toast.present();
-
     }
 }

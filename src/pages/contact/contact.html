@@ -55,8 +55,8 @@
         </ion-col>-->
  
           <ion-col *ngFor="let car of cars.data"  no-margin col-4 class="card-background-page" >
-            <ion-card (click)="ShowDetails(69);" full no-margin no-padding>
-              <img src="assets/imgs/download.jpg"/>
+            <ion-card (click)="ShowDetails(car.id_c);" full no-margin no-padding>
+              <img src="http://automark.ae/Public/uploads/{{car.images_c[0]}}"/> 
               <ion-row class="cardfooter" style="background-color: #363636;">
                   <ion-col no-margin col-3>
                     <p>{{car.price_c}}</p>

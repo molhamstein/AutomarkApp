@@ -15,7 +15,7 @@ export class RestProvider {
   }
 
   getCategories() {
-  	console.log("4");
+    console.log("4");
   return new Promise(resolve => {
     this.http.get('categories').subscribe(data => {
       resolve(data);
@@ -63,7 +63,7 @@ getcars_type(){
     });
   });
 }
-
+     
 getcars_model(model){ 
   return new Promise(resolve => {
     this.http.get('option_cars?filter[include]=value_option&filter[where][id_o]='+model).subscribe(data => {
@@ -71,9 +71,9 @@ getcars_model(model){
     }, err => {
       console.log(err);
     });
-  });
-}
-getitem_details(id){
+  });    
+}   
+getitem_details(id){         
   return new Promise(resolve => {
     this.http.get('cars/'+id).subscribe(data => {
       resolve(data);

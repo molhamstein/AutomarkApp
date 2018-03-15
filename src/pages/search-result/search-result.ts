@@ -15,13 +15,13 @@ import { ItemDetailsPage } from '../item-details/item-details';
   templateUrl: 'search-result.html',
 })
 export class SearchResultPage {
-	cat_id :any;
-	items :any;
+  cat_id :any;
+  items :any;
   items_count:any;
   city:any;
   filters:any;
   constructor(public navCtrl: NavController,public restProvider: RestProvider, public navParams: NavParams, private loadingCtrl: LoadingController) {
-  	this.cat_id= navParams.data.cat_id;
+    this.cat_id= navParams.data.cat_id;
     this.city= navParams.data.city;
     this.filters = [
     navParams.data.city,
@@ -95,6 +95,6 @@ export class SearchResultPage {
   }
 
   ShowDetails(id){
-    this.navCtrl.push(ItemDetailsPage,{item_id : 69});
+    this.navCtrl.push(ItemDetailsPage,{item_id : id});
   }
 } 

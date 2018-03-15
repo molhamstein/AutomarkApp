@@ -17,7 +17,7 @@ import { AuthProvider } from '../../auth/auth.provider';
 // provider : 'RestProvider'
 })
 export class ContactPage {
-	categories: any;
+  categories: any;
   cars:any;
   cars_plate:any; 
   mobile_number:any; 
@@ -35,11 +35,11 @@ export class ContactPage {
         }
       }
     );
-  	//for (var i = 0; i < categories.length; ++i) {
-  	//	//this.getcategory_content(categories[i].id_ss);
-  	//}
-  	console.log("a sd"); 
-  	//alert("this.categories");
+    //for (var i = 0; i < categories.length; ++i) {
+    //  //this.getcategory_content(categories[i].id_ss);
+    //}
+    console.log("a sd"); 
+    //alert("this.categories");
   }   
   ionViewDidLoad() {
     
@@ -50,7 +50,7 @@ export class ContactPage {
   }
    getcategories() {    
 
-  	// Create the popup
+    // Create the popup
     let loadingPopup = this.loadingCtrl.create({
       content: 'جاري جلب البيانات ....'
     }); 
@@ -58,7 +58,7 @@ export class ContactPage {
    
     // Show the popup
     loadingPopup.present();
-  	console.log("2");
+    console.log("2");
     return this.restProvider.getCategories()   
     .then(data2 => {
       this.categories = data2;
@@ -74,13 +74,13 @@ export class ContactPage {
   
  
   showmore(id){
-  	this.navCtrl.push(SearchResultPage,{cat_id : id});
+    this.navCtrl.push(SearchResultPage,{cat_id : id});
   } 
   ShowFilter(){
     this.navCtrl.push(SearchFilterPage);
   }
   ShowDetails(id){
-    this.navCtrl.push(ItemDetailsPage,{item_id : 69});
+    this.navCtrl.push(ItemDetailsPage,{item_id : id});
   }
   ShowMyAccount(){
      this.navCtrl.push(MyAccountPage);
@@ -98,8 +98,8 @@ export class ContactPage {
     this.navCtrl.push(LoginPage);
   }
  /* getcategory_content(cat_id){ 
-  	var cars = ["Saab", "Volvo", "BMW"];
-  	/*this.restProvider.get_Category_items(cat_id)
+    var cars = ["Saab", "Volvo", "BMW"];
+    /*this.restProvider.get_Category_items(cat_id)
     .then(data => {
       items = data.data;
 

@@ -1,6 +1,8 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
+import { FormsModule } from '@angular/forms';
+
 import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
@@ -17,7 +19,6 @@ import { EditProfileModalPage } from '../pages/edit-profile-modal/edit-profile-m
 import { ShowroomPage } from '../pages/showroom/showroom';
 import { LoginPage } from '../pages/login/login';
 
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
@@ -25,6 +26,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import { RestProvider } from '../providers/rest/rest';
+import { AuthProvider } from '../auth/auth.provider';
+import { UiProvider } from '../providers/ui.provider';
+import { HttpProvider } from '../providers/http.provider';
 
 @NgModule({
   declarations: [
@@ -46,6 +50,8 @@ import { RestProvider } from '../providers/rest/rest';
   imports: [
     BrowserModule,
     HttpClientModule,
+    HttpModule,
+    FormsModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -70,7 +76,11 @@ import { RestProvider } from '../providers/rest/rest';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RestProvider
+    HttpProvider,
+    RestProvider,
+    AuthProvider,
+    UiProvider
+    
   ]
 })
 export class AppModule { }

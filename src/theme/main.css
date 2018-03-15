@@ -160,6 +160,22 @@ h6 {
     margin: 0px !important;
 }
 
+.text-field-error {
+    visibility: hidden;
+    color: #ffa1a1;
+    padding: 3px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+    border-bottom-color: transparent !important; 
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important; 
+}
+.spinner-crescent circle {
+    stroke: #DC3832 !important;
+}
 
 /*===============================================*/
 
@@ -192,7 +208,6 @@ h6 {
 
 
 /*===============================================*/
-
 
 /* 5-1. MAIN NAVIGATION */
 
@@ -342,7 +357,7 @@ h6 {
 }
 
 .personal-info .personal-info-row {
-    font-size: 16px;
+    font-size: 12px;
     font-weight: bold;
     padding: 5px 0px;
 }
@@ -467,7 +482,7 @@ h6 {
 }
 
 .showroom-info .showroom-info-row {
-    font-size: 16px;
+    font-size: 12px;
     font-weight: bold;
     padding: 5px 0px;
 }
@@ -515,11 +530,18 @@ h6 {
     color: #b70505;
 }
 
-.showroom-search {
+.button-md.showroom-search, .button-md.showroom-search {
     height: 30px !important;
+    font-family: 'Droid Arabic Kufi', sans-serif !important;
+    font-size: 14px !important;
+    width: 250px;
+    margin: 0px auto;
 }
 
 /* 7-6 LOGIN PAGE */
+.login-and-register-content *:not(i) {
+    font-family: 'Droid Arabic Kufi', sans-serif !important;
+}
 .login-and-register-content ion-input {
     color: #c1c1c1;
 }
@@ -539,9 +561,12 @@ h6 {
 }
 
 .login-section .login-button {
+    
     width: 200px !important;
     height: 34px !important;
     background-color: #ed1c24 !important;
+    margin: auto !important;
+    font-size: 1.4rem !important;
 }
 
 .register-section {
@@ -559,40 +584,33 @@ h6 {
     width: 200px !important;
     height: 34px !important;
     background-color: #363636 !important;
+    margin: auto !important;
+    font-size: 1.4rem !important;
 }
 .register-section .account-type-row ion-item {
     background-color: transparent !important;
     padding-left: 10px;
+    flex-direction: row-reverse;
 }
 .register-section .account-type-row ion-label {
-    color: #cccccc;
+    color: #cccccc !important;
 }
-.register-section .account-type-checkbox {
-    margin: 0px !important;
+
+.register-section .account-type-radio {
+    position: static;
+    display: block;
+    margin: 9px 10px 9px 10px !important;
 }
-.register-section .checkbox-md .checkbox-checked, .checkbox-ios .checkbox-checked {
+
+.register-section .account-type-radio  .radio-checked,.register-section .account-type-radio .radio-icon {
     border-color: #363636 !important;
-    background-color: #363636 !important;
 }
-.register-section .checkbox-md .checkbox-icon {
-    border-color: #363636 !important;
+.register-section .account-type-radio  .radio-checked .radio-inner{
     background-color: #363636 !important;
 }
 .register-section ion-input,  .register-section ion-item {
     background-color: #363636;
 }
-/* 
-showroom
-showroom-header
-section-title
-section-subtitle
-showroom-content
-showroom-info
-showroom-info-row
-showroom-image
-icons-container 
-*/
-
 
 /*===============================================*/
 
@@ -1661,7 +1679,12 @@ ion-select, .select-md {
     text-align: right;
 }
 
-
+.not-visible {
+    visibility: hidden !important;
+}
+.visible {
+    visibility: visible !important;
+}
 /*===============================================*/
 
 

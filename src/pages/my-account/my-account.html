@@ -1,135 +1,167 @@
 <ion-header>
-  <ion-grid style="background-color:#363636;">
-  <ion-row >
-    <ion-col col-4>
-      <img class="img-responsive" full src="assets/icon/header_logo.png"/>
-    </ion-col>
-    <ion-col col-6>
-      <ion-row justify-content-end align-items-end>
-        <b style="color:white;">تسجيل الدخول    |</b>
-      </ion-row>
-    </ion-col>
-    <ion-col col-2>
-      <ion-row justify-content-end align-items-end>
-        <b style="color:white;">اتصل بنا</b><br>
-      </ion-row>
-    </ion-col>
-  </ion-row>
- 
-</ion-grid>
-</ion-header>
-<ion-content no-padding no-margin>
-	<ion-grid no-padding no-margin>
-		<ion-row no-padding no-margin style="background-color:#252525;color:white;font-size: 1.5rem;padding-right:8%;padding-top:2%;padding-bottom:2%;">
-			<b>حسابي</b>
-		</ion-row>
-		<ion-row no-padding no-margin style="background-color:#363636;">
-			<ion-col>
-				<ion-row>
-					<ion-col col-8 no-margin no-padding>
-						<ion-row style="padding: 8%!important;">
-							<b class="b_cos1">الأسم:</b>&#8194; <b class="b_cos2"> وسيم حجازي</b>
-						</ion-row>
-						<ion-row class="f_row_cos">
-							<b class="b_cos1">تاريخ الميلاد:</b> &#8194;<b class="b_cos2"> 10 ماي 2015</b>
-						</ion-row>
-						<ion-row class="f_row_cos">
-							<b class="b_cos1">رقم الموبايل:</b>&#8194; <b class="b_cos2">005468468984</b>
-						</ion-row>
-						<ion-row class="f_row_cos">
-							<b class="b_cos1">الإيميل:</b>&#8194;<b class="b_cos2">waseem@home.eating</b>
-						</ion-row>
-					</ion-col>
-
-					<ion-col style="background-color: #363636;" col-4 no-margin no-padding>
-					<ion-item style="background-color: #363636;" no-margin no-padding>
-						<ion-avatar  no-margin no-padding>
-						      <img  no-margin no-padding style="width: 100%!important;
-    height: 100%!important;"class="img-circle" src="assets/imgs/p.jpg">
-						</ion-avatar>
-						</ion-item>
-					</ion-col>
+	<ion-grid style="background-color:#363636;">
+		<ion-row>
+			<ion-col col-4>
+				<img class="img-responsive" full src="assets/icon/header_logo.png" />
+			</ion-col>
+			<ion-col col-6>
+				<ion-row justify-content-end align-items-end>
+					<b style="color:white;">تسجيل الدخول |</b>
 				</ion-row>
-
-
-
-				<ion-row style="padding-right: 4%;">
-					<ion-col>
-						<b class="b_cos1">الإقامة: &#8194;الدولة:</b>&#8194;<b class="b_cos2">الاماارت</b>
-					</ion-col>
-					<ion-col>
-						<b class="b_cos1">المدينة:</b>&#8194;<b class="b_cos2">دبي</b>
-					</ion-col>
-				</ion-row>
-				<ion-row style="padding-right: 4%;">
-					<ion-col>
-						<b class="b_cos1">اللغة المفضلة:</b>&#8194;<b class="b_cos2">العربية </b>
-					</ion-col>
-				</ion-row>
-				<ion-row>
-					<ion-col col-12>
-						<ion-row (click) = "editprofile()" style="font-size: 1rem;
-    color: darkgray;" justify-content-end align-items-end>
-							تعديل البيانات
-						</ion-row>
-					</ion-col>
+			</ion-col>
+			<ion-col col-2>
+				<ion-row justify-content-end align-items-end>
+					<b style="color:white;">اتصل بنا</b>
+					<br>
 				</ion-row>
 			</ion-col>
 		</ion-row>
-		<ion-row no-padding no-margin class="row_cos">
-			<ion-col col-1>
-				<img src="assets/icon/profile/chat.png">
-			</ion-col>
-			<ion-col col-9 class="col_cos">
-				<b class="b_cos2">الرسائل المستلمة</b>
-			</ion-col>
-		</ion-row>
-		<ion-row no-padding no-margin class="row_cos">
-			<ion-col col-1>
-				<img src="assets/icon/profile/my_ads.png">
-			</ion-col>
-			<ion-col col-9 class="col_cos">
-				<b class="b_cos2">قائمة إعلاناتي</b>
-			</ion-col>
-		</ion-row>
-		<ion-row no-padding no-margin class="row_cos">
-			<ion-col col-1>
-				<img src="assets/icon/profile/fav.png">
-			</ion-col>
-			<ion-col col-9 class="col_cos">
-				<b class="b_cos2">الإعلانات المفضلة</b>
-			</ion-col>
-		</ion-row>
+
 	</ion-grid>
+</ion-header>
 
+<ion-content class="profile-content" no-padding>
+	<div class="my-account">
+		<div class="my-account-header bg-dark">
+			<h2 class="section-title white padding-h-20" (click)="closeModal()"> حسابي </h2>
+		</div>
+		<div class="my-account-content bg-grey">
+			<div class="personal-info">
+				<div class="personal-info-row padding-v-20">
+					<span class="title">الاسم:</span>
+					<span class="value"> محمد سعد الأنصاري </span>
+				</div>
+				<div class="personal-info-row">
+					<span class="title">تاريخ الميلاد:</span>
+					<span class="value"> ١٠ أكتوبر ١٩٩١ </span>
+				</div>
+				<div class="personal-info-row">
+					<span class="title">رقم الموبايل:</span>
+					<span class="value"> +٩٦٧ ١٢٣٣١ ١٢١٢ </span>
+				</div>
+				<div class="personal-info-row">
+					<span class="title">البريد الالكتروني:</span>
+					<span class="value"> mody@gmail.com </span>
+				</div>
+				<div class="personal-info-row">
+					<span class="title">الاقامة:</span>
+					<span class="title">دولة:</span>
+					<span class="value"> الامارات </span>
+					<span class="title margin-r-20">مدينة:</span>
+					<span class="value">دبي</span>
+				</div>
+				<div class="personal-info-row">
+					<span class="title">اللغة المفضلة:</span>
+					<span class="value"> العربية </span>
+				</div>
+			</div>
+			<div class="edit-my-account">
+				<button ion-button class="edit-profile-button white" clear (click)="openEditProfileModal()">تعديل البيانات</button>
+			</div>
+		</div>
+		<div class="profile-image">
+			<img src="assets/imgs/profile-image.jpg" (click)="editImage()" />
+		</div>
+	</div>
+	<ion-list no-padding no-margin>
+		<ion-item no-padding class="bg-dark profile-list-item">
+			<div class="icon-container">
+				<span class="profile-list-item-icon">
+					<ion-icon class="red" name="mail"></ion-icon>
+					<ion-badge class="custom-badge">5</ion-badge>
+				</span>
+			</div>
+			<div class="description-container">
+				<span class="profile-list-item-description"> الرسائل المستلمة </span>
+			</div>
+
+
+
+		</ion-item>
+		<ion-item no-padding class="bg-dark profile-list-item">
+			<div class="icon-container">
+
+				<span class="profile-list-item-icon">
+					<ion-icon class="red" name="document"></ion-icon>
+					<ion-badge class="custom-badge">5</ion-badge>
+				</span>
+			</div>
+			<div class="description-container">
+				<span class="profile-list-item-description"> قائمة إعلاناتي </span>
+			</div>
+		</ion-item>
+		<ion-item no-padding class="bg-dark profile-list-item">
+			<div class="icon-container">
+				<span class="profile-list-item-icon">
+					<ion-icon class="red" name="heart"></ion-icon>
+					<ion-badge class="custom-badge">5</ion-badge>
+				</span>
+			</div>
+			<div class="description-container">
+				<span class="profile-list-item-description"> الإعلانات المفضلة </span>
+			</div>
+		</ion-item>
+	</ion-list>
 </ion-content>
+
+
 <ion-footer>
 
 
-      <ion-row style="height: 8rem;
+	<ion-row style="height: 8rem;
     background-color: white;">
-        <ion-col full class="buttom_col" >
-         <button (click) = "ShowMyAccount()" ion-button full class="buttom_button"> <div> <ion-icon name='my_account'></ion-icon> <br> <label>حسابي</label> </div> </button>
-        </ion-col>
-        <ion-col full class="buttom_col">
-          <button ion-button full class="buttom_button"> <div> <ion-icon name='chats'></ion-icon> <br> <label>محادثات</label> </div> </button>
-          
-        </ion-col >
-        <ion-col full class="buttom_col"  style="margin-top:0px!important;height:100%!important;border-top-style: solid!important;
+		<ion-col full class="buttom_col">
+			<button (click)="ShowMyAccount()" ion-button full class="buttom_button">
+				<div>
+					<ion-icon name='my_account'></ion-icon>
+					<br>
+					<label>حسابي</label>
+				</div>
+			</button>
+		</ion-col>
+		<ion-col full class="buttom_col">
+			<button ion-button full class="buttom_button">
+				<div>
+					<ion-icon name='chats'></ion-icon>
+					<br>
+					<label>محادثات</label>
+				</div>
+			</button>
+
+		</ion-col>
+		<ion-col full class="buttom_col" style="margin-top:0px!important;height:100%!important;border-top-style: solid!important;
     border-top-color: white!important;border-style: hidden;    background-color: #ed1c24;">
-        <button ion-button full class="buttom_button" style="box-shadow: none;height: 6.6rem !important;background-image: url(assets/icon/bar_middle.png); background-repeat: no-repeat;
-    background-size: contain;width: 100%;background-size: 100% 100%;background-color:white!important;"> <div style="height:100%;padding-top: 21%;"> <ion-icon name='add_ad' style="padding-bottom: 7%;"></ion-icon><br><label>أضف إعلانك مجانا</label> </div> </button>
-          
-        </ion-col>
-        <ion-col full class="buttom_col">
-        <button ion-button full class="buttom_button"> <div> <ion-icon name='m3ard'></ion-icon> <br> <label>معارض</label> </div> </button>
-          
-        </ion-col>
-        <ion-col full class="buttom_col">
-        <button ion-button full (click) = "ShowFilter()" class="buttom_button"> <div> <ion-icon name='search'></ion-icon> <br> <label>بحث</label> </div> </button>
-          
-        </ion-col>
-      </ion-row>
+			<button ion-button full class="buttom_button" style="box-shadow: none;height: 6.6rem !important;background-image: url(assets/icon/bar_middle.png); background-repeat: no-repeat;
+    background-size: contain;width: 100%;background-size: 100% 100%;background-color:white!important;">
+				<div style="height:100%;padding-top: 21%;">
+					<ion-icon name='add_ad' style="padding-bottom: 7%;"></ion-icon>
+					<br>
+					<label>أضف إعلانك مجانا</label>
+				</div>
+			</button>
+
+		</ion-col>
+		<ion-col full class="buttom_col">
+			<button ion-button full class="buttom_button">
+				<div>
+					<ion-icon name='m3ard'></ion-icon>
+					<br>
+					<label>معارض</label>
+				</div>
+			</button>
+
+		</ion-col>
+		<ion-col full class="buttom_col">
+			<button ion-button full (click)="ShowFilter()" class="buttom_button">
+				<div>
+					<ion-icon name='search'></ion-icon>
+					<br>
+					<label>بحث</label>
+				</div>
+			</button>
+
+		</ion-col>
+	</ion-row>
 
 
 </ion-footer>

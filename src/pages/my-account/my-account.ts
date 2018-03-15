@@ -8,7 +8,6 @@ import { EditProfileModalPage } from '../edit-profile-modal/edit-profile-modal';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-my-account',
   templateUrl: 'my-account.html',

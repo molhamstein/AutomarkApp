@@ -8,7 +8,6 @@ import { RestProvider } from '../../providers/rest/rest';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-item-details',
   templateUrl: 'item-details.html',

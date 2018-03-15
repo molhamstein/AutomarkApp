@@ -10,6 +10,7 @@ import { MyAccountPage } from '../my-account/my-account';
 import { AddAdvertismentPage } from '../add-advertisment/add-advertisment';
 import { ShowroomPage } from '../showroom/showroom';
 import { LoginPage } from '../login/login';
+import { AuthProvider } from '../../auth/auth.provider';
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html',
@@ -23,14 +24,27 @@ export class ContactPage {
   motors:any;
   boat:any;
   trucks:any;
-  constructor(public navCtrl: NavController,public restProvider: RestProvider, private loadingCtrl: LoadingController) {
-  	
+  loginStatus;
+  constructor(public navCtrl: NavController,public restProvider: RestProvider, private loadingCtrl: LoadingController, public authProvider: AuthProvider) {
+  	authProvider.isAuth.subscribe(
+      (result) => {
+        if(result == null) {
+          this.loginStatus = this.authProvider.isLoggedIn();
+        } else {
+          this.loginStatus = result;
+        }
+      }
+    );
   	//for (var i = 0; i < categories.length; ++i) {
   	//	//this.getcategory_content(categories[i].id_ss);
   	//}
   	console.log("a sd"); 
   	//alert("this.categories");
   }   
+  ionViewDidLoad() {
+    
+  }
+
   ionViewCanEnter(){
     return this.getcategories();
   }

@@ -5,9 +5,12 @@
       <img class="img-responsive" full src="assets/icon/header_logo.png"/>
     </ion-col>
     <ion-col col-6>
-      <ion-row (click) = "login()" justify-content-end align-items-end>
+      <ion-row (click) = "login()" justify-content-end align-items-end *ngIf="loginStatus == false">
         <b style="color:white;">تسجيل الدخول    |</b>
       </ion-row>
+      <ion-row (click) = "authProvider.logout()" justify-content-end align-items-end *ngIf="loginStatus == true">
+          <b style="color:white;">تسجيل خروج    |</b>
+        </ion-row>
     </ion-col>
     <ion-col col-2>
       <ion-row justify-content-end align-items-end>

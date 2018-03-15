@@ -22,10 +22,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http'; 
-
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 import { RestProvider } from '../providers/rest/rest';
 
+import { File } from '@ionic-native/file';
+import { Transfer } from '@ionic-native/transfer';
+import { FilePath } from '@ionic-native/file-path';
+import { Camera } from '@ionic-native/camera';
 @NgModule({
   declarations: [
     MyApp,
@@ -46,6 +50,7 @@ import { RestProvider } from '../providers/rest/rest';
   imports: [
     BrowserModule,
     HttpClientModule,
+    IonicImageViewerModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -69,6 +74,10 @@ import { RestProvider } from '../providers/rest/rest';
   providers: [
     StatusBar,
     SplashScreen,
+    File,
+    Transfer,
+    Camera,
+    FilePath, 
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RestProvider
   ]

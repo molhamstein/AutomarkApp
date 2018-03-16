@@ -88,7 +88,7 @@ import { Camera } from '@ionic-native/camera';
     HttpProvider,
     RestProvider,
     AuthProvider,
-    UiProvider
+    UiProvider,
     
     RestProvider
   ]

@@ -35,6 +35,7 @@ import { File } from '@ionic-native/file';
 import { Transfer } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
+import { ShowroomProvider } from '../providers/showroom/showroom';
 @NgModule({
   declarations: [
     MyApp,
@@ -93,7 +94,8 @@ import { Camera } from '@ionic-native/camera';
     AuthProvider,
     UiProvider,
     
-    RestProvider
+    RestProvider,
+    ShowroomProvider
   ]
 })
 export class AppModule { }

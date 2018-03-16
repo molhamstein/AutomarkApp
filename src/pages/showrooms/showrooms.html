@@ -7,285 +7,44 @@
   <h2 class="container-title padding-h-10 padding-t-20 text-right">المعارض</h2>
   <ion-grid justify-content-center>
     <ion-row>
-      <ion-col col-6 col-sm-4 col-md-4>
-        <ion-card class="card-showroom" (click)="openShowroomPage()">
+      <ion-col col-6 col-sm-4 col-md-4 *ngFor="let showroom of showRooms">
+        <ion-card class="card-showroom" (click)="openShowroomPage(showroom.id_s)">
           <div class="card-showroom-header">
             <img class="showroom-background" src="assets/imgs/showroom-car.jpg" />
             <div class="showroom-item-overlay"></div>
-            <img class="showroom-logo" src="assets/imgs/profile-image.jpg" />
-            <ion-label class="showroom-title-ar">الشاهد للسيارات</ion-label>
-            <ion-label class="showroom-title-en"> AlShahed Showroom </ion-label>
+            <img class="showroom-logo" src="{{showroom.image_s}}" />
+            <ion-label class="showroom-title-ar" *ngIf="showroom.name_ar_s!='' && showroom.name_ar_s!=null">{{showroom.name_ar_s}}</ion-label>
+            <ion-label class="showroom-title-en" *ngIf="showroom.name_en_s!='' && showroom.name_en_s!=null"> {{showroom.name_en_s}} </ion-label>
           </div>
           <div class="card-showroom-details">
             <div class="showroom-detail-item">
-              القوز الصناعية - دبي
+              {{showroom.region_s + '-' + showroom.city_s }}
             </div>
             <div class="flex showroom-detail-item">
-              <span class="phonenumber">
-                +099089083
+              <span *ngIf="showroom.phone_num1 != '' && showroom.phone_num1 != null" class="phonenumber">
+                {{showroom.phone_num1}}
+              </span>
+              <span *ngIf="showroom.phone_num1 == '' || showroom.phone_num1 == null">
+                غير متوفر
               </span>
             </div>
             <div class="flex showroom-detail-item">
-              <span class="phonenumber">+099089083</span>
+              <span *ngIf="showroom.phone_num2 != '' && showroom.phone_num2 != null" class="phonenumber">
+                {{showroom.phone_num2}}
+              </span>
+              <span *ngIf="showroom.phone_num2 == '' || showroom.phone_num2 == null">
+                غير متوفر
+              </span>
             </div>
             <div class="showroom-detail-item">
-              alshed@gmail.com
+                <span *ngIf="showroom.email_s != '' && showroom.email_s != null">{{showroom.email_s}}</span>
+                <span *ngIf="showroom.email_s == '' || showroom.email_s == null">غير متوفر</span>
             </div>
           </div>
         </ion-card>
       </ion-col>
-      <ion-col col-6 col-sm-4 col-md-4>
-        <ion-card class="card-showroom" (click)="openShowroomPage()">
-          <div class="card-showroom-header">
-            <img class="showroom-background" src="assets/imgs/car-wide.jpg" />
-            <div class="showroom-item-overlay"></div>
-            <img class="showroom-logo" src="assets/imgs/profile-image.jpg" />
-            <ion-label class="showroom-title-ar">الشاهد للسيارات</ion-label>
-            <ion-label class="showroom-title-en"> AlShahed Showroom </ion-label>
-          </div>
-          <div class="card-showroom-details">
-            <div class="showroom-detail-item">
-              القوز الصناعية - دبي
-            </div>
-            <div class="flex showroom-detail-item">
-              <span class="phonenumber">
-                +099089083
-              </span>
-            </div>
-            <div class="flex showroom-detail-item">
-              <span class="phonenumber">
-                +099089083
-              </span>
-            </div>
-            <div class="showroom-detail-item">
-              alshed@gmail.com
-            </div>
-          </div>
-        </ion-card>
-      </ion-col>
-      <ion-col col-6 col-sm-4 col-md-4>
-        <ion-card class="card-showroom" (click)="openShowroomPage()">
-          <div class="card-showroom-header">
-            <img class="showroom-background" src="assets/imgs/showroom-car.jpg" />
-            <div class="showroom-item-overlay"></div>
-            <img class="showroom-logo" src="assets/imgs/profile-image.jpg" />
-            <ion-label class="showroom-title-ar">الشاهد للسيارات</ion-label>
-            <ion-label class="showroom-title-en"> AlShahed Showroom </ion-label>
-          </div>
-          <div class="card-showroom-details">
-            <div class="showroom-detail-item">
-              القوز الصناعية - دبي
-            </div>
-            <div class="flex showroom-detail-item">
-              <span class="phonenumber">
-                +099089083
-              </span>
-            </div>
-            <div class="flex showroom-detail-item">
-              <span class="phonenumber">+099089083</span>
-            </div>
-            <div class="showroom-detail-item">
-              alshed@gmail.com
-            </div>
-          </div>
-        </ion-card>
-      </ion-col>
-      <ion-col col-6 col-sm-4 col-md-4>
-        <ion-card class="card-showroom" (click)="openShowroomPage()">
-          <div class="card-showroom-header">
-            <img class="showroom-background" src="assets/imgs/car-wide.jpg" />
-            <div class="showroom-item-overlay"></div>
-            <img class="showroom-logo" src="assets/imgs/profile-image.jpg" />
-            <ion-label class="showroom-title-ar">الشاهد للسيارات</ion-label>
-            <ion-label class="showroom-title-en"> AlShahed Showroom </ion-label>
-          </div>
-          <div class="card-showroom-details">
-            <div class="showroom-detail-item">
-              القوز الصناعية - دبي
-            </div>
-            <div class="flex showroom-detail-item">
-              <span class="phonenumber">
-                +099089083
-              </span>
-            </div>
-            <div class="flex showroom-detail-item">
-              <span class="phonenumber">
-                +099089083
-              </span>
-            </div>
-            <div class="showroom-detail-item">
-              alshed@gmail.com
-            </div>
-          </div>
-        </ion-card>
-      </ion-col>
-      <ion-col col-6 col-sm-4 col-md-4>
-        <ion-card class="card-showroom" (click)="openShowroomPage()">
-          <div class="card-showroom-header">
-            <img class="showroom-background" src="assets/imgs/showroom-car.jpg" />
-            <div class="showroom-item-overlay"></div>
-            <img class="showroom-logo" src="assets/imgs/profile-image.jpg" />
-            <ion-label class="showroom-title-ar">الشاهد للسيارات</ion-label>
-            <ion-label class="showroom-title-en"> AlShahed Showroom </ion-label>
-          </div>
-          <div class="card-showroom-details">
-            <div class="showroom-detail-item">
-              القوز الصناعية - دبي
-            </div>
-            <div class="flex showroom-detail-item">
-              <span class="phonenumber">
-                +099089083
-              </span>
-            </div>
-            <div class="flex showroom-detail-item">
-              <span class="phonenumber">+099089083</span>
-            </div>
-            <div class="showroom-detail-item">
-              alshed@gmail.com
-            </div>
-          </div>
-        </ion-card>
-      </ion-col>
-      <ion-col col-6 col-sm-4 col-md-4>
-        <ion-card class="card-showroom" (click)="openShowroomPage()">
-          <div class="card-showroom-header">
-            <img class="showroom-background" src="assets/imgs/car-wide.jpg" />
-            <div class="showroom-item-overlay"></div>
-            <img class="showroom-logo" src="assets/imgs/profile-image.jpg" />
-            <ion-label class="showroom-title-ar">الشاهد للسيارات</ion-label>
-            <ion-label class="showroom-title-en"> AlShahed Showroom </ion-label>
-          </div>
-          <div class="card-showroom-details">
-            <div class="showroom-detail-item">
-              القوز الصناعية - دبي
-            </div>
-            <div class="flex showroom-detail-item">
-              <span class="phonenumber">
-                +099089083
-              </span>
-            </div>
-            <div class="flex showroom-detail-item">
-              <span class="phonenumber">
-                +099089083
-              </span>
-            </div>
-            <div class="showroom-detail-item">
-              alshed@gmail.com
-            </div>
-          </div>
-        </ion-card>
-      </ion-col>
-      <ion-col col-6 col-sm-4 col-md-4>
-        <ion-card class="card-showroom" (click)="openShowroomPage()">
-          <div class="card-showroom-header">
-            <img class="showroom-background" src="assets/imgs/showroom-car.jpg" />
-            <div class="showroom-item-overlay"></div>
-            <img class="showroom-logo" src="assets/imgs/profile-image.jpg" />
-            <ion-label class="showroom-title-ar">الشاهد للسيارات</ion-label>
-            <ion-label class="showroom-title-en"> AlShahed Showroom </ion-label>
-          </div>
-          <div class="card-showroom-details">
-            <div class="showroom-detail-item">
-              القوز الصناعية - دبي
-            </div>
-            <div class="flex showroom-detail-item">
-              <span class="phonenumber">
-                +099089083
-              </span>
-            </div>
-            <div class="flex showroom-detail-item">
-              <span class="phonenumber">+099089083</span>
-            </div>
-            <div class="showroom-detail-item">
-              alshed@gmail.com
-            </div>
-          </div>
-        </ion-card>
-      </ion-col>
-      <ion-col col-6 col-sm-4 col-md-4>
-        <ion-card class="card-showroom" (click)="openShowroomPage()">
-          <div class="card-showroom-header">
-            <img class="showroom-background" src="assets/imgs/car-wide.jpg" />
-            <div class="showroom-item-overlay"></div>
-            <img class="showroom-logo" src="assets/imgs/profile-image.jpg" />
-            <ion-label class="showroom-title-ar">الشاهد للسيارات</ion-label>
-            <ion-label class="showroom-title-en"> AlShahed Showroom </ion-label>
-          </div>
-          <div class="card-showroom-details">
-            <div class="showroom-detail-item">
-              القوز الصناعية - دبي
-            </div>
-            <div class="flex showroom-detail-item">
-              <span class="phonenumber">
-                +099089083
-              </span>
-            </div>
-            <div class="flex showroom-detail-item">
-              <span class="phonenumber">
-                +099089083
-              </span>
-            </div>
-            <div class="showroom-detail-item">
-              alshed@gmail.com
-            </div>
-          </div>
-        </ion-card>
-      </ion-col>
-      <ion-col col-6 col-sm-4 col-md-4>
-        <ion-card class="card-showroom" (click)="openShowroomPage()">
-          <div class="card-showroom-header">
-            <img class="showroom-background" src="assets/imgs/showroom-car.jpg" />
-            <div class="showroom-item-overlay"></div>
-            <img class="showroom-logo" src="assets/imgs/profile-image.jpg" />
-            <ion-label class="showroom-title-ar">الشاهد للسيارات</ion-label>
-            <ion-label class="showroom-title-en"> AlShahed Showroom </ion-label>
-          </div>
-          <div class="card-showroom-details">
-            <div class="showroom-detail-item">
-              القوز الصناعية - دبي
-            </div>
-            <div class="flex showroom-detail-item">
-              <span class="phonenumber">
-                +099089083
-              </span>
-            </div>
-            <div class="flex showroom-detail-item">
-              <span class="phonenumber">+099089083</span>
-            </div>
-            <div class="showroom-detail-item">
-              alshed@gmail.com
-            </div>
-          </div>
-        </ion-card>
-      </ion-col>
-      <ion-col col-6 col-sm-4 col-md-4>
-        <ion-card class="card-showroom" (click)="openShowroomPage()">
-          <div class="card-showroom-header">
-            <img class="showroom-background" src="assets/imgs/car-wide.jpg" />
-            <div class="showroom-item-overlay"></div>
-            <img class="showroom-logo" src="assets/imgs/profile-image.jpg" />
-            <ion-label class="showroom-title-ar">الشاهد للسيارات</ion-label>
-            <ion-label class="showroom-title-en"> AlShahed Showroom </ion-label>
-          </div>
-          <div class="card-showroom-details">
-            <div class="showroom-detail-item">
-              القوز الصناعية - دبي
-            </div>
-            <div class="flex showroom-detail-item">
-              <span class="phonenumber">
-                +099089083
-              </span>
-            </div>
-            <div class="flex showroom-detail-item">
-              <span class="phonenumber">
-                +099089083
-              </span>
-            </div>
-            <div class="showroom-detail-item">
-              alshed@gmail.com
-            </div>
-          </div>
-        </ion-card>
+      <ion-col justify-content-center>
+          <button ion-button full class="showroom-search" *ngIf="canLoadMore" color="dark" (click)="getShowrooms(3, showRooms.length)"> اعرض المزيد </button>
       </ion-col>
     </ion-row>
   </ion-grid>

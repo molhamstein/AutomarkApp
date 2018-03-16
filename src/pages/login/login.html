@@ -36,20 +36,20 @@
               <ion-label class="input-addon">
                 <i class="icomoon-user"></i>
               </ion-label>
-              <ion-input type="text" placeholder="أدخل الإيميل الشخصي" name="email" [(ngModel)]="loginModel.username" #email="ngModel" [ngModelOptions]="{ updateOn: 'blur' }"
+              <ion-input type="text" placeholder="أدخل الإيميل الشخصي" name="email" [(ngModel)]="loginModel.username" #loginEmail="ngModel" [ngModelOptions]="{ updateOn: 'blur' }"
                 required></ion-input>
             </ion-item>
-            <p class="danger text-field-error" [class.visible]="email.errors && (email.dirty || email.touched)">البريد الالكتروني يجب أن يكون صحيح</p>
+            <p class="danger text-field-error" [class.visible]="loginEmail.errors && (loginEmail.dirty || loginEmail.touched)">البريد الالكتروني يجب أن يكون صحيح</p>
           </ion-col>
           <ion-col col-12>
             <ion-item class="input-group" no-padding no-lines>
               <ion-label class="input-addon">
                 <i class="icomoon-lock"></i>
               </ion-label>
-              <ion-input type="password" placeholder="أدخل الكود السري الخاص بك" name="password" [(ngModel)]="loginModel.password" #password="ngModel"
+              <ion-input type="password" placeholder="أدخل الكود السري الخاص بك" name="password" [(ngModel)]="loginModel.password" #loginPassword="ngModel"
                 [ngModelOptions]="{ updateOn: 'blur' }" required></ion-input>
             </ion-item>
-            <p class="danger text-field-error" [class.visible]="password.errors && (password.dirty || password.touched)">الرمز السري مطلوب</p>
+            <p class="danger text-field-error" [class.visible]="loginPassword.errors && (loginPassword.dirty || loginPassword.touched)">الرمز السري مطلوب</p>
           </ion-col>
         </ion-row>
         <ion-row>

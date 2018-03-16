@@ -1,0 +1,139 @@
+<ion-header>
+  <ion-grid style="background-color:#363636;">
+  <ion-row >
+    <ion-col col-4>
+      <img class="img-responsive" full src="assets/icon/header_logo.png"/>
+    </ion-col>
+    <ion-col col-6>
+<<<<<<< HEAD
+      <ion-row (click) = "login()" justify-content-end align-items-end *ngIf="loginStatus == false">
+        <b style="color:white;">تسجيل الدخول    |</b>
+=======
+      <ion-row (click) = "login()" justify-content-end align-items-end>
+        <b style="color:white;font-size:1rem;">تسجيل الدخول    |</b>
+>>>>>>> af4a9b62764805826c2302446b48bb0aafd41375
+      </ion-row>
+      <ion-row (click) = "authProvider.logout()" justify-content-end align-items-end *ngIf="loginStatus == true">
+          <b style="color:white;">تسجيل خروج    |</b>
+        </ion-row>
+    </ion-col>
+    <ion-col col-2>
+      <ion-row justify-content-end align-items-end>
+        <b style="color:white;font-size:1rem;">اتصل بنا</b><br>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+ 
+</ion-grid>
+</ion-header>
+
+<ion-content inset>
+ <!-- <ion-list inset>
+    <ion-item *ngFor="let cat of categories">
+      <h2> {{cat.id_ss}}</h2>
+      
+    </ion-item>
+  </ion-list>-->
+ <ion-list>
+   
+ 
+  <ion-list-header   text-center><b style="color:#ed1c24;">أحدث الإعلانات</b></ion-list-header>
+ 
+   <ion-item *ngFor="let cat of categories.data">
+         <b style="color:#ed1c24;padding-right: 2%;font-size: 1.2rem!important;"> {{cat.code_ss_ar}}</b>
+      <ion-row>
+        <!--<ion-col col-4 class="card-background-page" *ngFor="let item of categories">
+        <ion-card>
+          <img src="../../assets/imgs/download.jpg"/>
+          <ion-row class="card-row">
+            <ion-col>
+              <div class="card-title">São Paulo   {{item.id_ss}}</div>
+            </ion-col>
+            <ion-col>
+              <div class="card-subtitle">41 Listings</div>
+            </ion-col>
+          </ion-row>
+          
+          
+        </ion-card>
+        
+        </ion-col>-->
+ 
+          <ion-col *ngFor="let car of cars.data"  no-margin col-4 class="card-background-page" >
+            <ion-card (click)="ShowDetails(car.id_c);" full no-margin no-padding>
+              <img src="http://automark.ae/Public/uploads/{{car.images_c[0]}}"/> 
+              <ion-row class="cardfooter" style="background-color: #363636;">
+                  <ion-col no-margin col-3>
+                    <p>{{car.price_c}}</p>
+                  </ion-col>
+                  <ion-col no-margin col-9>
+                    <ion-row justify-content-end align-items-end>
+                      <p>{{car.title_c}}</p>
+                    </ion-row>
+                    
+                  </ion-col>
+              </ion-row>
+              
+              
+            </ion-card>
+            
+          </ion-col>
+
+      
+         
+      
+   
+      
+      </ion-row>
+      <ion-row align-items-center>
+      <ion-col col-5>
+        </ion-col>
+        <ion-col>
+       <a (click) = "showmore(1)" style="color:black;font-size: 1.2rem;">شاهد أكثر</a>
+        </ion-col>
+        
+      </ion-row>
+    </ion-item>
+
+    
+
+    
+   
+    
+
+  </ion-list>
+
+</ion-content>
+
+
+
+<ion-footer>
+
+
+      <ion-row style="height: 8rem;
+    background-color: white;">
+        <ion-col full class="buttom_col" >
+         <button (click) = "ShowMyAccount()" ion-button full class="buttom_button"> <div> <ion-icon name='my_account'></ion-icon> <br> <label>حسابي</label> </div> </button>
+        </ion-col>
+        <ion-col full class="buttom_col">
+          <button ion-button full class="buttom_button"> <div> <ion-icon name='chats'></ion-icon> <br> <label>محادثات</label> </div> </button>
+          
+        </ion-col >
+        <ion-col full class="buttom_col"  style="margin-top:0px!important;height:100%!important;border-top-style: solid!important;
+    border-top-color: white!important;border-style: hidden;    background-color: #ed1c24;">
+        <button (click) = "add_ad()" ion-button full class="buttom_button" style="box-shadow: none;height: 6.6rem !important;background-image: url(assets/icon/bar_middle.png); background-repeat: no-repeat;
+    background-size: contain;width: 100%;background-size: 100% 100%;background-color:white!important;"> <div style="height:100%;padding-top: 21%;"> <ion-icon name='add_ad' style="padding-bottom: 7%;"></ion-icon><br><label>أضف إعلانك مجانا</label> </div> </button>
+          
+        </ion-col>
+        <ion-col full class="buttom_col">
+        <button (click) = "showroom()" ion-button full class="buttom_button"> <div> <ion-icon name='m3ard'></ion-icon> <br> <label>معارض</label> </div> </button>
+          
+        </ion-col>
+        <ion-col full class="buttom_col">
+        <button ion-button full (click) = "ShowFilter()" class="buttom_button"> <div> <ion-icon name='search'></ion-icon> <br> <label>بحث</label> </div> </button>
+          
+        </ion-col>
+      </ion-row>
+
+
+</ion-footer>

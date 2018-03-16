@@ -11,6 +11,8 @@ import { AddAdvertismentPage } from '../add-advertisment/add-advertisment';
 import { ShowroomPage } from '../showroom/showroom';
 import { LoginPage } from '../login/login';
 import { AuthProvider } from '../../auth/auth.provider';
+import { ShowroomsPage } from '../showrooms/showrooms';
+
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html',
@@ -91,7 +93,7 @@ export class ContactPage {
   }
   
   showroom(){
-    this.navCtrl.push(ShowroomPage);
+    this.navCtrl.push(ShowroomsPage);
   } 
 
   login(){

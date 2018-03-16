@@ -6,6 +6,7 @@ import { HomePage } from '../home/home';
 import { SearchFilterPage } from '../search-filter/search-filter';
 import { MyAccountPage } from '../my-account/my-account';
 import { MobileNumbersPage } from '../mobile-numbers/mobile-numbers';
+
 @Component({
   templateUrl: 'tabs.html'
 })
@@ -15,6 +16,7 @@ export class TabsPage {
   tab2Root = AboutPage;
   tab3Root = ContactPage;
   tabphoneRoot = MobileNumbersPage; 
+
   constructor(public navCtrl: NavController) {
 
   }

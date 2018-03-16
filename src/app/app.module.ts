@@ -18,6 +18,7 @@ import { AddAdvertismentPage } from '../pages/add-advertisment/add-advertisment'
 import { EditProfileModalPage } from '../pages/edit-profile-modal/edit-profile-modal';
 import { ShowroomPage } from '../pages/showroom/showroom';
 import { LoginPage } from '../pages/login/login';
+import { ShowroomsPage } from '../pages/showrooms/showrooms';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -49,6 +50,7 @@ import { Camera } from '@ionic-native/camera';
     AddAdvertismentPage,
     ShowroomPage,
     LoginPage,
+    ShowroomsPage,
     EditProfileModalPage
   ],
   imports: [
@@ -73,6 +75,7 @@ import { Camera } from '@ionic-native/camera';
     MobileNumbersPage,
     AddAdvertismentPage,
     ShowroomPage,
+    ShowroomsPage,
     LoginPage,
     EditProfileModalPage
      

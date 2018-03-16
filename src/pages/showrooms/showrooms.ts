@@ -20,8 +20,8 @@ export class ShowroomsPage {
   
   showRooms: any[] = [];
   canLoadMore: boolean = false;
-
   assetBaseurl = config.assetsBaseUrl;
+  
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 

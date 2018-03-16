@@ -38,12 +38,12 @@
 				<ion-row>
 					<ion-col col-4>
 						<ion-row *ngFor="let image of details.data[0].images_c | slice:1">
-							<img (click)="show_model()" class="img_gallery" src="http://automark.ae/Public/uploads/{{image}}"/>
+							<img  class="img_gallery" src="http://automark.ae/Public/uploads/{{image}}" imageViewer/>
 						</ion-row>
 						
 					</ion-col>
 					<ion-col col-8>
-						<img src="http://automark.ae/Public/uploads/{{details.data[0].images_c[0]}}"/>
+						<img src="http://automark.ae/Public/uploads/{{details.data[0].images_c[0]}}" imageViewer/>
 					</ion-col>
 				</ion-row>
 			</ion-col>

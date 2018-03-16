@@ -180,7 +180,7 @@
             </div>
           </div>
         </ion-col>
-        <ion-col align-self-center (click)="uploadImage($event)">
+        <ion-col [hidden]="lastImage !== null" align-self-center (click)="presentActionSheet()">
           <div class="image-container main-image">
             <div class="empty-content">
               <span class="add">+</span>
@@ -191,10 +191,15 @@
             لواجهة السيارة
           </div>
         </ion-col>
+        <ion-col [hidden]="lastImage === null" align-self-center>
+          <div class="image-container main-image">
+            <img src="{{pathForImage(lastImage)}}" style="width: 100%" >
+          </div>
+        </ion-col>
       </ion-row>
       <ion-row>
         <ion-col col-12>
-          <button ion-button full class="submit-advertisment">انشر الإعلان</button>
+          <button ion-button full class="submit-advertisment" (click)="uploadImage()" [disabled]="lastImage === null">انشر الإعلان</button>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -664,7 +669,7 @@
           </ion-row>
           <ion-row>
             <ion-col col-12>
-              <button ion-button full class="submit-advertisment">انشر الإعلان</button>
+              <button ion-button full class="submit-advertisment" >انشر الإعلان</button>
             </ion-col>
           </ion-row>
         </ion-grid>

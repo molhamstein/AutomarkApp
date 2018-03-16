@@ -41,7 +41,7 @@ export class ShowroomsPage {
       .subscribe(
         (result) => {
           this.uiProvider.hideLoadingPopup();
-          (this.showRooms.length == 0) ? this.showRooms = result.data: this.showRooms.push(...result.data);
+          this.showRooms.push(...result.data);
           (result.data.length < limit) ? this.canLoadMore = false: this.canLoadMore = true;
         },
         (error) => {

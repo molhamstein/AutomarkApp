@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { HttpProvider } from '../http.provider';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/toPromise';
 /*
   Generated class for the RestProvider provider.
 
@@ -73,13 +75,22 @@ getcars_model(model){
     });
   });    
 }   
-getitem_details(id){         
+/*getitem_details(id){         
   return new Promise(resolve => {
     this.http.get('cars/'+id).subscribe(data => {
       resolve(data);
     }, err => {
       console.log(err);
     });
+  });
+} */
+getitem_details(id){         
+  return new Promise(resolve => {
+    this.http.get('cars/cars_meta_option_by_id?id='+id+'&include=users').subscribe(data => {
+      resolve(data);
+    }, err => {
+      console.log(err);
+    }); 
   });
 } 
 
@@ -103,6 +114,30 @@ get_filter_result(parameters){
     });
   });
 }*/
+ 
+
+add_car(title,model,type,notes){
+
+  let data = JSON.stringify({
+    "title_c": title,
+    "type_c": type,
+    "model_c": model,
+    "description_c": notes,
+    "cars_meta":[
+      {"code_m":"dd","value_m":"ee"},
+      {"code_m":"d1d","value_m":"e1e"}
+      ]
+  });
+
+  return new Promise(resolve => {
+    this.http.post('cars/', data)
+    .subscribe(data => {
+      resolve(data);
+    }, err => {
+      console.log(err);
+    }); 
+  });
+}
 
 
 

@@ -15,6 +15,7 @@ declare var cordova: any;
   templateUrl: 'add-advertisment.html',
 })
 export class AddAdvertismentPage {
+   upload_responce :any;
   // selects options
   cities:any;
   carstype:any; 
@@ -35,8 +36,9 @@ export class AddAdvertismentPage {
  model :any;
  status :any;
  year :any;
-
-
+  color:any;
+  qrante:any;
+  manufactured:any;
  kilom :any;
  //
   activeTab = 1;
@@ -59,7 +61,16 @@ export class AddAdvertismentPage {
   }
   
   add_car(){
+    //this.uploadImage();
     // Create the popup
+    //console.log("soso",Object.getOwnPropertyNames(JSON.parse(this.upload_responce).data.result.files.file[0]));
+    var images_c = [];
+    var r_arr = JSON.parse(this.upload_responce).data.result.files.file;
+    for (var i in r_arr) {
+      console.log("soso",r_arr[i].name);
+      images_c.push(r_arr[i].name);
+    }
+    console.log("fff",images_c);
     let loadingPopup = this.loadingCtrl.create({
       content: 'جاري اضافة الاعلان ....'
     }); 
@@ -67,9 +78,20 @@ export class AddAdvertismentPage {
    
     // Show the popup
     loadingPopup.present();
-    return this.restProvider.add_car(this.title,this.model,this.type,this.notes)   
+    return this.restProvider.add_car(this.title,
+      this.model,
+      this.type,
+      this.notes,
+      this.kilom,
+      this.status,
+      this.manufactured,
+      this.year,
+      this.qrante,
+      this.color,
+      images_c
+      )   
     .then(data2 => {
-       console.log(data2);
+       console.log("ccc" ,data2);
       loadingPopup.dismiss();
     });
   }
@@ -250,18 +272,28 @@ export class AddAdvertismentPage {
     const fileTransfer: TransferObject = this.transfer.create();
    
     this.loading = this.loadingCtrl.create({
-      content: 'Uploading...',
+      content: 'جاري رفع الصورة...',
     });
     this.loading.present();
    
     // Use the FileTransfer to upload the image
-    fileTransfer.upload(targetPath, url, options).then(data => {
+    fileTransfer.upload(targetPath, url, options).then(data1 => {
       this.loading.dismissAll()
-      this.presentToast('Image succesful uploaded.');
-      console.log(data);
+      this.presentToast('تم رفع الصورة بنجاح.');
+      this.upload_responce = data1["response"];
+      //console.log(data1+"sss");
+      //this.navCtrl.setRoot(HomePage);
+      //console.log('string12:', data1);
+      //console.log('string1:', data1["response"]);
+      //console.log('string2:', JSON.parse(JSON.stringify(data1["response"]))[0].data);
+     // console.log('string3:', data1.response.data.result);
+      //console.log('string4:', data1.response.data.result.files);
+      //console.log('string5:', data1.response.data.result.files.file);
+   
+      this.add_car();  
     }, err => {
       this.loading.dismissAll()
-      this.presentToast('Error while uploading file.');
+      this.presentToast('يوجد خطأ في رفع الصورة.');
     });
   } 
 }

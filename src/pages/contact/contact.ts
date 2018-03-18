@@ -12,7 +12,8 @@ import { ShowroomPage } from '../showroom/showroom';
 import { LoginPage } from '../login/login';
 import { AuthProvider } from '../../auth/auth.provider';
 import { ShowroomsPage } from '../showrooms/showrooms';
-
+import { MyApp } from '../../app/app.component';
+import {BaseComponent} from '../../components/base.component';
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html',
@@ -28,15 +29,7 @@ export class ContactPage {
   trucks:any;
   loginStatus;
   constructor(public navCtrl: NavController,public restProvider: RestProvider, private loadingCtrl: LoadingController, public authProvider: AuthProvider) {
-  	authProvider.isAuth.subscribe(
-      (result) => {
-        if(result == null) {
-          this.loginStatus = this.authProvider.isLoggedIn();
-        } else {
-          this.loginStatus = result;
-        }
-      }
-    );
+  	
     //for (var i = 0; i < categories.length; ++i) {
     //  //this.getcategory_content(categories[i].id_ss);
     //}
@@ -74,31 +67,13 @@ export class ContactPage {
     //console.log("3");  
   }
   
- 
-  showmore(id){
-    this.navCtrl.push(SearchResultPage,{cat_id : id});
-  } 
-  ShowFilter(){
-    this.navCtrl.push(SearchFilterPage);
-  }
   ShowDetails(id){
     this.navCtrl.push(ItemDetailsPage,{item_id : id});
   }
-  ShowMyAccount(){
-     this.navCtrl.push(MyAccountPage);
-  }
-
-  add_ad(){
-    this.navCtrl.push(AddAdvertismentPage);
-  }
-  
-  showroom(){
-    this.navCtrl.push(ShowroomsPage);
+  showmore(id){
+    this.navCtrl.push(SearchResultPage,{cat_id : id});
   } 
-
-  login(){
-    this.navCtrl.push(LoginPage);
-  }
+  
  /* getcategory_content(cat_id){ 
     var cars = ["Saab", "Volvo", "BMW"];
     /*this.restProvider.get_Category_items(cat_id)

@@ -6,6 +6,9 @@ import { HomePage } from '../home/home';
 import { SearchFilterPage } from '../search-filter/search-filter';
 import { MyAccountPage } from '../my-account/my-account';
 import { MobileNumbersPage } from '../mobile-numbers/mobile-numbers';
+import { LoginPage } from '../login/login';
+import { AddAdvertismentPage } from '../add-advertisment/add-advertisment';
+import { ShowroomsPage } from '../showrooms/showrooms';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -22,11 +25,6 @@ export class TabsPage {
   }
 
 
-  ShowFilter(){
-    this.navCtrl.push(SearchFilterPage);
-  }
+ 
 
-  ShowMyAccount(){
-     this.navCtrl.push(MyAccountPage);
-  } 
 }

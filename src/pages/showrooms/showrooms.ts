@@ -52,8 +52,8 @@ export class ShowroomsPage {
       );
   }
 
-  openShowroomPage() {
-    this.navCtrl.push(ShowroomPage);
+  openShowroomPage(id) {
+    this.navCtrl.push(ShowroomPage, {showroomId: id});
   }
 
 }

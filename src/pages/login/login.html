@@ -14,8 +14,8 @@
               <ion-label class="input-addon">
                 <i class="icomoon-user"></i>
               </ion-label>
-              <ion-input type="text" placeholder="أدخل الإيميل الشخصي" name="email" [(ngModel)]="loginModel.username" #loginEmail="ngModel" [ngModelOptions]="{ updateOn: 'blur' }"
-                required></ion-input>
+              <ion-input type="text" placeholder="أدخل الإيميل الشخصي" name="email" [(ngModel)]="loginModel.email" #loginEmail="ngModel" [ngModelOptions]="{ updateOn: 'blur' }"
+                required email></ion-input>
             </ion-item>
             <p class="danger text-field-error" [class.visible]="loginEmail.errors && (loginEmail.dirty || loginEmail.touched)">البريد الالكتروني يجب أن يكون صحيح</p>
           </ion-col>
@@ -53,7 +53,7 @@
             <h3 class="section-subtitle register-subtitle">أنشء حساب جديد مجاناً</h3>
           </ion-col>
         </ion-row>
-        <ion-row radio-group name="accout-type" [(ngModel)]="registerModel.group_u" justify-content-center class="account-type-row">
+        <!-- <ion-row radio-group name="accout-type" [(ngModel)]="registerModel.group_u" justify-content-center class="account-type-row">
           <ion-col col-auto>
             <ion-item>
               <ion-radio class="account-type-radio" value="1"></ion-radio>
@@ -66,11 +66,11 @@
               <ion-label>معرض سيارات</ion-label>
             </ion-item>
           </ion-col>
-        </ion-row>
+        </ion-row> -->
         <ion-row>
           <ion-col col-12>
             <ion-item no-padding no-lines>
-              <ion-input text-right type="text" name="username" [(ngModel)]="registerModel.username" #username="ngModel" placeholder="الاسم"
+              <ion-input text-right type="text" name="username" [(ngModel)]="registerModel.username" #email="ngModel" placeholder="الاسم"
               [ngModelOptions]="{ updateOn: 'blur' }" required></ion-input>
             </ion-item>
             <p class="danger text-field-error" [class.visible]="username.errors && (username.dirty || username.touched)">الاسم مطلوب</p>

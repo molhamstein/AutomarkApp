@@ -1,37 +1,37 @@
-<ion-content no-padding>
+<ion-content no-padding *ngIf="showroomInfo != null">
   <div class="showroom">
     <div class="showroom-header bg-dark">
       <h2 class="section-title white padding-r-20"> المعارض
         <span>&gt;</span>
       </h2>
-      <h3 class="section-subtitle padding-r-10"> معرض الشاهد </h3>
+      <h3 class="section-subtitle padding-r-10"> {{showroomInfo.name_ar_s}} </h3>
     </div>
     <div class="showroom-content bg-red">
       <div class="showroom-info">
         <div class="showroom-info-row">
           <span class="title">الاسم:</span>
-          <span class="value"> الشاهد للسيارات </span>
+          <span class="value"> {{showroomInfo.name_ar_s}} </span>
         </div>
         <div class="showroom-info-row">
           <span class="title">العنوان:</span>
-          <span class="value"> القوز الصناعية - دبي </span>
+          <span class="value"> {{showroomInfo.region_s}} - {{showroomInfo.city_s}} </span>
         </div>
         <div class="showroom-info-row">
           <span class="title">الأرضي:</span>
-          <span class="value"> +899098 9890 </span>
+          <span class="value">  </span>
         </div>
         <div class="showroom-info-row">
           <span class="title">الموبايل:</span>
-          <span class="value"> +899098 9890 </span>
+          <span class="value"> {{showroomInfo.phone_num1}} </span>
         </div>
         <div class="showroom-info-row">
           <span class="title">البريد الالكتروني:</span>
-          <span class="value"> medo@gmail.com </span>
+          <span class="value"> {{showroomInfo.email_s}} </span>
         </div>
       </div>
     </div> 
     <div class="showroom-image">
-      <img src="assets/imgs/profile-image.jpg" />
+      <img *ngIf="showroomInfo.images_s != null && showroomInfo.images_s != ''" src="{{assetBaseurl}}{{showroomInfo.images_s}}" />
       <div class="icons-container">
         <ion-icon name="mail"></ion-icon>
         <ion-icon name="md-share"></ion-icon>

@@ -10,7 +10,7 @@ import { UiProvider } from '../../providers/ui.provider';
 export class LoginPage {
 
   loginModel = {
-    username: '',
+    email: '',
     password: ''
   };
 
@@ -59,7 +59,7 @@ export class LoginPage {
       this.authProvider.register(this.registerModel)
         .subscribe(
           (result) => {
-            this.loginModel.username = this.registerModel.username;
+            this.loginModel.email = this.registerModel.email_u;
             this.loginModel.password = this.registerModel.password;
             this.uiProvider.hideLoadingPopup();
             this.uiProvider.showToastMessage('تم انشاء الحساب بنجاح');

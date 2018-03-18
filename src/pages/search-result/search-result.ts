@@ -20,6 +20,8 @@ export class SearchResultPage {
   items_count:any;
   city:any;
   filters:any;
+  categoryName:any;
+
   constructor(public navCtrl: NavController,public restProvider: RestProvider, public navParams: NavParams, private loadingCtrl: LoadingController) {
     this.cat_id= navParams.data.cat_id;
     this.city= navParams.data.city;
@@ -43,7 +45,7 @@ export class SearchResultPage {
   }
 
   ionViewDidLoad() {
-    
+    this.setCategoryMame();
   }
   ionViewCanEnter(){
     if (this.cat_id == -1){
@@ -52,6 +54,32 @@ export class SearchResultPage {
       return this.getcatitems();
     }
         
+  }
+
+  setCategoryMame() {
+    switch (this.cat_id) {
+      case 1:
+        this.categoryName = 'سيارة';
+        break;
+      case 2:
+        this.categoryName = 'لوحة سيارة';
+        break;
+      case 3:
+        this.categoryName = 'رقم موبايل';
+        break;
+      case 4:
+        this.categoryName = 'دراجة';
+        break;
+      case 5:
+        this.categoryName = 'قارب';
+        break;
+      case 6:
+        this.categoryName = 'شاحنة';
+        break;
+      default:
+        this.categoryName = 'سيارة';
+        break;
+    }
   }
   getcatitems(){
     console.log('ionViewDidLoad SearchResultPage'+this.cat_id);

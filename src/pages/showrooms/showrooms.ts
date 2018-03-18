@@ -20,7 +20,8 @@ export class ShowroomsPage {
   
   showRooms: any[] = [];
   canLoadMore: boolean = false;
-  assetBaseurl = config.assetsBaseUrl;
+  assetBaseurl = 'http://automark.ae/Public/uploads/thumb/thumb_';
+  
   
   constructor(
     public navCtrl: NavController, 

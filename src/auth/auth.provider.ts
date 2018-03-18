@@ -26,6 +26,11 @@ export class AuthProvider {
             .map( res => res.json())
             .catch(this.handleError);
     }
+    getUserDetails(userID):Observable<any> {
+        return this.http.get(config.baseUrl + `users/${userID}`)
+            .map(res => res.json())
+            .catch(this.handleError);
+    }
     setAuthInfo(data) {
         this.authInfo = data;
         localStorage.setItem('authInfo', JSON.stringify(this.authInfo));
@@ -44,7 +49,7 @@ export class AuthProvider {
             this.isAuth.next(true);
             return true;
         } else {
-            this.isAuth.next(true);
+            this.isAuth.next(false);
             return false;
         }
     }

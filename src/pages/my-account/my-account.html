@@ -1,32 +1,54 @@
-<ion-content class="profile-content" no-padding>
+<ion-content class="profile-content" no-padding *ngIf="userInfo != null">
 	<div class="my-account">
 		<div class="my-account-header bg-dark">
 			<h2 class="section-title white padding-h-20" (click)="closeModal()"> حسابي </h2>
 		</div>
+		<!-- {
+			"data": {
+			  "id_u": 14173,
+			  "username": "alaatekleh",
+			  "email_u": "alaatekleh@yahoo.com",
+			  "salt_u": "$2a$10$4dvP49UKO37KT9KQ7uj.Au",
+			  "joined_u": null,
+			  "group_u": 1,
+			  "name_u": "",
+			  "lastname_u": "",
+			  "age_u": 0,
+			  "mobile_u": "0998908",
+			  "telphone": "",
+			  "lastnews_u": 0,
+			  "option_u": "",
+			  "act_u": 0,
+			  "image_u": ""
+			},
+			"msg": ""
+		  } -->
 		<div class="my-account-content bg-grey">
 			<div class="personal-info">
 				<div class="personal-info-row padding-v-20">
 					<span class="title">الاسم:</span>
-					<span class="value"> محمد سعد الأنصاري </span>
+					<span class="value"> {{userInfo.username}} </span>
 				</div>
 				<div class="personal-info-row">
 					<span class="title">تاريخ الميلاد:</span>
-					<span class="value"> ١٠ أكتوبر ١٩٩١ </span>
+					<span class="value"> غير محدد </span>
 				</div>
 				<div class="personal-info-row">
 					<span class="title">رقم الموبايل:</span>
-					<span class="value"> +٩٦٧ ١٢٣٣١ ١٢١٢ </span>
+					<span class="value" *ngIf="userInfo.mobile_u != '' && userInfo.mobile_u != null "> غير محدد </span>
+					<span class="value" *ngIf="userInfo.mobile_u == '' || userInfo.mobile_u == null "> {{userInfo.mobile_u}} </span>
 				</div>
 				<div class="personal-info-row">
 					<span class="title">البريد الالكتروني:</span>
-					<span class="value"> mody@gmail.com </span>
+					<span class="value" *ngIf="userInfo.email_u != '' && userInfo.email_u != null "> {{userInfo.email_u}} </span>
+					<span class="value" *ngIf="userInfo.email_u == '' || userInfo.email_u == null "> غير محدد </span>
 				</div>
 				<div class="personal-info-row">
 					<span class="title">الاقامة:</span>
 					<span class="title">دولة:</span>
-					<span class="value"> الامارات </span>
+					<span class="value"> غير محددة </span>
 					<span class="title margin-r-20">مدينة:</span>
-					<span class="value">دبي</span>
+					<span class="value">غير محددة</span>
 				</div>
 				<div class="personal-info-row">
 					<span class="title">اللغة المفضلة:</span>
@@ -68,7 +90,7 @@
 				<span class="profile-list-item-description"> قائمة إعلاناتي </span>
 			</div>
 		</ion-item>
-		<ion-item no-padding class="bg-dark profile-list-item">
+		<!-- <ion-item no-padding class="bg-dark profile-list-item">
 			<div class="icon-container">
 				<span class="profile-list-item-icon">
 					<ion-icon class="red" name="heart"></ion-icon>
@@ -78,7 +100,7 @@
 			<div class="description-container">
 				<span class="profile-list-item-description"> الإعلانات المفضلة </span>
 			</div>
-		</ion-item>
+		</ion-item> -->
 	</ion-list>
 </ion-content>
 

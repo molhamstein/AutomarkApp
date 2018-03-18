@@ -1,5 +1,5 @@
 <ion-header class="main-header">
-  <div class="header-logo-container">
+  <div class="header-logo-container" (click)="homePage()">
     <img class="img-responsive header-logo" full src="assets/icon/header_logo.png" />
   </div>
   <div class="header-nav-items">
@@ -19,37 +19,37 @@
 <ion-grid no-padding class="main-navigation">
   <ion-row no-padding>
       
-    <ion-col col-2 no-padding class="main-navigation-item" (click)="itemsPage()">
+    <ion-col col-2 no-padding class="main-navigation-item" (click)="openSearchResultPage(1)">
       <button ion-button full class="disable-hover main-navigation-btn">
         <ion-icon name="cars"></ion-icon>
       </button>
       <ion-label class="main-navigation-item-label">سيارات</ion-label>
     </ion-col>
-    <ion-col col-2 no-padding class="main-navigation-item" (click)="itemsPage()">
+    <ion-col col-2 no-padding class="main-navigation-item" (click)="openSearchResultPage(4)">
       <button ion-button full class="disable-hover main-navigation-btn">
         <ion-icon class="main-navigation-icon" name="bikes"></ion-icon>
       </button>
       <ion-label class="main-navigation-item-label">دراجات</ion-label>
     </ion-col>
-    <ion-col col-2 no-padding class="main-navigation-item" (click)="itemsPage()">
+    <ion-col col-2 no-padding class="main-navigation-item" (click)="openSearchResultPage(6)">
       <button ion-button full class="disable-hover main-navigation-btn">
         <ion-icon class="main-navigation-icon" name="trucks"></ion-icon>
       </button>
       <ion-label class="main-navigation-item-label">شاحنات</ion-label>
     </ion-col>
-    <ion-col col-2 no-padding class="main-navigation-item" (click)="itemsPage()">
+    <ion-col col-2 no-padding class="main-navigation-item" (click)="openSearchResultPage(5)">
       <button ion-button full class="disable-hover main-navigation-btn">
         <ion-icon class="main-navigation-icon" name="boats"></ion-icon>
       </button>
       <ion-label class="main-navigation-item-label">قوارب</ion-label>
     </ion-col>
-    <ion-col col-2 no-padding class="main-navigation-item" (click)="mobileNumbers()">
+    <ion-col col-2 no-padding class="main-navigation-item" (click)="openSearchResultPage(3)">
       <button ion-button full class="disable-hover main-navigation-btn">
         <ion-icon class="main-navigation-icon" name="phones"></ion-icon>
       </button>
       <ion-label class="main-navigation-item-label">أرقام موبايل</ion-label>
     </ion-col>
-    <ion-col col-2 no-padding class="main-navigation-item">
+    <ion-col col-2 no-padding class="main-navigation-item" (click)="openSearchResultPage(2)">
       <button ion-button full class="disable-hover main-navigation-btn">
         <ion-icon class="main-navigation-icon"  name="cars_numbers"></ion-icon>
       </button>
@@ -91,6 +91,4 @@
       <ion-label class="footer-item-label">بحث</ion-label>
     </ion-col>
   </ion-row>
-
-
 </ion-footer>

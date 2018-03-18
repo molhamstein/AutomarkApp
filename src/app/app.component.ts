@@ -63,8 +63,15 @@ export class MyApp {
   }
   
   ShowMyAccount() {
-    if(this.navCtrl.getActive().component != MyAccountPage) {
-     this.navCtrl.push(MyAccountPage);
+    if(this.authProvider.isLoggedIn() == true) {
+      if(this.navCtrl.getActive().component != MyAccountPage) {
+        let userId = this.authProvider.getAuthInfo().userId;
+        this.navCtrl.push(MyAccountPage, {userId : userId });
+       }
+    } else {
+      if(this.navCtrl.getActive().component != LoginPage) {
+        this.navCtrl.push(LoginPage);
+      }
     }
   }
 
@@ -80,7 +87,7 @@ export class MyApp {
     }
   } 
 
-  itemsPage() {
+  homePage() {
     if(this.navCtrl.getActive().component != ContactPage) {
       this.navCtrl.push(ContactPage);
     }
@@ -89,6 +96,9 @@ export class MyApp {
     if(this.navCtrl.getActive().component != MobileNumbersPage) {
       this.navCtrl.push(MobileNumbersPage);
     }
+  }
+  openSearchResultPage(catID) {
+    this.navCtrl.push(SearchResultPage, { cat_id: catID});
   }
 
 }

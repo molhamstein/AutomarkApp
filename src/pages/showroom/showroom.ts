@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {  NavController, NavParams } from 'ionic-angular';
+import { ShowroomProvider } from '../../providers/showroom/showroom';
+import { UiProvider } from '../../providers/ui.provider';
 
 /**
  * Generated class for the ShowroomPage page.
@@ -13,16 +15,42 @@ import {  NavController, NavParams } from 'ionic-angular';
   templateUrl: 'showroom.html',
 })
 export class ShowroomPage {
+  assetBaseurl = 'http://automark.ae/Public/uploads/thumb/thumb_';
+
   liked: boolean = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  showroomId: any;
+  showroomInfo: any;
+  
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public showroomProvider: ShowroomProvider,
+    public uiProvider: UiProvider
+  ) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ShowroomPage');
+    this.showroomId = this.navParams.data.showroomId;
+    this.getShowroom();
   }
 
   public toggleLike() {
     this.liked = !this.liked;
   }
+
+  getShowroom() {
+    this.uiProvider.showLoadingPopup('جاري جلب البيانات');
+    this.showroomProvider.getShowroom(this.showroomId)
+      .subscribe(
+        (result) => {
+          this.uiProvider.hideLoadingPopup();
+          this.showroomInfo = result.data;
+        }, 
+        (error) => {
+          this.uiProvider.hideLoadingPopup();
+        }
+      );
+  }
+
 
 }

@@ -19,37 +19,37 @@
 <ion-grid no-padding class="main-navigation">
   <ion-row no-padding>
       
-    <ion-col no-padding class="main-navigation-item" (click)="itemsPage()">
+    <ion-col col-2 no-padding class="main-navigation-item" (click)="itemsPage()">
       <button ion-button full class="disable-hover main-navigation-btn">
         <ion-icon name="cars"></ion-icon>
       </button>
       <ion-label class="main-navigation-item-label">سيارات</ion-label>
     </ion-col>
-    <ion-col no-padding class="main-navigation-item" (click)="itemsPage()">
+    <ion-col col-2 no-padding class="main-navigation-item" (click)="itemsPage()">
       <button ion-button full class="disable-hover main-navigation-btn">
         <ion-icon class="main-navigation-icon" name="bikes"></ion-icon>
       </button>
       <ion-label class="main-navigation-item-label">دراجات</ion-label>
     </ion-col>
-    <ion-col no-padding class="main-navigation-item" (click)="itemsPage()">
+    <ion-col col-2 no-padding class="main-navigation-item" (click)="itemsPage()">
       <button ion-button full class="disable-hover main-navigation-btn">
         <ion-icon class="main-navigation-icon" name="trucks"></ion-icon>
       </button>
       <ion-label class="main-navigation-item-label">شاحنات</ion-label>
     </ion-col>
-    <ion-col no-padding class="main-navigation-item" (click)="itemsPage()">
+    <ion-col col-2 no-padding class="main-navigation-item" (click)="itemsPage()">
       <button ion-button full class="disable-hover main-navigation-btn">
         <ion-icon class="main-navigation-icon" name="boats"></ion-icon>
       </button>
       <ion-label class="main-navigation-item-label">قوارب</ion-label>
     </ion-col>
-    <ion-col no-padding class="main-navigation-item" (click)="mobileNumbers()">
+    <ion-col col-2 no-padding class="main-navigation-item" (click)="mobileNumbers()">
       <button ion-button full class="disable-hover main-navigation-btn">
         <ion-icon class="main-navigation-icon" name="phones"></ion-icon>
       </button>
       <ion-label class="main-navigation-item-label">أرقام موبايل</ion-label>
     </ion-col>
-    <ion-col no-padding class="main-navigation-item">
+    <ion-col col-2 no-padding class="main-navigation-item">
       <button ion-button full class="disable-hover main-navigation-btn">
         <ion-icon class="main-navigation-icon"  name="cars_numbers"></ion-icon>
       </button>
@@ -60,31 +60,31 @@
 <ion-nav class="nav-menu" #nav [root]="rootPage"></ion-nav>
 <ion-footer>
   <ion-row>
-    <ion-col no-padding full class="footer-item">
+    <ion-col col-2 no-padding full class="footer-item">
       <button (click)="ShowMyAccount()" ion-button full class="disable-hover footer-btn">
         <ion-icon name='my_account'></ion-icon>
       </button>
       <ion-label class="footer-item-label">حسابي</ion-label>
     </ion-col>
-    <ion-col no-padding full class="footer-item">
+    <ion-col col-2 no-padding full class="footer-item">
       <button ion-button full class="disable-hover footer-btn">
         <ion-icon name='chats'></ion-icon>
       </button>
       <ion-label class="footer-item-label">محادثات</ion-label>
     </ion-col>
-    <ion-col no-padding full class="footer-item add-advertisment">
+    <ion-col col-4 no-padding full class="footer-item add-advertisment">
       <button (click)="add_ad()" ion-button full class="disable-hover add-advertisment-btn">
         <ion-icon name='add_ad'></ion-icon>
       </button>
       <ion-label class="footer-item-label">أضف إعلانك مجانا</ion-label>
     </ion-col>
-    <ion-col no-padding full class="footer-item">
+    <ion-col col-2 no-padding full class="footer-item">
       <button (click)="showroom()" ion-button full class="disable-hover footer-btn">
         <ion-icon name='m3ard'></ion-icon>
       </button>
       <ion-label class="footer-item-label">معارض</ion-label>
     </ion-col>
-    <ion-col no-padding full class="footer-item">
+    <ion-col col-2 no-padding full class="footer-item">
       <button ion-button full (click)="ShowFilter()" class="disable-hover footer-btn">
         <ion-icon name='search'></ion-icon>
       </button>

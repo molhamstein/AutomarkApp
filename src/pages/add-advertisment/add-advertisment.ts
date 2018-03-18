@@ -7,7 +7,7 @@ import { File } from '@ionic-native/file';
 import { Transfer, TransferObject } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
-
+import { RestProvider } from '../../providers/rest/rest'; 
 
 declare var cordova: any;
 @Component({
@@ -15,11 +15,34 @@ declare var cordova: any;
   templateUrl: 'add-advertisment.html',
 })
 export class AddAdvertismentPage {
+  // selects options
+  cities:any;
+  carstype:any; 
+  carsmodels:any;
+  carsstatus:any; 
+  years:any;
+  prices:any;
+  kilomtrat:any;
+  specifications:any; 
+  qarante:any;
+  //
+  //
+  title:any;
+  notes:any;
+  city :any;
+ country :any;
+ type:any;
+ model :any;
+ status :any;
+ year :any;
 
+
+ kilom :any;
+ //
   activeTab = 1;
   lastImage: string = null;
   loading: Loading;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera, private transfer: Transfer, private file: File, private filePath: FilePath, public actionSheetCtrl: ActionSheetController, public toastCtrl: ToastController, public platform: Platform, public loadingCtrl: LoadingController) { }
+  constructor(public restProvider: RestProvider,public navCtrl: NavController, public navParams: NavParams, private camera: Camera, private transfer: Transfer, private file: File, private filePath: FilePath, public actionSheetCtrl: ActionSheetController, public toastCtrl: ToastController, public platform: Platform, public loadingCtrl: LoadingController) { }
 
   setActiveTab(index) {
     this.activeTab = index;
@@ -31,7 +54,88 @@ export class AddAdvertismentPage {
   /*uploadImage(event) {
     console.log(event.target);
   }*/
-
+  ionViewCanEnter(){
+    return  this.getselects();
+  }
+  
+  add_car(){
+    // Create the popup
+    let loadingPopup = this.loadingCtrl.create({
+      content: 'جاري اضافة الاعلان ....'
+    }); 
+                      
+   
+    // Show the popup
+    loadingPopup.present();
+    return this.restProvider.add_car(this.title,this.model,this.type,this.notes)   
+    .then(data2 => {
+       console.log(data2);
+      loadingPopup.dismiss();
+    });
+  }
+  getselects(){
+           
+    // Create the popup
+    let loadingPopup = this.loadingCtrl.create({
+      content: 'جاري جلب البيانات .....'
+    }); 
+    // Show the popup 
+    loadingPopup.present();
+    return this.restProvider.getcitiesRest() 
+    .then(data2 => { 
+      this.cities = data2; 
+      console.log(this.cities);
+      return this.restProvider.getcars_type()
+      .then(data => {
+        this.carstype = data;
+        console.log(this.carstype);
+        return this.restProvider.getcars_model(16)
+        .then(data => {  
+          this.carsmodels = data;
+          console.log(this.carsmodels);
+          return this.restProvider.getcars_model(22) 
+          .then(data => {
+            this.carsstatus = data;
+            console.log(this.carsstatus);
+            return this.restProvider.getcars_model(20) 
+            .then(data => {
+              this.years = data;
+              console.log(this.years);
+              return this.restProvider.getcars_model(24) 
+              .then(data => {
+                this.prices = data;
+                console.log(this.prices);
+                return this.restProvider.getcars_model(50) 
+                .then(data => {
+                  this.kilomtrat = data;
+                  console.log(this.kilomtrat);
+                  return this.restProvider.getcars_model(13) 
+                  .then(data => {
+                    this.specifications = data;
+                    console.log(this.specifications);
+                    return this.restProvider.getcars_model(61) 
+                    .then(data => {
+                      this.qarante = data;
+                      console.log(this.qarante);
+                      loadingPopup.dismiss();
+                    });
+                    //loadingPopup.dismiss();
+                  });
+                  //loadingPopup.dismiss();
+                });
+                //loadingPopup.dismiss();
+              });
+              //loadingPopup.dismiss();
+            });
+            //loadingPopup.dismiss();
+          });
+          //loadingPopup.dismiss();
+        });
+        //loadingPopup.dismiss();
+      });
+       //loadingPopup.dismiss();
+    }); 
+  }
   public presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Select Image Source',
@@ -154,6 +258,7 @@ export class AddAdvertismentPage {
     fileTransfer.upload(targetPath, url, options).then(data => {
       this.loading.dismissAll()
       this.presentToast('Image succesful uploaded.');
+      console.log(data);
     }, err => {
       this.loading.dismissAll()
       this.presentToast('Error while uploading file.');

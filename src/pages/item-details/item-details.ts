@@ -44,6 +44,7 @@ export class ItemDetailsPage {
     return  this.restProvider.getitem_details(this.item_id)
     .then(data2 => { 
       this.details = data2;
+      //console.log(JSON.stringify(data2));
       //this.images = JSON.parse("[" + data2.data.images_c + "]"); 
       loadingPopup.dismiss();
       //console.log(data2.data[0].id_c);            

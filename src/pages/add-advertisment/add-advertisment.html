@@ -1,6 +1,7 @@
 
 <ion-content class="add-advertisment-content bg-grey" no-padding>
   <h2 class="container-title padding-h-20 padding-t-20 padding-b-10 text-right white">أضف إعلان</h2>
+  <h2 *ngIf="upload_responce != null" class="container-title padding-h-20 padding-t-20 padding-b-10 text-right white"></h2>
   <div class="advertisment-container">
     <ion-grid>
       <ion-row class="advertisment-type" justify-content-center>
@@ -74,9 +75,9 @@
         <ion-col col-6>
           <ion-item>
             <ion-label>الأبواب</ion-label>
-            <ion-select [placeholder]="'الأبواب'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">2</ion-option>
-              <ion-option value="value2">4</ion-option>
+            <ion-select [(ngModel)]="doors" [placeholder]="'الأبواب'" okText="تم" cancelText="إغلاق">
+              <ion-option value="2">2</ion-option>
+              <ion-option value="4">4</ion-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -87,7 +88,7 @@
               <ion-option value="value1">نظيفة</ion-option>
               <ion-option value="value2">حالة جيدة</ion-option>
             </ion-select>-->
-            <ion-select [placeholder]="'الهيئة'" [(ngModel)]="status" okText="إختيار" cancelText="إغلاق">
+            <ion-select [placeholder]="'حالة السيارة'" [(ngModel)]="status" okText="إختيار" cancelText="إغلاق">
                   <ion-option *ngFor="let carmodel of carsstatus.data[0].value_option" value="{{carmodel.id_v}}" >{{carmodel.value_v}} </ion-option>
             </ion-select>
           </ion-item>
@@ -95,9 +96,9 @@
         <ion-col col-6>
           <ion-item>
             <ion-label>مواصفات الصنع</ion-label>
-            <ion-select [placeholder]="'مواصفات الصنع'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">معايير عالية</ion-option>
-              <ion-option value="value2">معايير متوسطة</ion-option>
+            <ion-select [(ngModel)]="manufactured" [placeholder]="'مواصفات الصنع'" okText="تم" cancelText="إغلاق">
+              <ion-option value="معايير عالية">معايير عالية</ion-option>
+              <ion-option value="معايير متوسطة">معايير متوسطة</ion-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -116,7 +117,7 @@
         <ion-col col-6>
           <ion-item>
             <ion-label>الضمان</ion-label>
-            <ion-select [placeholder]="'الضمان'" okText="تم" cancelText="إغلاق">
+            <ion-select [(ngModel)]="qrante" [placeholder]="'الضمان'" okText="تم" cancelText="إغلاق">
               <ion-option value="value1">مع ضمان</ion-option>
               <ion-option value="value2">بدون ضمان</ion-option>
             </ion-select>
@@ -125,20 +126,20 @@
         <ion-col col-6>
           <ion-item>
             <ion-label>اللون</ion-label>
-            <ion-select [placeholder]="'الصنع'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">أحمر</ion-option>
-              <ion-option value="value2">أسود</ion-option>
+            <ion-select [(ngModel)]="color" [placeholder]="'اللون'" okText="تم" cancelText="إغلاق">
+              <ion-option value="1">أحمر</ion-option>
+              <ion-option value="2">أسود</ion-option>
             </ion-select>
           </ion-item>
         </ion-col>
         <ion-col col-6>
-          <ion-item>
+          <!--<ion-item>
             <ion-label>حالة السيارة</ion-label>
             <ion-select [placeholder]="'حالة السيارة'" okText="تم" cancelText="إغلاق">
               <ion-option value="value1">نظيفة</ion-option>
               <ion-option value="value2">غير نظيفة</ion-option>
             </ion-select>
-          </ion-item>
+          </ion-item>-->
         </ion-col>
         <ion-col col-12>
           <ion-item>
@@ -147,7 +148,7 @@
         </ion-col>
       </ion-row>
       <ion-row class="add-advertisment-images dark-controls">
-        <ion-col (click)="uploadImage($event)">
+        <ion-col >
           <div class="image-container">
             <div class="empty-content">
               <span class="add">+</span>
@@ -155,7 +156,7 @@
             </div>
           </div>
         </ion-col>
-        <ion-col (click)="uploadImage($event)">
+        <ion-col>
           <div class="image-container">
             <div class="empty-content">
               <span class="add">+</span>
@@ -163,7 +164,7 @@
             </div>
           </div>
         </ion-col>
-        <ion-col (click)="uploadImage($event)">
+        <ion-col >
           <div class="image-container">
             <div class="empty-content">
               <span class="add">+</span>
@@ -171,7 +172,7 @@
             </div>
           </div>
         </ion-col>
-        <ion-col (click)="uploadImage($event)">
+        <ion-col >
           <div class="image-container">
             <div class="empty-content">
               <span class="add">+</span>
@@ -192,13 +193,15 @@
         </ion-col>
         <ion-col [hidden]="lastImage === null" align-self-center>
           <div class="image-container main-image">
-            <img src="{{pathForImage(lastImage)}}" style="width: 100%" >
+            <div class="empty-content">
+              <img src="{{pathForImage(lastImage)}}" style="width: 100%" >
+            </div>
           </div>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col col-12>
-          <button ion-button full class="submit-advertisment" (click)="add_car()" >انشر الإعلان</button>
+          <button ion-button [disabled]="lastImage === null" full class="submit-advertisment" (click)="uploadImage()" >انشر الإعلان</button>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -676,3 +679,4 @@
   </div>
 
 </ion-content>
+

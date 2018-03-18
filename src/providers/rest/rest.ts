@@ -116,13 +116,26 @@ get_filter_result(parameters){
 }*/
  
 
-add_car(title,model,type,notes){
+add_car(title,model,type,notes,
+      kilom,
+      status,
+      manufactured,
+      year,
+      qrante,
+      color,
+      images_c){
 
   let data = JSON.stringify({
     "title_c": title,
     "type_c": type,
     "model_c": model,
-    "description_c": notes,
+    "special_c": notes,
+    "odometer_c": kilom,
+    "status_c": status,
+    "description_c": manufactured,
+    "year_c": year,
+    "color_c": color,
+    "images_c" : ""+images_c,
     "cars_meta":[
       {"code_m":"dd","value_m":"ee"},
       {"code_m":"d1d","value_m":"e1e"}

@@ -1,26 +1,4 @@
-<ion-header>
-  <ion-grid style="background-color:#363636;">
-  <ion-row >
-    <ion-col col-4>
-      <img class="img-responsive" full src="assets/icon/header_logo.png"/>
-    </ion-col>
-    <ion-col col-6>
-      <ion-row (click) = "login()" justify-content-end align-items-end *ngIf="loginStatus == false">
-        <b style="color:white;font-size:1rem;">تسجيل الدخول    |</b>
-      </ion-row>
-      <ion-row (click) = "authProvider.logout()" justify-content-end align-items-end *ngIf="loginStatus == true">
-          <b style="color:white;">تسجيل خروج    |</b>
-        </ion-row>
-    </ion-col>
-    <ion-col col-2>
-      <ion-row justify-content-end align-items-end>
-        <b style="color:white;font-size:1rem;">اتصل بنا</b><br>
-      </ion-row>
-    </ion-col>
-  </ion-row>
- 
-</ion-grid>
-</ion-header>
+
 
 <ion-content inset>
  <!-- <ion-list inset>
@@ -102,33 +80,3 @@
 
 
 
-<ion-footer>
-
-
-      <ion-row style="height: 8rem;
-    background-color: white;">
-        <ion-col full class="buttom_col" >
-         <button (click) = "ShowMyAccount()" ion-button full class="buttom_button"> <div> <ion-icon name='my_account'></ion-icon> <br> <label>حسابي</label> </div> </button>
-        </ion-col>
-        <ion-col full class="buttom_col">
-          <button ion-button full class="buttom_button"> <div> <ion-icon name='chats'></ion-icon> <br> <label>محادثات</label> </div> </button>
-          
-        </ion-col >
-        <ion-col full class="buttom_col"  style="margin-top:0px!important;height:100%!important;border-top-style: solid!important;
-    border-top-color: white!important;border-style: hidden;    background-color: #ed1c24;">
-        <button (click) = "add_ad()" ion-button full class="buttom_button" style="box-shadow: none;height: 6.6rem !important;background-image: url(assets/icon/bar_middle.png); background-repeat: no-repeat;
-    background-size: contain;width: 100%;background-size: 100% 100%;background-color:white!important;"> <div style="height:100%;padding-top: 21%;"> <ion-icon name='add_ad' style="padding-bottom: 7%;"></ion-icon><br><label>أضف إعلانك مجانا</label> </div> </button>
-          
-        </ion-col>
-        <ion-col full class="buttom_col">
-        <button (click) = "showroom()" ion-button full class="buttom_button"> <div> <ion-icon name='m3ard'></ion-icon> <br> <label>معارض</label> </div> </button>
-          
-        </ion-col>
-        <ion-col full class="buttom_col">
-        <button ion-button full (click) = "ShowFilter()" class="buttom_button"> <div> <ion-icon name='search'></ion-icon> <br> <label>بحث</label> </div> </button>
-          
-        </ion-col>
-      </ion-row>
-
-
-</ion-footer>

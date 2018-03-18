@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler, NavController} from 'ionic-angular';
 import { FormsModule } from '@angular/forms';
 
 import { MyApp } from './app.component';
@@ -36,6 +36,8 @@ import { Transfer } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
 import { ShowroomProvider } from '../providers/showroom/showroom';
+import { TopHeaderComponent } from '../components/top-header.component';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -52,7 +54,8 @@ import { ShowroomProvider } from '../providers/showroom/showroom';
     ShowroomPage,
     LoginPage,
     ShowroomsPage,
-    EditProfileModalPage
+    EditProfileModalPage,
+    TopHeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +82,6 @@ import { ShowroomProvider } from '../providers/showroom/showroom';
     ShowroomsPage,
     LoginPage,
     EditProfileModalPage
-     
   ],
   providers: [
     StatusBar,
@@ -93,7 +95,6 @@ import { ShowroomProvider } from '../providers/showroom/showroom';
     RestProvider,
     AuthProvider,
     UiProvider,
-    
     RestProvider,
     ShowroomProvider
   ]

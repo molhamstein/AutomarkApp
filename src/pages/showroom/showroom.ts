@@ -20,7 +20,7 @@ export class ShowroomPage {
   liked: boolean = false;
   showroomId: any;
   showroomInfo: any;
-  
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -43,11 +43,15 @@ export class ShowroomPage {
     this.showroomProvider.getShowroom(this.showroomId)
       .subscribe(
         (result) => {
-          this.uiProvider.hideLoadingPopup();
           this.showroomInfo = result.data;
+          console.log(result);
+          this.uiProvider.hideLoadingPopup();
+          
+          
         }, 
         (error) => {
           this.uiProvider.hideLoadingPopup();
+          console.log(error);
         }
       );
   }

@@ -70,7 +70,7 @@
         <ion-row>
           <ion-col col-12>
             <ion-item no-padding no-lines>
-              <ion-input text-right type="text" name="username" [(ngModel)]="registerModel.username" #email="ngModel" placeholder="الاسم"
+              <ion-input text-right type="text" name="username" [(ngModel)]="registerModel.username" #username="ngModel" placeholder="الاسم"
               [ngModelOptions]="{ updateOn: 'blur' }" required></ion-input>
             </ion-item>
             <p class="danger text-field-error" [class.visible]="username.errors && (username.dirty || username.touched)">الاسم مطلوب</p>

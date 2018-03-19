@@ -22,9 +22,8 @@ export class ShowroomProvider {
   }
 
   getShowroom(id): Observable<any> {
-    let actionUrl = `api/shows/${id}`;
-    return this.http.get(actionUrl)
-            .map( res => res.json())
+    let actionUrl = `shows/${id}`;
+    return this.http.get(actionUrl);
   }
 
 }

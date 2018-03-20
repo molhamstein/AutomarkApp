@@ -476,7 +476,7 @@ li.nav-item .nav-label {
     position: absolute;
     width: 100%;
     bottom: 1px;
-    height: 50px;
+    height: 60px;
 }
 
 .card-home .home-details .item-date {
@@ -979,6 +979,51 @@ li.nav-item .nav-label {
     direction: ltr;
 }
 
+/* SEARCH PAGE */
+
+.card-search {
+    position: relative;
+    display: block;
+}
+.card.card-search {
+    width: calc(33.33vw - 13.3px) !important;
+    height: calc(33.33vw - 13.3px) !important;
+}
+
+.card-search .search-details {
+    padding: 5px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.7) !important;
+    color: #eee;
+    font-weight: 500;
+    font-size: 1rem;
+    position: absolute;
+    width: 100%;
+    bottom: 1px;
+    height: 60px;
+}
+
+.card-search .search-details .item-date {
+    color: #a1a1a1;
+    font-size: 8px;
+}
+
+.card-search .search-details .item-location,
+.card-search .search-details .item-price {
+    font-size: 0.9rem;
+}
+
+.card-search .search-details ion-icon {
+    padding-right: 3px;
+}
+
+.card-search .search-details span {
+    display: inline-block;
+}
+
+.card-search.card-md {
+    margin: 0px !important;
+}
 
 /*===============================================*/
 
@@ -1320,10 +1365,18 @@ ion-select,
         width: calc(25vw - 10px) !important;
         height: calc(25vw - 10px) !important;
     }
+    .card.card-search {
+        width: calc(25vw - 10px) !important;
+        height: calc(25vw - 10px) !important;
+    }
 }
 
 @media (min-width: 768px) {
     .card.card-home {
+        width: calc(16.66vw - 7px) !important;
+        height: calc(16.66vw - 7px) !important;
+    }
+    .card.card-search {
         width: calc(16.66vw - 7px) !important;
         height: calc(16.66vw - 7px) !important;
     }

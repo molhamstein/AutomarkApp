@@ -16,6 +16,7 @@ declare var cordova: any;
 })
 export class AddAdvertismentPage {
    upload_responce :any;
+   i:any;
   // selects options
   cities:any;
   carstype:any; 
@@ -43,6 +44,13 @@ export class AddAdvertismentPage {
  //
   activeTab = 1;
   lastImage: string = null;
+  lastImage1: string = null;
+  lastImage2: string = null;
+  lastImage3: string = null;
+  lastImage4: string = null;
+  id:any;
+  images: any = [];
+  images_reponce_names:any = [];
   loading: Loading;
   constructor(public restProvider: RestProvider,public navCtrl: NavController, public navParams: NavParams, private camera: Camera, private transfer: Transfer, private file: File, private filePath: FilePath, public actionSheetCtrl: ActionSheetController, public toastCtrl: ToastController, public platform: Platform, public loadingCtrl: LoadingController) { }
 
@@ -64,13 +72,13 @@ export class AddAdvertismentPage {
     //this.uploadImage();
     // Create the popup
     //console.log("soso",Object.getOwnPropertyNames(JSON.parse(this.upload_responce).data.result.files.file[0]));
-    var images_c = [];
+    /*var images_c = [];
     var r_arr = JSON.parse(this.upload_responce).data.result.files.file;
     for (var i in r_arr) {
       console.log("soso",r_arr[i].name);
       images_c.push(r_arr[i].name);
     }
-    console.log("fff",images_c);
+    console.log("fff",images_c);*/
     let loadingPopup = this.loadingCtrl.create({
       content: 'جاري اضافة الاعلان ....'
     }); 
@@ -78,7 +86,7 @@ export class AddAdvertismentPage {
    
     // Show the popup
     loadingPopup.present();
-    return this.restProvider.add_car(this.title,
+    return this.restProvider.add_car(this.activeTab,this.title,
       this.model,
       this.type,
       this.notes,
@@ -88,11 +96,13 @@ export class AddAdvertismentPage {
       this.year,
       this.qrante,
       this.color,
-      images_c
+      this.images_reponce_names
       )   
     .then(data2 => {
-       console.log("ccc" ,data2);
+       console.log("ccc" ,JSON.stringify(data2));
       loadingPopup.dismiss();
+      this.presentToast('تم رفع الصور والاعلان بنجاح.',10000);
+      this.navCtrl.pop();
     });
   }
   getselects(){
@@ -158,20 +168,21 @@ export class AddAdvertismentPage {
        //loadingPopup.dismiss();
     }); 
   }
-  public presentActionSheet() {
+  public presentActionSheet(id) {
+    this.id = id;
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Select Image Source',
       buttons: [
         {
           text: 'Load from Library',
           handler: () => {
-            this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
+            this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY,id);
           }
         },
         {
           text: 'Use Camera',
           handler: () => {
-            this.takePicture(this.camera.PictureSourceType.CAMERA);
+            this.takePicture(this.camera.PictureSourceType.CAMERA,id);
           }
         },
         {
@@ -184,7 +195,7 @@ export class AddAdvertismentPage {
   }
 
 
-  public takePicture(sourceType) {
+  public takePicture(sourceType,id) {
     // Create options for the Camera Dialog
     var options = {
       quality: 100,
@@ -201,12 +212,12 @@ export class AddAdvertismentPage {
           .then(filePath => {
             let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
             let currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
-            this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
+            this.copyFileToLocalDir(correctPath, currentName, this.createFileName(),id);
           });
       } else {
         var currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
         var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
-        this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
+        this.copyFileToLocalDir(correctPath, currentName, this.createFileName(),id);
       }
     }, (err) => {
       this.presentToast('Error while selecting image.');
@@ -218,14 +229,34 @@ export class AddAdvertismentPage {
   private createFileName() {
     var d = new Date(),
     n = d.getTime(),
-    newFileName =  "image1" + ".jpg";
+    newFileName =  n + ".jpg";
     return newFileName;
   }
    
   // Copy the image to a local folder
-  private copyFileToLocalDir(namePath, currentName, newFileName) {
+  private copyFileToLocalDir(namePath, currentName, newFileName,id) {
     this.file.copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(success => {
-      this.lastImage = newFileName;
+      switch (id) {
+        case "0": 
+          this.lastImage = newFileName;
+          break;
+        case "1":
+          this.lastImage1 = newFileName;
+          break;
+        case "2":
+          this.lastImage2 = newFileName;
+          break;
+        case "3": 
+          this.lastImage3 = newFileName;
+          break;
+        case "4":
+          this.lastImage4 = newFileName;
+          break;
+        default:
+          this.lastImage = newFileName;
+          break;
+      }
+      this.images.push(newFileName);
     }, error => {
       this.presentToast('Error while storing file.');
     });
@@ -248,53 +279,70 @@ export class AddAdvertismentPage {
       return cordova.file.dataDirectory + img;
     }
   }
-
+  public  add() {
+     this.uploadImage();
+    //console.log('string2:', JSON.stringify(this.images_reponce_names));
+  }
 
 
   public uploadImage() {
     // Destination URL
     var url = "http://automark.ae:3000/api/images/uploads/upload";
-   
-    // File for Upload
-    var targetPath = this.pathForImage(this.lastImage);
-   
-    // File name only
-    var filename = this.lastImage;
-   
-    var options = {
-      fileKey: "file",
-      fileName: filename,
-      chunkedMode: false,
-      mimeType: "multipart/form-data",
-      params : {'fileName': filename}
-    };
-   
-    const fileTransfer: TransferObject = this.transfer.create();
-   
-    this.loading = this.loadingCtrl.create({
-      content: 'جاري رفع الصورة...',
-    });
-    this.loading.present();
-   
-    // Use the FileTransfer to upload the image
-    fileTransfer.upload(targetPath, url, options).then(data1 => {
-      this.loading.dismissAll()
-      this.presentToast('تم رفع الصورة بنجاح.');
-      this.upload_responce = data1["response"];
-      //console.log(data1+"sss");
-      //this.navCtrl.setRoot(HomePage);
-      //console.log('string12:', data1);
-      //console.log('string1:', data1["response"]);
-      //console.log('string2:', JSON.parse(JSON.stringify(data1["response"]))[0].data);
-     // console.log('string3:', data1.response.data.result);
-      //console.log('string4:', data1.response.data.result.files);
-      //console.log('string5:', data1.response.data.result.files.file);
-   
-      this.add_car();  
-    }, err => {
-      this.loading.dismissAll()
-      this.presentToast('يوجد خطأ في رفع الصورة.');
-    });
+     this.loading = this.loadingCtrl.create({
+        content: 'جاري رفع الصور...',
+      });
+      this.loading.present();
+      var j=0;
+    for(this.i=0; this.i<this.images.length; this.i++)
+    {
+      // File for Upload
+      var targetPath = this.pathForImage(this.images[this.i]);
+     
+      // File name only
+      var filename = this.images[this.i];
+     
+      var options = {
+        fileKey: "file",
+        fileName: filename,
+        chunkedMode: false,
+        mimeType: "multipart/form-data",
+        params : {'fileName': filename}
+      };
+     
+      const fileTransfer: TransferObject = this.transfer.create();
+     
+      
+     
+      // Use the FileTransfer to upload the image
+      fileTransfer.upload(targetPath, url, options).then(data1 => {
+        j++;
+        //this.upload_responce = data1["response"];
+        this.images_reponce_names.push(JSON.parse(data1["response"]).data.result.files.file[0].name);
+        //console.log(data1+"sss");
+        //this.navCtrl.setRoot(HomePage);
+        /*console.log('string1:', JSON.stringify(JSON.parse(data1["response"]).data.result.files.file[0].name));
+        console.log('length:',JSON.stringify(this.images.length));
+        console.log('i:',JSON.stringify(this.i));*/
+        if ( j == this.images.length){
+          console.log('string2:', JSON.stringify(this.images_reponce_names));
+          this.loading.dismissAll()
+           
+          this.add_car();
+        }
+        
+        //console.log('string1:', data1["response"]);
+        //console.log('string2:', JSON.parse(JSON.stringify(data1["response"]))[0].data);
+       // console.log('string3:', data1.response.data.result);
+        //console.log('string4:', data1.response.data.result.files);
+        //console.log('string5:', data1.response.data.result.files.file);
+     
+        //this.add_car();   
+      }, err => {
+        this.loading.dismissAll()
+        this.presentToast('يوجد خطأ في رفع الصورة.');
+      });
+    }
+    //console.log('string2:', JSON.stringify(this.images_reponce_names));
   } 
 }
   

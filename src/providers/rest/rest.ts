@@ -119,7 +119,7 @@ export class RestProvider {
   }*/
 
 
-  add_car(title, model, type, notes,
+add_car(category,title,model,type,notes,
     kilom,
     status,
     manufactured,
@@ -132,16 +132,20 @@ export class RestProvider {
       "title_c": title,
       "type_c": type,
       "model_c": model,
+    "category_c": category,
       "special_c": notes,
       "odometer_c": kilom,
       "status_c": status,
       "description_c": manufactured,
       "year_c": year,
       "color_c": color,
-      "images_c": "" + images_c,
+    "images_c" : "\""+JSON.stringify(images_c)+"\"",
       "cars_meta": [
         { "code_m": "dd", "value_m": "ee" },
         { "code_m": "d1d", "value_m": "e1e" }
+    "cars_meta":[
+      {"code_m":"dd","value_m":"ee"},
+      {"code_m":"d1d","value_m":"e1e"}
       ]
     });
 

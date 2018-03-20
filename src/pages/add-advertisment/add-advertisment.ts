@@ -24,11 +24,13 @@ export class AddAdvertismentPage {
   carsstatus:any; 
   years:any;
   prices:any;
+  colors:any;
   kilomtrat:any;
   specifications:any; 
   qarante:any;
   //
   //
+  price:any;
   title:any;
   notes:any;
   city :any;
@@ -68,6 +70,16 @@ export class AddAdvertismentPage {
     return  this.getselects();
   }
   
+
+  validate_inputs(){
+    if (this.title !== null 
+      && this.price !==null
+      && this.lastImage !==null
+      && this.city !==null
+      && this.country !==null){
+      this.uploadImage();
+    }else{this.presentToast('يرجى التأكد من ادخال العنوان والسعر والدولة والمدينة وصورة واحدة على الأقل .');}
+  }
   add_car(){
     //this.uploadImage();
     // Create the popup
@@ -86,7 +98,7 @@ export class AddAdvertismentPage {
    
     // Show the popup
     loadingPopup.present();
-    return this.restProvider.add_car(this.activeTab,this.title,
+    return this.restProvider.add_car(this.price,this.activeTab,this.title,
       this.model,
       this.type,
       this.notes,
@@ -96,12 +108,14 @@ export class AddAdvertismentPage {
       this.year,
       this.qrante,
       this.color,
+      this.city,
+      this.country,
       this.images_reponce_names
       )   
     .then(data2 => {
        console.log("ccc" ,JSON.stringify(data2));
       loadingPopup.dismiss();
-      this.presentToast('تم رفع الصور والاعلان بنجاح.',10000);
+      this.presentToast('تم رفع الصور والاعلان بنجاح.');
       this.navCtrl.pop();
     });
   }
@@ -133,10 +147,10 @@ export class AddAdvertismentPage {
             .then(data => {
               this.years = data;
               console.log(this.years);
-              return this.restProvider.getcars_model(24) 
+              return this.restProvider.getcars_model(15) 
               .then(data => {
-                this.prices = data;
-                console.log(this.prices);
+                this.colors = data;
+                console.log(this.colors);
                 return this.restProvider.getcars_model(50) 
                 .then(data => {
                   this.kilomtrat = data;
@@ -144,7 +158,7 @@ export class AddAdvertismentPage {
                   return this.restProvider.getcars_model(13) 
                   .then(data => {
                     this.specifications = data;
-                    console.log(this.specifications);
+                    console.log(JSON.stringify(this.specifications.data[0].option_o));
                     return this.restProvider.getcars_model(61) 
                     .then(data => {
                       this.qarante = data;

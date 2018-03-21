@@ -143,9 +143,6 @@ add_car(category,title,model,type,notes,
       "cars_meta": [
         { "code_m": "dd", "value_m": "ee" },
         { "code_m": "d1d", "value_m": "e1e" }
-    "cars_meta":[
-      {"code_m":"dd","value_m":"ee"},
-      {"code_m":"d1d","value_m":"e1e"}
       ]
     });
 

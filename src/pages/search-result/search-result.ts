@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams ,LoadingController} from 'ionic-ang
 import { RestProvider } from '../../providers/rest/rest';
 import { SearchFilterPage } from '../search-filter/search-filter';
 import { ItemDetailsPage } from '../item-details/item-details';
+import { config } from '../../config';
+
 /**
  * Generated class for the SearchResultPage page.
  *
@@ -21,6 +23,7 @@ export class SearchResultPage {
   city:any;
   filters:any;
   categoryName:any;
+  assetsBaseUrl: any = config.assetsBaseUrl;
 
   constructor(public navCtrl: NavController,public restProvider: RestProvider, public navParams: NavParams, private loadingCtrl: LoadingController) {
     this.cat_id= navParams.data.cat_id;

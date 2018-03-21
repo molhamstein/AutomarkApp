@@ -1,82 +1,38 @@
-
-
-<ion-content inset>
- <!-- <ion-list inset>
-    <ion-item *ngFor="let cat of categories">
-      <h2> {{cat.id_ss}}</h2>
-      
-    </ion-item>
-  </ion-list>-->
- <ion-list>
-   
- 
-  <ion-list-header   text-center><b style="color:#ed1c24;">أحدث الإعلانات</b></ion-list-header>
- 
-   <ion-item *ngFor="let cat of categories.data">
-         <b style="color:#ed1c24;padding-right: 2%;font-size: 1.2rem!important;"> {{cat.code_ss_ar}}</b>
-      <ion-row>
-        <!--<ion-col col-4 class="card-background-page" *ngFor="let item of categories">
-        <ion-card>
-          <img src="../../assets/imgs/download.jpg"/>
-          <ion-row class="card-row">
-            <ion-col>
-              <div class="card-title">São Paulo   {{item.id_ss}}</div>
-            </ion-col>
-            <ion-col>
-              <div class="card-subtitle">41 Listings</div>
-            </ion-col>
-          </ion-row>
-          
-          
-        </ion-card>
-        
-        </ion-col>-->
- 
-          <ion-col *ngFor="let car of cars.data"  no-margin col-4 class="card-background-page" >
-            <ion-card (click)="ShowDetails(car.id_c);" full no-margin no-padding>
-              <img src="http://automark.ae/Public/uploads/{{car.images_c[0]}}"/> 
-              <ion-row class="cardfooter" style="background-color: #363636;">
-                  <ion-col no-margin col-3>
-                    <p>{{car.price_c}}</p>
-                  </ion-col>
-                  <ion-col no-margin col-9>
-                    <ion-row justify-content-end align-items-end>
-                      <p>{{car.title_c}}</p>
-                    </ion-row>
-                    
-                  </ion-col>
-              </ion-row>
-              
-              
-            </ion-card>
-            
-          </ion-col>
-
-      
-         
-      
-   
-      
-      </ion-row>
-      <ion-row align-items-center>
-      <ion-col col-5>
+<ion-content>
+  <ion-list-header text-center>
+    <strong class="red">أحدث الإعلانات</strong>
+  </ion-list-header>
+  <ion-grid justify-content-center *ngIf="dataFetched == true">
+    <ion-row *ngFor="let category of homeData" justify-content-center class="padding-v-10">
+      <ion-col col-12>
+        <h2 class="advertisment-container-title">{{category.catName}}</h2>
+      </ion-col>
+      <ng-container *ngIf="category.data.length > 0">
+        <ion-col col-4 col-sm-3 col-md-2 *ngFor="let advertisment of category.data">
+       <ion-card class="card-home card-home" (click)="ShowDetails(advertisment.id_c);">
+            <img class="advertisment-image" src="{{assetsBaseUrl}}{{advertisment.images_c[0]}}" />
+            <div class="home-details">
+              <div class="item-title text-center">
+                <strong>{{advertisment.title_c}}</strong>
+              </div>
+              <div class="item-footer">
+                <span class="item-price fright ltr">{{advertisment.price_c}}</span>
+              </div>
+            </div> 
+          </ion-card>
         </ion-col>
-        <ion-col>
-       <a (click) = "showmore(1)" style="color:black;font-size: 1.2rem;">شاهد أكثر</a>
+        <ion-col col-12 justify-content-center>
+          <button ion-button full class="home-showmore" color="dark" (click)="showmore(category.catId)"> اعرض المزيد </button>
+      </ion-col>
+      </ng-container>
+      <ng-container *ngIf="category.data.length == 0">
+        <ion-col col-12 justify-content-center>
+          <div class="no-content-container">
+              <img class="no-add-img" src="assets/imgs/no_ads.png">
+              <ion-label>لايوجد إعلانات لهذا النوع حالياً</ion-label>
+          </div>
         </ion-col>
-        
-      </ion-row>
-    </ion-item>
-
-    
-
-    
-   
-    
-
-  </ion-list>
-
+      </ng-container>
+    </ion-row>
+  </ion-grid>
 </ion-content>
-
-
-

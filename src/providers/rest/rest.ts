@@ -3,6 +3,9 @@ import { HttpModule } from '@angular/http';
 import { HttpProvider } from '../http.provider';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin';
+
 /*
   Generated class for the RestProvider provider.
 
@@ -18,105 +21,105 @@ export class RestProvider {
 
   getCategories() {
     console.log("4");
-  return new Promise(resolve => {
-    this.http.get('categories').subscribe(data => {
-      resolve(data);
-    }, err => {
-      console.log(err);
+    return new Promise(resolve => {
+      this.http.get('categories').subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
     });
-  });
-}
+  }
 
- getcat_items(id){
-  return new Promise(resolve => {
-    this.http.get('cars?filter={"where":{"category_c":'+id+'}}').subscribe(data => {
-      resolve(data);
-    }, err => {
-      console.log(err);
+  getcat_items(id) {
+    return new Promise(resolve => {
+      this.http.get('cars?filter={"where":{"category_c":' + id + '}}').subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
     });
-  });
-}
-getcat_items_limit(id){ 
-  return new Promise(resolve => {
-    this.http.get('cars?filter={"where":{"category_c":'+id+'},"limit":3}').subscribe(data => {
-      resolve(data);
-    }, err => {
-      console.log(err);
+  }
+  getcat_items_limit(id) {
+    return new Promise(resolve => {
+      this.http.get('cars?filter={"where":{"category_c":' + id + '},"limit":3}').subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
     });
-  });
-}
+  }
 
-getcitiesRest(){
-  return new Promise(resolve => {
-    this.http.get('cities').subscribe(data => {
-      resolve(data);
-    }, err => {
-      console.log(err);
+  getcitiesRest() {
+    return new Promise(resolve => {
+      this.http.get('cities').subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
     });
-  });
-}
+  }
 
-getcars_type(){
-  return new Promise(resolve => {
-    this.http.get('cars_types').subscribe(data => {
-      resolve(data);
-    }, err => {
-      console.log(err);
+  getcars_type() {
+    return new Promise(resolve => {
+      this.http.get('cars_types').subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
     });
-  });
-}
-     
-getcars_model(model){ 
-  return new Promise(resolve => {
-    this.http.get('option_cars?filter[include]=value_option&filter[where][id_o]='+model).subscribe(data => {
-      resolve(data);
-    }, err => {
-      console.log(err);
-    });
-  });    
-}   
-/*getitem_details(id){         
-  return new Promise(resolve => {
-    this.http.get('cars/'+id).subscribe(data => {
-      resolve(data);
-    }, err => {
-      console.log(err);
-    });
-  });
-} */
-getitem_details(id){         
-  return new Promise(resolve => {
-    this.http.get('cars/cars_meta_option_by_id?id='+id+'&include=users').subscribe(data => {
-      resolve(data);
-    }, err => {
-      console.log(err);
-    }); 
-  });
-} 
+  }
 
-get_filter_result(parameters){
-  var request = 'cars/cars_advertisment?limit=5&offset=0';
-  var staticf =   'static_filter=[';
-  return new Promise(resolve => {
-    this.http.get('cars/cars_advertisment?limit=5&offset=0&dynamic_filter=[{"op":"between","_1":1,"_2":100000000,"code_m":"transmission"}]&static_filter=[{"op":"like","option":"type_c","_1":'+parameters[2]+'},{"op":"like","option":"Country_c","_1":'+parameters[0]+'},{"op":"like","option":"city_c","_1":'+parameters[1]+'},{"op":"between","_1":1,"_2":50000,"option":"price_c"},{"op":"between","_1":1,"_2":50000,"option":"year_c"}]').subscribe(data => {
-      resolve(data);
-    }, err => {
-      console.log(err);
-    }); 
-  });
-}
-/*public get_Category_items(cat_id) {
-  return new Promise(resolve => {
-    this.http.get(this.apiUrl+'/categories/'+cat_id+'/cars').subscribe(data => {
-      resolve(data);
-    }, err => {
-      console.log(err);
+  getcars_model(model) {
+    return new Promise(resolve => {
+      this.http.get('option_cars?filter[include]=value_option&filter[where][id_o]=' + model).subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
     });
-  });
-}*/
- 
+  }
+  /*getitem_details(id){         
+    return new Promise(resolve => {
+      this.http.get('cars/'+id).subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
+  } */
+  getitem_details(id) {
+    return new Promise(resolve => {
+      this.http.get('cars/cars_meta_option_by_id?id=' + id + '&include=users').subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
+  }
 
-add_car(price,category,title,model,type,notes,
+  get_filter_result(parameters) {
+    var request = 'cars/cars_advertisment?limit=5&offset=0';
+    var staticf = 'static_filter=[';
+    return new Promise(resolve => {
+      this.http.get('cars/cars_advertisment?limit=5&offset=0&dynamic_filter=[{"op":"between","_1":1,"_2":100000000,"code_m":"transmission"}]&static_filter=[{"op":"like","option":"type_c","_1":' + parameters[2] + '},{"op":"like","option":"Country_c","_1":' + parameters[0] + '},{"op":"like","option":"city_c","_1":' + parameters[1] + '},{"op":"between","_1":1,"_2":50000,"option":"price_c"},{"op":"between","_1":1,"_2":50000,"option":"year_c"}]').subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
+  }
+  /*public get_Category_items(cat_id) {
+    return new Promise(resolve => {
+      this.http.get(this.apiUrl+'/categories/'+cat_id+'/cars').subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
+  }*/
+
+
+  add_car(price,category,title,model,type,notes,
       kilom,
       status,
       manufactured,
@@ -168,8 +171,19 @@ add_car(price,category,title,model,type,notes,
   });
 }
 
+  getCategoriesAsObservable(): Observable<any> {
+    return this.http.get('categories');
+  }
+  getCategoryLastItems(catID): Observable<any> {
+    return this.http.get('cars?filter={"where":{"category_c":' + catID + '},"limit":3}');
+  }
 
-
-
+  homeData(categoryies): Observable<any> {
+    let observableArray = [];
+    for (let index = 0; index < categoryies.length; index++) {
+      observableArray.push(this.getCategoryLastItems(categoryies[index]["id_ss"]));
+    }
+    return Observable.forkJoin(...observableArray);
+  }
 
 }

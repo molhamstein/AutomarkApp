@@ -37,6 +37,7 @@ import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
 import { ShowroomProvider } from '../providers/showroom/showroom';
 import { TopHeaderComponent } from '../components/top-header.component';
+import { ImageProvider } from '../providers/image.provider';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,8 @@ import { TopHeaderComponent } from '../components/top-header.component';
     AuthProvider,
     UiProvider,
     RestProvider,
-    ShowroomProvider
+    ShowroomProvider,
+    ImageProvider
   ]
 })
 export class AppModule { }

@@ -193,6 +193,14 @@ ion-content {
     direction: ltr;
 }
 
+ion-label.field-label {
+    margin-bottom: 10px !important;
+}
+
+button.font-large {
+    font-size: 20px !important;
+}
+
 /*===============================================*/
 
 
@@ -619,7 +627,9 @@ li.nav-item .nav-label {
 
 
 /* 7-3. PROFILE PAGE */
-
+.my-account {
+ position: relative;   
+}
 .my-account-header {
     height: 50px;
     display: -ms-flexbox;
@@ -666,9 +676,13 @@ li.nav-item .nav-label {
 .edit-my-account {
     position: absolute;
     left: 20px;
-    top: 278px;
+    bottom: -10px;
 }
-
+.my-account .edit-profile-button {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    font-size: 12px !important;
+}
 .profile-list-item {
     height: 100px;
 }
@@ -720,7 +734,10 @@ li.nav-item .nav-label {
 
 
 /* 7-4 EDIT PROFILE PAGE */
-
+.edit-profile-content {
+    height: 100% !important;
+    margin-top: 60px !important;
+}
 .edit-profile-content input,
 .edit-profile-content ion-textarea,
 .edit-profile-content ion-datetime {

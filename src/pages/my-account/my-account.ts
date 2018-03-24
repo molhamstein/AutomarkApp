@@ -3,13 +3,10 @@ import { NavController, NavParams, ModalController, ActionSheetController } from
 import { EditProfileModalPage } from '../edit-profile-modal/edit-profile-modal';
 import { AuthProvider } from '../../auth/auth.provider';
 import { UiProvider } from '../../providers/ui.provider';
-
-/**
- * Generated class for the MyAccountPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Camera } from '@ionic-native/camera';
+import { ImageProvider } from '../../providers/image.provider';
+import { config } from '../../config';
+import { Events } from 'ionic-angular'
 
 @Component({
   selector: 'page-my-account',
@@ -17,26 +14,30 @@ import { UiProvider } from '../../providers/ui.provider';
 })
 export class MyAccountPage {
 
-  userId: any ;
-  userInfo:any;
+  userId: any;
+  userInfo: any;
+  newUserImage: any;
+  assetsUrl: any = config.assetsBaseUrl;
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
-    public modalController: ModalController, 
-    public actionSheetCtrl: ActionSheetController, 
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public modalController: ModalController,
+    public actionSheetCtrl: ActionSheetController,
     public authProvider: AuthProvider,
-    public uiProvider: UiProvider
+    public uiProvider: UiProvider,
+    private camera: Camera,
+    private imageProvider: ImageProvider,
+    private events: Events
   ) {
+    this.events.subscribe('reload', () => this.getUserDetails());
   }
 
   editprofile() {
     let profileModal = this.modalController.create(EditProfileModalPage, { userId: this.userId });
     profileModal.present();
-  } 
+  }
   ionViewDidLoad() {
     this.userId = this.navParams.data.userId;
-    console.log(this.userId);
-    console.log(this.navParams.data);
     this.getUserDetails();
   }
 
@@ -54,4 +55,77 @@ export class MyAccountPage {
       );
   }
 
+  public editImage() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Select Image Source',
+      buttons: [
+        {
+          text: 'Load from Library',
+          handler: () => {
+            this.imageProvider.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY)
+              .subscribe(
+                (result) => {
+                  this.uiProvider.showLoadingPopup("جاري رفع الصورة");
+                  this.imageProvider.uploadImage(result)
+                    .subscribe(
+                      (result) => {
+                        this.uiProvider.hideLoadingPopup();
+                        console.log(result);
+                        let response = JSON.parse(result.result.response)
+                        this.userInfo.image_u = response.data.result.files.file[0].name;
+                      }
+                    )
+                },
+                (error) => {
+                  this.uiProvider.hideLoadingPopup();
+                  this.uiProvider.showToastMessage(error);
+                }
+              )
+          }
+        },
+        {
+          text: 'Use Camera',
+          handler: () => {
+            this.imageProvider.takePicture(this.camera.PictureSourceType.CAMERA)
+              .subscribe(
+                (result) => {
+                  this.uiProvider.showLoadingPopup("جاري رفع الصورة");
+                  this.imageProvider.uploadImage(result)
+                    .subscribe(
+                      (result) => {
+                        this.uiProvider.hideLoadingPopup();
+                        let response = JSON.parse(result.result.response)
+                        this.userInfo.image_u = response.data.result.files.file[0].name;
+                        this.editUser();
+                      }
+                    )
+                },
+                (error) => {
+                  this.uiProvider.hideLoadingPopup();
+                  this.uiProvider.showToastMessage(error);
+                }
+              );
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        }
+      ]
+    });
+    actionSheet.present();
+  }
+
+  editUser() {
+    
+    this.authProvider.editUserInfo(this.userInfo)
+      .subscribe(
+        (result) => {
+          this.uiProvider.showToastMessage("تم تعديل الصورة بنجاح")
+        },
+        (error) => {
+          this.uiProvider.showToastMessage(error.error.message);
+        }
+      );
+  }
 }

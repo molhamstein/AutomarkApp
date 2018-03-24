@@ -6,31 +6,39 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
 import { Http } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { HttpProvider } from '../providers/http.provider';
 
 @Injectable()
 export class AuthProvider {
+    access_token: any;
     authInfo: any;
-    isAuth : Subject<boolean> = new BehaviorSubject<boolean>(null);
+    isAuth: Subject<boolean> = new BehaviorSubject<boolean>(null);
     constructor(public http: Http) {
         console.log('Hello RestProvider Provider');
     }
 
     login(loginModel): Observable<any> {
-        return this.http.post(config.baseUrl + 'users/login',loginModel)
+        return this.http.post(config.baseUrl + 'users/login', loginModel)
             .map(res => res.json())
             .catch(this.handleError);
     }
     register(registerModel) {
         return this.http.post(config.baseUrl + 'users', registerModel)
-            .map( res => res.json())
+            .map(res => res.json())
             .catch(this.handleError);
     }
-    getUserDetails(userID):Observable<any> {
+    getUserDetails(userID): Observable<any> {
         return this.http.get(config.baseUrl + `users/${userID}`)
             .map(res => res.json())
             .catch(this.handleError);
     }
+    editUserInfo(userInfoModel: any): Observable<any> {
+        return this.http.put(config.baseUrl + `users/${userInfoModel.id_u}`, userInfoModel)
+            .map( res => res.json())
+            .catch(this.handleError);
+    }
+
     setAuthInfo(data) {
         this.authInfo = data;
         localStorage.setItem('authInfo', JSON.stringify(this.authInfo));
@@ -56,6 +64,14 @@ export class AuthProvider {
     logout() {
         localStorage.clear();
         this.isAuth.next(false);
+    }
+
+    private createAuthorizationHeader(headers: Headers) {
+        let authInfo = this.getAuthInfo();
+        if (authInfo != null) {
+            this.access_token = authInfo.id;
+            headers.append('Authorization', this.access_token);
+        }
     }
     public handleError(error: Response) {
         return Observable.throw(error.json());

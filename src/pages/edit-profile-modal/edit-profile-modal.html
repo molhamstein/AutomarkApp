@@ -14,67 +14,98 @@
 
 </ion-header>
 
+<!-- 
+{
+  "data": {
+    "id_u": 14194,
+    "username": "Alaateklehmobile",
+    "email_u": "Alaateklehmobile@gmail.com",
+    "salt_u": "$2a$10$TMVYAuy/nUpCM.Hhkrfz1.",
+    "joined_u": null,
+    "group_u": 1,
+    "name_u": "",
+    "lastname_u": "",
+    "age_u": 0,
+    "mobile_u": "0956963235",
+    "telphone": "",
+    "lastnews_u": 0,
+    "option_u": "",
+    "act_u": 0,
+    "image_u": ""
+  },
+  "msg": ""
+} 
+-->
 
-<ion-content class="edit-profile-content bg-grey" padding>
-  <ion-grid>
-    <ion-row class="dark-controls">
-      <ion-col col-12>
-        <ion-item>
-          <ion-input type="text" text-right placeholder="الاسم"></ion-input>
-        </ion-item>
-      </ion-col>
-
-      <ion-col col-12>
-        <ion-item>
-          <ion-datetime placeholder="تاريخ الميلاد" text-right displayFormat="YYYY/MM/DD" doneText="تم" cancelText="إغلاق"></ion-datetime>
-        </ion-item>
-      </ion-col>
-
-      <ion-col col-12>
-        <ion-item>
-          <ion-input text-right type="tel" placeholder="رقم الموبايل"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-12>
-        <ion-item>
-          <ion-input type="email" text-right placeholder="البريد الالكتروني"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-6>
-        <ion-item>
-          <ion-label>البلد</ion-label>
-          <ion-select [placeholder]="'البلد'" okText="تم" cancelText="إغلاق">
-            <ion-option value="value1">السعودية</ion-option>
-            <ion-option value="value2">الامارات</ion-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
-      <ion-col col-6>
-        <ion-item>
-          <ion-label>المدينة</ion-label>
-          <ion-select [placeholder]="'المدينة'" okText="تم" cancelText="إغلاق">
-            <ion-option value="value1">دبي</ion-option>
-            <ion-option value="value2">جدة</ion-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
-      <ion-col col-12>
-        <ion-item>
-          <ion-label>اللغة المفضلة</ion-label>
-          <ion-select [placeholder]="'اللغة المفضلة'" okText="تم" cancelText="إغلاق">
-            <ion-option value="value1">العربية</ion-option>
-            <ion-option value="value2">الانكليزية</ion-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
-
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-12>
-        <button ion-button full class="submit-edit-profile">تعديل البيانات</button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
+<ion-content class="edit-profile-content bg-grey" padding *ngIf="userInfo != null">
+  <form #editProfileForm="ngForm" (ngSubmit)="submitEditProfile(editProfileForm)">
+    <ion-grid>
+      <ion-row class="dark-controls">
+        <ion-col col-12>
+          <ion-label class="field-label white">
+            اسم المستخدم
+          </ion-label>
+          <ion-item>
+            <ion-input type="text" text-right placeholder="الاسم" name="username" [(ngModel)]="userInfo.username" #username="ngModel" [ngModelOptions]="{ updateOn: 'blur' }"
+              required></ion-input>
+          </ion-item>
+          <p class="danger text-field-error" [class.visible]="username.errors && (username.dirty || username.touched)">الاسم مطلوب</p>
+        </ion-col>
+        <ion-col col-12 hidden>
+          <ion-label class="field-label white">تاريخ الميلاد</ion-label>
+          <ion-item>
+            <ion-datetime placeholder="تاريخ الميلاد" text-right displayFormat="YYYY/MM/DD" doneText="تم" cancelText="إغلاق"></ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12>
+          <ion-label class="field-label white">رقم الموبايل</ion-label>
+          <ion-item>
+            <ion-input text-right type="tel" name="mobileNumber" placeholder="رقم الموبايل" [(ngModel)]="userInfo.mobile_u" #mobile="ngModel" required></ion-input>
+          </ion-item>
+          <p class="danger text-field-error" [class.visible]="mobile.errors && (mobile.dirty || mobile.touched)">رقم الموبايل مطلوب</p>
+        </ion-col>
+        <ion-col col-12>
+          <ion-label class="field-label white">
+            البريد الالكتروني
+          </ion-label>
+          <ion-item>
+            <ion-input type="email" text-right placeholder="البريد الالكتروني" name="email" [(ngModel)]="userInfo.email_u" #email="ngModel" email></ion-input>
+          </ion-item>
+          <p class="danger text-field-error" [class.visible]="email.errors && (email.dirty || email.touched)">تأكد أن البريد الالكتروني صحيح</p>
+        </ion-col>
+        <ion-col col-6 hidden>
+          <ion-item>
+            <ion-label>البلد</ion-label>
+            <ion-select [placeholder]="'البلد'" okText="تم" cancelText="إغلاق">
+              <ion-option value="value1">السعودية</ion-option>
+              <ion-option value="value2">الامارات</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6 hidden>
+          <ion-item>
+            <ion-label>المدينة</ion-label>
+            <ion-select [placeholder]="'المدينة'" okText="تم" cancelText="إغلاق">
+              <ion-option value="value1">دبي</ion-option>
+              <ion-option value="value2">جدة</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 hidden>
+          <ion-item>
+            <ion-label>اللغة المفضلة</ion-label>
+            <ion-select [placeholder]="'اللغة المفضلة'" okText="تم" cancelText="إغلاق">
+              <ion-option value="value1">العربية</ion-option>
+              <ion-option value="value2">الانكليزية</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <button ion-button full type="submit" class="font-large submit-edit-profile" >تعديل البيانات</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>

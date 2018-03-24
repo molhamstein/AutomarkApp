@@ -8,6 +8,7 @@ import { Transfer, TransferObject } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
 import { RestProvider } from '../../providers/rest/rest'; 
+import { UiProvider } from '../../providers/ui.provider';
 
 declare var cordova: any;
 @Component({
@@ -52,7 +53,7 @@ export class AddAdvertismentPage {
   images: any = [];
   images_reponce_names:any = [];
   loading: Loading;
-  constructor(public restProvider: RestProvider,public navCtrl: NavController, public navParams: NavParams, private camera: Camera, private transfer: Transfer, private file: File, private filePath: FilePath, public actionSheetCtrl: ActionSheetController, public toastCtrl: ToastController, public platform: Platform, public loadingCtrl: LoadingController) { }
+  constructor(public restProvider: RestProvider,public navCtrl: NavController, public navParams: NavParams, private camera: Camera, private transfer: Transfer, private file: File, private filePath: FilePath, public actionSheetCtrl: ActionSheetController, public toastCtrl: ToastController, public platform: Platform, public loadingCtrl: LoadingController, public uiProvider: UiProvider) { }
 
   setActiveTab(index) {
     this.activeTab = index;
@@ -101,7 +102,7 @@ export class AddAdvertismentPage {
     .then(data2 => {
        console.log("ccc" ,JSON.stringify(data2));
       loadingPopup.dismiss();
-      this.presentToast('تم رفع الصور والاعلان بنجاح.',10000);
+      this.uiProvider.showToastMessage('تم رفع الصور والاعلان بنجاح.');
       this.navCtrl.pop();
     });
   }

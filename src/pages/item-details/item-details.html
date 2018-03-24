@@ -40,27 +40,29 @@
 					<ion-col col-6>
 						
 						<ion-row class="row_cos_" *ngFor="let item of details.data[0].cars_meta_details | slice:0:5">
-							<ion-col col-9>
+							<ion-col col-8 *ngIf="item.id_o !=26">
 								<b class="p_costume">{{item.name_o_ar}}</b>
 							</ion-col>
-							<ion-col col-3 [ngSwitch] = "item.value_m">
-									  <b class="p_costume2" *ngSwitchCase="'4'">عادي</b>
-									  
-									  <b class="p_costume2" *ngSwitchCase="'5'">اوتوماتك</b>
-									  <b class="p_costume2" *ngSwitchCase="'6'">ممتازه</b>
-									  <b class="p_costume2" *ngSwitchCase="'7'">جيده</b>
-									  <b class="p_costume2" *ngSwitchCase="'8'">متوسطه</b>
-									  <b class="p_costume2" *ngSwitchCase="'9'">بحاجة الى صيانة</b>
-									  <b class="p_costume2" *ngSwitchCase="'10'">كوبيه</b>
-									 
-									  <b class="p_costume2" *ngSwitchCase="'11'">كشف</b>
-									  <b class="p_costume2" *ngSwitchCase="'12'">دفع رباعي</b>
-									   <b class="p_costume2" *ngSwitchCase="'13'">سيدان</b>
-									  <b class="p_costume2" *ngSwitchCase="'14'">صغيره</b>
-									   <b class="p_costume2" *ngSwitchCase="'15'">فاخرة</b>
-									<b class="p_costume2" *ngSwitchDefault>{{item.value_m}}</b>
-									  
-								 </ion-col>
+							<ng-container *ngIf="item.id_o !=26">
+								<ion-col col-4 [ngSwitch] = "item.value_m">
+										  <b class="p_costume2" *ngSwitchCase="'4'">عادي</b>
+										  
+										  <b class="p_costume2" *ngSwitchCase="'5'">اوتوماتك</b>
+										  <b class="p_costume2" *ngSwitchCase="'6'">ممتازه</b>
+										  <b class="p_costume2" *ngSwitchCase="'7'">جيده</b>
+										  <b class="p_costume2" *ngSwitchCase="'8'">متوسطه</b>
+										  <b class="p_costume2" *ngSwitchCase="'9'">بحاجة الى صيانة</b>
+										  <b class="p_costume2" *ngSwitchCase="'10'">كوبيه</b>
+										 
+										  <b class="p_costume2" *ngSwitchCase="'11'">كشف</b>
+										  <b class="p_costume2" *ngSwitchCase="'12'">دفع رباعي</b>
+										   <b class="p_costume2" *ngSwitchCase="'13'">سيدان</b>
+										  <b class="p_costume2" *ngSwitchCase="'14'">صغيره</b>
+										   <b class="p_costume2" *ngSwitchCase="'15'">فاخرة</b>
+										<b class="p_costume2" *ngSwitchDefault>{{item.value_m}}</b>
+										  
+								</ion-col>
+							</ng-container>
 							 <!--<ion-col col-8 [ngSwitch] = "item.code_m">
 								  <b class="p_costume" *ngSwitchCase="'claas_car'">الفئة</b>
 								  
@@ -97,10 +99,10 @@
 							 <!--</ion-col>-->
 						</ion-row>
 						<ion-row class="row_cos_">
-							 <ion-col col-9>
+							 <ion-col col-8>
 							 	<b class="p_costume">عام التصنيع</b>
 							 </ion-col>
-							 <ion-col col-3>
+							 <ion-col col-4>
 							 	<b class="p_costume2">{{details.data[0].year_c}}</b>
 							 </ion-col>
 						</ion-row>

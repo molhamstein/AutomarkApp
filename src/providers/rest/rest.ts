@@ -119,42 +119,57 @@ export class RestProvider {
   }*/
 
 
-add_car(category,title,model,type,notes,
-    kilom,
-    status,
-    manufactured,
-    year,
-    qrante,
-    color,
-    images_c) {
+  add_car(price,category,title,model,type,notes,
+      kilom,
+      status,
+      manufactured,
+      year,
+      qrante,
+      color,
+      city,
+      country,
+      images_c){
 
-    let data = JSON.stringify({
-      "title_c": title,
-      "type_c": type,
-      "model_c": model,
+  let data = JSON.stringify({
+    "title_c": title,
+    "type_c": type,
+    "model_c": model,
     "category_c": category,
-      "special_c": notes,
-      "odometer_c": kilom,
-      "status_c": status,
-      "description_c": manufactured,
-      "year_c": year,
-      "color_c": color,
-    "images_c" : "\""+JSON.stringify(images_c)+"\"",
-      "cars_meta": [
-        { "code_m": "dd", "value_m": "ee" },
-        { "code_m": "d1d", "value_m": "e1e" }
+    "special_c": notes,
+    "odometer_c": kilom,
+    "status_c": status,
+    "description_c": manufactured,
+    "year_c": year,
+    "color_c": color,
+    "price_c": price,
+    "Country_c": city,
+    "city_c": country,
+    "images_c" : JSON.stringify(images_c),
+    //
+    "end_c": 1519904500,
+    "id_user": 40,
+    "act_c": 1,
+    "vzt_c": 97,
+    "cars_meta":[
+      {"code_m":"kilometersconsumed","value_m":kilom},
+      {"code_m":"color","value_m":color},
+      {"code_m":"specifications","value_m":notes},
+      {"code_m":"status","value_m":status},
+      {"code_m":"special_access","value_m":manufactured},
+      {"code_m":"Country_c","value_m":country},
+      {"code_m":"years","value_m":year}
       ]
-    });
+  });
 
-    return new Promise(resolve => {
-      this.http.post('cars/', data)
-        .subscribe(data => {
-          resolve(data);
-        }, err => {
-          console.log(err);
-        });
-    });
-  }
+  return new Promise(resolve => {
+    this.http.post('cars/', data)
+    .subscribe(data => {
+      resolve(data);
+    }, err => {
+      console.log(err);
+    }); 
+  });
+}
 
   getCategoriesAsObservable(): Observable<any> {
     return this.http.get('categories');

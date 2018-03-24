@@ -98,7 +98,7 @@ export class SearchResultPage {
       this.items = data2;
       loadingPopup.dismiss();
       this.items_count = this.items.data.length;
-      //console.log(this.items.length);
+      console.log(this.items);
       //alert(this.categories);
     });
   }
@@ -116,7 +116,7 @@ export class SearchResultPage {
       this.items = data2;
       loadingPopup.dismiss();
       this.items_count = this.items.data.length;
-      //console.log(this.items.length);
+      console.log(this.items);
       //alert(this.categories);
     });
   }

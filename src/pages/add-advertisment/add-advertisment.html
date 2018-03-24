@@ -33,6 +33,20 @@
 
         <ion-col col-6>
           <ion-item>
+            <ion-input [(ngModel)]="price" type="text" placeholder="السعر"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <!--<ion-label>عدد الكيلومترات</ion-label>
+            <ion-select [placeholder]="'عدد الكيبلومترات'" [(ngModel)]="kilom" okText="إختيار" cancelText="إغلاق">
+                  <ion-option *ngFor="let year of kilomtrat.data[0].value_option" value="{{year.id_v}}" >{{year.value_v}} </ion-option>
+              </ion-select>-->
+              <ion-input [(ngModel)]="kilom" type="text" placeholder="عدد الكيبلومترات"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
             <ion-label>النوع</ion-label>
             <!--<ion-select [placeholder]="'النوع'" okText="تم" cancelText="إغلاق">
               <ion-option value="value1">كيا</ion-option>
@@ -48,16 +62,25 @@
 
         <ion-col col-6>
           <ion-item>
-            <ion-label>عدد الكيلومترات</ion-label>
-            <!--<ion-select [placeholder]="'عدد الكيبلومترات'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">1</ion-option>
-              <ion-option value="value2">2</ion-option>
-            </ion-select>-->
-            <ion-select [placeholder]="'عدد الكيبلومترات'" [(ngModel)]="kilom" okText="إختيار" cancelText="إغلاق">
-                  <ion-option *ngFor="let year of kilomtrat.data[0].value_option" value="{{year.id_v}}" >{{year.value_v}} </ion-option>
+            <ion-select [placeholder]="'الدولة'" [(ngModel)]="city" okText="إختيار" cancelText="إغلاق">
+                <ng-container *ngFor="let city of cities.data">
+                <ion-option *ngIf="city.sub_c == 0"  value="{{city.id_c}}" >{{city.name_c}}</ion-option>
+              </ng-container>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-select [placeholder]="'المدينة'" [(ngModel)]="country" okText="إختيار" cancelText="إغلاق">
+              <ng-container *ngFor="let city of cities.data">
+                <ion-option *ngIf="city.sub_c != 0"  value="{{city.id_c}}" >{{city.name_c}}</ion-option>
+              </ng-container>
+               
               </ion-select>
           </ion-item>
         </ion-col>
+
+
         <ion-col col-6>
           <ion-item>
             <ion-label>الموديل</ion-label>
@@ -96,9 +119,12 @@
         <ion-col col-6>
           <ion-item>
             <ion-label>مواصفات الصنع</ion-label>
-            <ion-select [(ngModel)]="manufactured" [placeholder]="'مواصفات الصنع'" okText="تم" cancelText="إغلاق">
+            <!--<ion-select [(ngModel)]="manufactured" [placeholder]="'مواصفات الصنع'" okText="تم" cancelText="إغلاق">
               <ion-option value="معايير عالية">معايير عالية</ion-option>
               <ion-option value="معايير متوسطة">معايير متوسطة</ion-option>
+            </ion-select>-->
+            <ion-select [placeholder]="'مواصفات الصنع'" [(ngModel)]="manufactured" okText="إختيار" cancelText="إغلاق">
+                  <ion-option *ngFor="let year of specifications.data[0].option_o" value="{{year}}" >{{year}} </ion-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -117,18 +143,21 @@
         <ion-col col-6>
           <ion-item>
             <ion-label>الضمان</ion-label>
-            <ion-select [(ngModel)]="qrante" [placeholder]="'الضمان'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">مع ضمان</ion-option>
-              <ion-option value="value2">بدون ضمان</ion-option>
-            </ion-select>
+            <ion-select [placeholder]="'الضمان'" [(ngModel)]="qrante" okText="إختيار" cancelText="إغلاق">
+                  <ion-option *ngFor="let year of qarante.data[0].value_option" value="{{year.id_v}}" >{{year.value_v}} </ion-option>
+              </ion-select>
           </ion-item>
         </ion-col>
         <ion-col col-6>
           <ion-item>
             <ion-label>اللون</ion-label>
-            <ion-select [(ngModel)]="color" [placeholder]="'اللون'" okText="تم" cancelText="إغلاق">
+            <!--<ion-select [(ngModel)]="color" [placeholder]="'اللون'" okText="تم" cancelText="إغلاق">
               <ion-option value="1">أحمر</ion-option>
               <ion-option value="2">أسود</ion-option>
+            </ion-select>-->
+
+            <ion-select [placeholder]="'اللون'" [(ngModel)]="color" okText="إختيار" cancelText="إغلاق">
+                  <ion-option *ngFor="let year of colors.data[0].value_option" value="{{year.id_v}}" >{{year.value_v}} </ion-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -159,7 +188,7 @@
          <ion-col [hidden]="lastImage4 === null" align-self-center>
           <div class="image-container main-image">
             <div class="empty-content">
-              <img src="pathForImage(lastImage4)" style="width: 100%" >
+              <img src="{{pathForImage(lastImage4)}}" style="width: 100%" imageViewer>
             </div>
           </div>
         </ion-col>
@@ -174,7 +203,7 @@
          <ion-col [hidden]="lastImage3 === null" align-self-center>
           <div class="image-container main-image">
             <div class="empty-content">
-              <img src="pathForImage(lastImage3)" style="width: 100%" >
+              <img src="{{pathForImage(lastImage3)}}" style="width: 100%" imageViewer>
             </div>
           </div>
         </ion-col>
@@ -189,7 +218,7 @@
          <ion-col [hidden]="lastImage2 === null" align-self-center>
           <div class="image-container main-image">
             <div class="empty-content">
-              <img src="pathForImage(lastImage2)" style="width: 100%" >
+              <img src="{{pathForImage(lastImage2)}}" style="width: 100%" imageViewer>
             </div>
           </div>
         </ion-col>
@@ -204,7 +233,7 @@
          <ion-col [hidden]="lastImage1 === null" align-self-center>
           <div class="image-container main-image">
             <div class="empty-content">
-              <img src="pathForImage(lastImage1)" style="width: 100%" >
+              <img src="{{pathForImage(lastImage1)}}" style="width: 100%" imageViewer>
             </div>
           </div>
         </ion-col>
@@ -222,14 +251,14 @@
         <ion-col [hidden]="lastImage === null" align-self-center>
           <div class="image-container main-image">
             <div class="empty-content">
-              <img src="pathForImage(lastImage)" style="width: 100%" >
+              <img src="{{pathForImage(lastImage)}}" style="width: 100%" imageViewer>
             </div>
           </div>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col col-12>
-          <button ion-button [disabled]="lastImage === null" full class="submit-advertisment" (click)="uploadImage()" >انشر الإعلان</button>
+          <button ion-button full class="submit-advertisment" (click)="validate_inputs()" >انشر الإعلان</button>
         </ion-col>
       </ion-row>
     </ion-grid>

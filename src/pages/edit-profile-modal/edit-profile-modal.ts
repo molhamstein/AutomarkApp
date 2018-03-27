@@ -61,6 +61,7 @@ export class EditProfileModalPage {
             this.navCtrl.pop();
           },
           (error) => {
+            this.uiProvider.hideLoadingPopup();
             this.uiProvider.showToastMessage(error.error.message);
           }
         )

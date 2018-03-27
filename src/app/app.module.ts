@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler, NavController} from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler, NavController } from 'ionic-angular';
 import { FormsModule } from '@angular/forms';
 
 import { MyApp } from './app.component';
@@ -23,7 +23,7 @@ import { ShowroomsPage } from '../pages/showrooms/showrooms';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 import { RestProvider } from '../providers/rest/rest';
@@ -35,9 +35,12 @@ import { File } from '@ionic-native/file';
 import { Transfer } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
+
 import { ShowroomProvider } from '../providers/showroom/showroom';
 import { TopHeaderComponent } from '../components/top-header.component';
 import { ImageProvider } from '../providers/image.provider';
+import { MessagingPage } from '../pages/messaging/messaging';
+import {Keyboard}  from '@ionic-native/keyboard';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,8 @@ import { ImageProvider } from '../providers/image.provider';
     LoginPage,
     ShowroomsPage,
     EditProfileModalPage,
-    TopHeaderComponent
+    TopHeaderComponent,
+    MessagingPage
   ],
   imports: [
     BrowserModule,
@@ -64,7 +68,17 @@ import { ImageProvider } from '../providers/image.provider';
     HttpModule,
     IonicImageViewerModule,
     FormsModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp, {
+      scrollPadding: false,
+      scrollAssist: true,
+      autoFocusAssist: false,
+      platforms: {
+        ios: {
+          statusbarPadding: true,
+          tabsHideOnSubPages: true
+        }
+      }
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -82,7 +96,8 @@ import { ImageProvider } from '../providers/image.provider';
     ShowroomPage,
     ShowroomsPage,
     LoginPage,
-    EditProfileModalPage
+    EditProfileModalPage,
+    MessagingPage
   ],
   providers: [
     StatusBar,
@@ -90,8 +105,9 @@ import { ImageProvider } from '../providers/image.provider';
     File,
     Transfer,
     Camera,
-    FilePath, 
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Keyboard,
+    FilePath,
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     HttpProvider,
     RestProvider,
     AuthProvider,

@@ -1,4 +1,4 @@
-<ion-header class="main-header">
+<ion-header class="main-header" [class.extra-margin]="headerHasExtraMargin == true">
   <div class="header-logo-container" (click)="homePage()">
     <img class="img-responsive header-logo" full src="assets/icon/header_logo.png" />
   </div>
@@ -16,7 +16,7 @@
     </ul>
   </div>
 </ion-header>
-<ion-grid no-padding class="main-navigation">
+<ion-grid no-padding class="main-navigation" [class.extra-margin]="headerHasExtraMargin == true">
   <ion-row no-padding>
       
     <ion-col col-2 no-padding class="main-navigation-item" (click)="openSearchResultPage(1)">
@@ -67,10 +67,10 @@
       <ion-label class="footer-item-label">حسابي</ion-label>
     </ion-col>
     <ion-col col-2 no-padding full class="footer-item">
-      <button ion-button full class="disable-hover footer-btn">
+      <button ion-button full class="disable-hover footer-btn" (click)="messaging()">
         <ion-icon name='chats'></ion-icon>
       </button>
-      <ion-label class="footer-item-label">محادثات</ion-label>
+      <ion-label class="footer-item-label" >محادثات</ion-label>
     </ion-col>
     <ion-col col-4 no-padding full class="footer-item add-advertisment">
       <button (click)="add_ad()" ion-button full class="disable-hover add-advertisment-btn">

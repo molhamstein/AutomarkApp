@@ -3,7 +3,7 @@
     <strong class="red">أحدث الإعلانات</strong>
   </ion-list-header>
   <ion-grid justify-content-center *ngIf="dataFetched == true">
-    <ion-row *ngFor="let category of homeData" justify-content-center class="padding-v-10">
+    <ion-row *ngFor="let category of homeData" justify-content-center no-padding class="padding-v-10">
       <ion-col col-12>
         <h2 class="advertisment-container-title">{{category.catName}}</h2>
       </ion-col>

@@ -71,14 +71,16 @@ export class MyAccountPage {
                       (result) => {
                         this.uiProvider.hideLoadingPopup();
                         console.log(result);
-                        let response = JSON.parse(result.result.response)
+                        let response = JSON.parse(result.result.response);
+                        console.log(response.data.result.files.file[0].name);
                         this.userInfo.image_u = response.data.result.files.file[0].name;
                       }
                     )
                 },
                 (error) => {
                   this.uiProvider.hideLoadingPopup();
-                  this.uiProvider.showToastMessage(error);
+                  console.log(error);
+                  this.uiProvider.showToastMessage(error.error.message);
                 }
               )
           }
@@ -102,7 +104,8 @@ export class MyAccountPage {
                 },
                 (error) => {
                   this.uiProvider.hideLoadingPopup();
-                  this.uiProvider.showToastMessage(error);
+                  console.log(error);
+                  this.uiProvider.showToastMessage(error.error.message);
                 }
               );
           }

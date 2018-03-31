@@ -45,7 +45,8 @@ export class LoginPage {
           },
           (error) => {
             this.uiProvider.hideLoadingPopup();
-            this.uiProvider.showToastMessage(error.error.message);
+            console.log("error");
+            // this.uiProvider.showToastMessage(error.error.message);
           }
         );
     } else {

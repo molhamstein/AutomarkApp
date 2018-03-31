@@ -41,9 +41,12 @@ import { TopHeaderComponent } from '../components/top-header.component';
 import { ImageProvider } from '../providers/image.provider';
 import { MessagingPage } from '../pages/messaging/messaging';
 import {Keyboard}  from '@ionic-native/keyboard';
+import { SafePipe } from '../pipes/safe.pipe';
+
 
 @NgModule({
   declarations: [
+    SafePipe,
     MyApp,
     AboutPage,
     ContactPage,
@@ -61,6 +64,7 @@ import {Keyboard}  from '@ionic-native/keyboard';
     EditProfileModalPage,
     TopHeaderComponent,
     MessagingPage
+    
   ],
   imports: [
     BrowserModule,

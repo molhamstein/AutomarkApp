@@ -231,7 +231,8 @@
 						<a href="#" class="a_size">أتصل الأن&ensp;|</a>
 					</ion-col>
 					<ion-col col-5>
-						<a href="" class="a_size">أرسل رسالة</a>
+						<ion-label (click)="sendMessage(details.data[0].id_user)"> أرسل رسالة </ion-label>
+						<!-- <a href="" class="a_size">أرسل رسالة</a> -->
 					</ion-col>
 				</ion-row> 
 			</ion-col>

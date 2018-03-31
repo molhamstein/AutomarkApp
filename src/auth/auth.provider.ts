@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { HttpProvider } from '../providers/http.provider';
@@ -28,11 +28,15 @@ export class AuthProvider {
             .map(res => res.json())
             .catch(this.handleError);
     }
+    
     getUserDetails(userID): Observable<any> {
-        return this.http.get(config.baseUrl + `users/${userID}`)
+        const headers = new Headers();
+        this.createAuthorizationHeader(headers);
+        return this.http.get(config.baseUrl + `users/${userID}`, {headers: headers} )
             .map(res => res.json())
             .catch(this.handleError);
     }
+
     editUserInfo(userInfoModel: any): Observable<any> {
         return this.http.put(config.baseUrl + `users/${userInfoModel.id_u}`, userInfoModel)
             .map( res => res.json())

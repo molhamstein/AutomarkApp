@@ -9,5 +9,5 @@
 
 
 <ion-content class="messaing-content" no-padding no-margin>
-  <iframe class="messaging-frame" src="http://automark.ae/arrowchat_mobile/#page2" frameborder="0" (load)="uiProvider.hideLoadingPopup()"></iframe>
+  <iframe class="messaging-frame" [src]="src | safe" frameborder="0" (load)="refreshIframe();"></iframe>
 </ion-content>

@@ -16,6 +16,8 @@ import { MobileNumbersPage } from '../pages/mobile-numbers/mobile-numbers';
 import { AuthProvider } from '../auth/auth.provider';
 import { MessagingPage } from '../pages/messaging/messaging';
 import { Keyboard } from '@ionic-native/keyboard';
+import { UiProvider } from '../providers/ui.provider';
+
 declare var cordova: any;
 declare var window: any;
 
@@ -27,7 +29,7 @@ export class MyApp {
   rootPage: any = ContactPage;
   loginStatus;
   headerHasExtraMargin: boolean = false;
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public authProvider: AuthProvider, public keyboard: Keyboard) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public authProvider: AuthProvider, public keyboard: Keyboard, public uiProvider: UiProvider) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -117,7 +119,10 @@ export class MyApp {
     this.navCtrl.push(SearchResultPage, { cat_id: catID });
   }
   messaging() {
-    this.navCtrl.push(MessagingPage);
+    if(this.authProvider.isLoggedIn()) {
+      this.navCtrl.push(MessagingPage);
+    } else {
+      this.uiProvider.showToastMessage('من فضلك قم بتسجيل الدخول أولاً');
+    }
   }
-
 }

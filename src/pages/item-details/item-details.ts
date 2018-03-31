@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
-/**
- * Generated class for the ItemDetailsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { MessagingPage } from '../messaging/messaging';
+import { AuthProvider } from '../../auth/auth.provider';
+import { UiProvider } from '../../providers/ui.provider';
+
 @Component({
   selector: 'page-item-details',
   templateUrl: 'item-details.html',
@@ -16,7 +14,7 @@ export class ItemDetailsPage {
   item_id:any;
   images:any;
 
-  constructor(public navCtrl: NavController,public restProvider: RestProvider, public navParams: NavParams, private loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController,public restProvider: RestProvider, public navParams: NavParams, private loadingCtrl: LoadingController, public authProvider: AuthProvider, public uiProvider: UiProvider) {
     this.item_id= navParams.data.item_id;
   }  
 
@@ -50,6 +48,14 @@ export class ItemDetailsPage {
       //console.log(data2.data[0].id_c);            
     }); 
    }
-   
+
+   sendMessage(userID) {
+     if(this.authProvider.isLoggedIn()) {
+      this.navCtrl.push(MessagingPage, {targetId: userID});
+     } else {
+      this.uiProvider.showToastMessage('من فضلك قم بتسجيل الدخول أولاً');
+     }
+     
+   }
 }
        

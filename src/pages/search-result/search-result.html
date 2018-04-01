@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content *ngIf="items != null">
     <ion-list-header no-padding no-margin>
       <ion-grid>
         <ion-row>
@@ -20,7 +20,7 @@
     </ion-list-header>
     
       <ion-row no-margin>
-        <ion-col col-4 col-sm-3 col-md-2 *ngFor="let advertisment of items.data">
+        <ion-col col-4 col-sm-3 col-md-2 *ngFor="let advertisment of items">
           <ion-card class="card-search" (click)="ShowDetails(advertisment.id_c);">
             <img class="advertisment-image" src="{{assetsBaseUrl}}{{advertisment.images_c[0]}}" />
             <div class="search-details">
@@ -32,6 +32,13 @@
               </div>
             </div>
           </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+            <ion-col col-12 justify-content-center>
+                <button ion-button full class="showmore" *ngIf="canLoadMore" color="dark" (click)="showMore()"> اعرض المزيد </button>
+            </ion-col>
         </ion-col>
       </ion-row>
 </ion-content>

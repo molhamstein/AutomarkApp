@@ -37,6 +37,7 @@ import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
 
 import { ShowroomProvider } from '../providers/showroom/showroom';
+import { SearchProvider } from '../providers/search/search.provider';
 import { TopHeaderComponent } from '../components/top-header.component';
 import { ImageProvider } from '../providers/image.provider';
 import { MessagingPage } from '../pages/messaging/messaging';
@@ -124,7 +125,8 @@ import { CallNumber } from '@ionic-native/call-number';
     ImageProvider,
     AdvertismentProvider,
     SocialSharing,
-    CallNumber
+    CallNumber,
+    SearchProvider
   ]
 })
 export class AppModule { }

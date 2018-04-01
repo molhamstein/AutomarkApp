@@ -1068,6 +1068,53 @@ li.nav-item .nav-label {
     left: 0px;
 }
 
+/* ITEM DETAILS PAGE */
+.social-icons-container {
+    display: block;
+    float: left;
+    padding: 0px 10px;
+    width: 100%;
+    text-align: left;
+}
+
+.social-icons-list  {
+    display: inline-block;
+    list-style: none;
+    padding: 0px !important;
+}
+
+.social-icons-list > li {
+    display: inline;
+    padding: 0px 5px;
+}
+.social-icon {
+    font-size: 2rem !important;
+    opacity: 0.5;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3 ease-in-out;
+}
+.social-icon:hover {
+    opacity: 1;
+}
+.contact-option-containers {
+    margin: 0px;
+}
+.contact-options-list {
+    list-style: none;
+    display: flex;
+    padding: 0px 10px;
+    float: left;
+    margin: 0px;
+}
+.contact-options-list > li {
+    display: inline;
+    padding: 0 5px;
+}
+.contact-options-list > li:not(:last-child) {
+    border-left: 1px solid #D53731;
+}
+
+
 /*===============================================*/
 
 

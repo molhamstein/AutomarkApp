@@ -9,6 +9,7 @@ import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
 import { RestProvider } from '../../providers/rest/rest'; 
 import { UiProvider } from '../../providers/ui.provider';
+import { AdvertismentProvider } from '../../providers/advertisment/advertisment.provider';
 
 declare var cordova: any;
 @Component({
@@ -55,7 +56,21 @@ export class AddAdvertismentPage {
   images: any = [];
   images_reponce_names:any = [];
   loading: Loading;
-  constructor(public restProvider: RestProvider,public navCtrl: NavController, public navParams: NavParams, private camera: Camera, private transfer: Transfer, private file: File, private filePath: FilePath, public actionSheetCtrl: ActionSheetController, public toastCtrl: ToastController, public platform: Platform, public loadingCtrl: LoadingController, public uiProvider: UiProvider) { }
+
+  constructor(
+    public restProvider: RestProvider,
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private camera: Camera, 
+    private transfer: Transfer, 
+    private file: File, 
+    private filePath: FilePath, 
+    public actionSheetCtrl: ActionSheetController, 
+    public toastCtrl: ToastController, 
+    public platform: Platform, 
+    public loadingCtrl: LoadingController, 
+    public uiProvider: UiProvider, 
+    public advertismentProvider: AdvertismentProvider ) { }
 
   setActiveTab(index) {
     this.activeTab = index;
@@ -81,17 +96,8 @@ export class AddAdvertismentPage {
       this.uploadImage();
     }else{this.presentToast('يرجى التأكد من ادخال العنوان والسعر والدولة والمدينة وصورة واحدة على الأقل .');}
   }
+
   add_car(){
-    //this.uploadImage();
-    // Create the popup
-    //console.log("soso",Object.getOwnPropertyNames(JSON.parse(this.upload_responce).data.result.files.file[0]));
-    /*var images_c = [];
-    var r_arr = JSON.parse(this.upload_responce).data.result.files.file;
-    for (var i in r_arr) {
-      console.log("soso",r_arr[i].name);
-      images_c.push(r_arr[i].name);
-    }
-    console.log("fff",images_c);*/
     let loadingPopup = this.loadingCtrl.create({
       content: 'جاري اضافة الاعلان ....'
     }); 
@@ -121,68 +127,20 @@ export class AddAdvertismentPage {
     });
   }
   getselects(){
-           
-    // Create the popup
-    let loadingPopup = this.loadingCtrl.create({
-      content: 'جاري جلب البيانات .....'
-    }); 
-    // Show the popup 
-    loadingPopup.present();
-    return this.restProvider.getcitiesRest() 
-    .then(data2 => { 
-      this.cities = data2; 
-      console.log(this.cities);
-      return this.restProvider.getcars_type()
-      .then(data => {
-        this.carstype = data;
-        console.log(this.carstype);
-        return this.restProvider.getcars_model(16)
-        .then(data => {  
-          this.carsmodels = data;
-          console.log(this.carsmodels);
-          return this.restProvider.getcars_model(22) 
-          .then(data => {
-            this.carsstatus = data;
-            console.log(this.carsstatus);
-            return this.restProvider.getcars_model(20) 
-            .then(data => {
-              this.years = data;
-              console.log(this.years);
-              return this.restProvider.getcars_model(15) 
-              .then(data => {
-                this.colors = data;
-                console.log(this.colors);
-                return this.restProvider.getcars_model(50) 
-                .then(data => {
-                  this.kilomtrat = data;
-                  console.log(this.kilomtrat);
-                  return this.restProvider.getcars_model(13) 
-                  .then(data => {
-                    this.specifications = data;
-                    console.log(JSON.stringify(this.specifications.data[0].option_o));
-                    return this.restProvider.getcars_model(61) 
-                    .then(data => {
-                      this.qarante = data;
-                      console.log(this.qarante);
-                      loadingPopup.dismiss();
-                    });
-                    //loadingPopup.dismiss();
-                  });
-                  //loadingPopup.dismiss();
-                });
-                //loadingPopup.dismiss();
-              });
-              //loadingPopup.dismiss();
-            });
-            //loadingPopup.dismiss();
-          });
-          //loadingPopup.dismiss();
-        });
-        //loadingPopup.dismiss();
-      });
-       //loadingPopup.dismiss();
-    }); 
+    this.uiProvider.showLoadingPopup("جاري جلب البيانات");
+    this.advertismentProvider.getCarKeys()
+      .subscribe(
+        (result) => {
+          this.uiProvider.hideLoadingPopup();
+          console.log(result);
+        },
+        (error) => {
+          this.uiProvider.hideLoadingPopup();
+          console.log(error);
+        }
+      )
   }
+
   public presentActionSheet(id) {
     this.id = id;
     let actionSheet = this.actionSheetCtrl.create({

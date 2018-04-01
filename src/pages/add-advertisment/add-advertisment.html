@@ -24,7 +24,7 @@
     </ion-grid>
 
     <ion-grid *ngIf="activeTab == 1">
-      <ion-row class="add-advertisment-form dark-controls">
+      <ion-row class="add-advertisment-form dark-controls" *ngIf="data!= null">
         <ion-col col-12>
           <ion-item>
             <ion-input [(ngModel)]="title" type="text" placeholder="عنوان الإعلان"></ion-input>

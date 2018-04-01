@@ -42,6 +42,9 @@ import { ImageProvider } from '../providers/image.provider';
 import { MessagingPage } from '../pages/messaging/messaging';
 import {Keyboard}  from '@ionic-native/keyboard';
 import { SafePipe } from '../pipes/safe.pipe';
+import { AdvertismentProvider } from '../providers/advertisment/advertisment.provider';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { CallNumber } from '@ionic-native/call-number';
 
 
 @NgModule({
@@ -118,7 +121,10 @@ import { SafePipe } from '../pipes/safe.pipe';
     UiProvider,
     RestProvider,
     ShowroomProvider,
-    ImageProvider
+    ImageProvider,
+    AdvertismentProvider,
+    SocialSharing,
+    CallNumber
   ]
 })
 export class AppModule { }

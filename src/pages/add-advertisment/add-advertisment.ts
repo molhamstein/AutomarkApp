@@ -2,14 +2,19 @@ import { Component } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 
 import { NavController, ActionSheetController, ToastController, Platform, LoadingController, Loading } from 'ionic-angular';
- 
+
 import { File } from '@ionic-native/file';
 import { Transfer, TransferObject } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
-import { RestProvider } from '../../providers/rest/rest'; 
+import { RestProvider } from '../../providers/rest/rest';
 import { UiProvider } from '../../providers/ui.provider';
 import { AdvertismentProvider } from '../../providers/advertisment/advertisment.provider';
+import { SelectsOptionsProvider } from '../../providers/select-options.provider';
+import { CarModel, BikeModel } from './advertisment.model';
+import { ImageProvider } from '../../providers/image.provider';
+import * as moment from 'moment';
+import { AuthProvider } from '../../auth/auth.provider';
 
 declare var cordova: any;
 @Component({
@@ -17,145 +22,275 @@ declare var cordova: any;
   templateUrl: 'add-advertisment.html',
 })
 export class AddAdvertismentPage {
-   upload_responce :any;
-   i:any;
-  // selects options
-  cities:any;
-  carstype:any; 
-  carsmodels:any;
-  carsstatus:any; 
-  years:any;
-  prices:any;
-  colors:any;
-  kilomtrat:any;
-  specifications:any; 
-  qarante:any;
-  //
-  //
-  price:any;
-  title:any;
-  notes:any;
-  city :any;
- country :any;
- type:any;
- model :any;
- status :any;
- year :any;
-  color:any;
-  qrante:any;
-  manufactured:any;
- kilom :any;
- //
-  activeTab = 1;
-  lastImage: string = null;
-  lastImage1: string = null;
-  lastImage2: string = null;
-  lastImage3: string = null;
-  lastImage4: string = null;
-  id:any;
-  images: any = [];
-  images_reponce_names:any = [];
-  loading: Loading;
 
+
+  carSelectOptions: any;
+  boatSelectOptions: any;
+  truckSelectOptions: any;
+  mobileNumbersSelectOptions: any;
+  carPalleteSelectsOptions: any;
+  bikeSelectOptions: any;
+
+  countries: any[];
+  cities: any[];
+  types: any[];
+  models: any[];
+  years: any[] = [];
+
+  images: any[] = [null, null, null, null, null];
+  activeTab = 1;
+  metaDataLoaded = false;
+
+  carModel: CarModel;
+  bikeModel: BikeModel;
   constructor(
-    public restProvider: RestProvider,
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
-    private camera: Camera, 
-    private transfer: Transfer, 
-    private file: File, 
-    private filePath: FilePath, 
-    public actionSheetCtrl: ActionSheetController, 
-    public toastCtrl: ToastController, 
-    public platform: Platform, 
-    public loadingCtrl: LoadingController, 
-    public uiProvider: UiProvider, 
-    public advertismentProvider: AdvertismentProvider ) { }
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public camera: Camera,
+    public actionSheetCtrl: ActionSheetController,
+    public uiProvider: UiProvider,
+    public advertismentProvider: AdvertismentProvider,
+    public selectOptionsProvider: SelectsOptionsProvider,
+    public imageProvider: ImageProvider,
+    public authProvider: AuthProvider
+  ) {
+    this.carModel = new CarModel();
+    this.carModel.user = this.authProvider.getAuthInfo().userId;
+
+  }
 
   setActiveTab(index) {
-    this.activeTab = index;
+    if (index != this.activeTab) {
+      this.activeTab = index;
+      switch (index) {
+        case 1:
+          this.carModel = new CarModel();
+          this.images = [null, null, null, null, null];
+          break;
+        case 2:
+          this.bikeModel = new BikeModel();
+          this.images = [null, null, null, null, null];
+          break;
+        case 3:
+
+          break;
+        case 4:
+
+          break;
+        case 5:
+
+          break;
+
+        default:
+          break;
+      }
+    }
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AddAdvertismentPage');
-  }
-  /*uploadImage(event) {
-    console.log(event.target);
-  }*/
-  ionViewCanEnter(){
-    return  this.getselects();
-  }
-  
-
-  validate_inputs(){
-    if (this.title !== null 
-      && this.price !==null
-      && this.lastImage !==null
-      && this.city !==null
-      && this.country !==null){
-      this.uploadImage();
-    }else{this.presentToast('يرجى التأكد من ادخال العنوان والسعر والدولة والمدينة وصورة واحدة على الأقل .');}
+    this.getSelectMenusOptions();
   }
 
-  add_car(){
-    let loadingPopup = this.loadingCtrl.create({
-      content: 'جاري اضافة الاعلان ....'
-    }); 
-                      
-   
-    // Show the popup
-    loadingPopup.present();
-    return this.restProvider.add_car(this.price,this.activeTab,this.title,
-      this.model,
-      this.type,
-      this.notes,
-      this.kilom,
-      this.status,
-      this.manufactured,
-      this.year,
-      this.qrante,
-      this.color,
-      this.city,
-      this.country,
-      this.images_reponce_names
-      )   
-    .then(data2 => {
-       console.log("ccc" ,JSON.stringify(data2));
-      loadingPopup.dismiss();
-      this.presentToast('تم رفع الصور والاعلان بنجاح.');
-      this.navCtrl.pop();
-    });
+  addCar(form) {
+    let formData = form.form.value;
+    this.carModel.carClass = formData.carClass;
+
+    this.carModel.case = Number(formData.case);
+    this.carModel.city = Number(formData.city);
+    this.carModel.country = Number(formData.country);
+    this.carModel.cylindersNumber = Number(formData.cylinderNumber);
+    this.carModel.fuel = Number(formData.fuel);
+    this.carModel.model = Number(formData.model);
+    this.carModel.passedKiloeters = formData.passeedKilometers;
+    this.carModel.price = formData.price;
+    this.carModel.specifications = formData.specificarion;
+    this.carModel.supplier = Number(formData.supplier);
+    this.carModel.title = formData.title;
+    this.carModel.transmission = Number(formData.transmission);
+    this.carModel.type = Number(formData.type);
+    this.carModel.year = Number(formData.year);
+
+
+    if (form.valid == false) {
+      this.uiProvider.showToastMessage('تأكد من صحة جميع الحقول');
+    }
+    // else if(this.images.filter( image => image != null).length == 0) {
+    //   this.uiProvider.showToastMessage('يجب رفع صورة احدة على الأقل');
+    // } 
+    else {
+      this.uiProvider.showLoadingPopup("جاري رفع الصور");
+      let imagesToUpload = this.images.filter(image => image != null);
+      this.imageProvider.uploadImages(imagesToUpload)
+        .subscribe(
+          (result) => {
+            this.uiProvider.hideLoadingPopup();
+            console.log(result);
+          },
+          (error) => {
+            this.uiProvider.hideLoadingPopup();
+            this.uiProvider.showToastMessage(JSON.stringify(error));
+          }
+        );
+
+      // let data = CarModel.mapModelToApiModel(this.carModel);
+      // console.log(this.carModel);
+      // console.log(data);
+
+      // this.advertismentProvider.postCarAdvertisment(data)
+      //   .subscribe(
+      //     (result) => {
+
+      //     },
+      //     (error) => {
+
+      //     }
+      //   )
+    }
   }
-  getselects(){
+
+  addBoat() {
+
+  }
+
+  addTruck() {
+
+  }
+
+  addBike(form) {
+    let formData = form.form.value;
+    
+
+    this.bikeModel.bikeCase = Number(formData.bikeCase);
+    this.bikeModel.city = Number(formData.city);
+    this.bikeModel.country = Number(formData.country);
+    this.bikeModel.cylindersNumber = Number(formData.cylinderNumber);
+    this.bikeModel.fuel = Number(formData.fuel);
+    this.bikeModel.model = Number(formData.model);
+    this.bikeModel.passedKiloeters = formData.passeedKilometers;
+    this.bikeModel.price = formData.price;
+    this.bikeModel.specifications = formData.specificarion;
+    this.bikeModel.enginePower = Number(formData.enginePower);
+    this.bikeModel.title = formData.title;
+    this.bikeModel.color = Number(formData.color);
+    this.bikeModel.type = Number(formData.type);
+    this.bikeModel.year = Number(formData.year);
+
+
+    if (form.valid == false) {
+      this.uiProvider.showToastMessage('تأكد من صحة جميع الحقول');
+    }
+    // else if(this.images.filter( image => image != null).length == 0) {
+    //   this.uiProvider.showToastMessage('يجب رفع صورة احدة على الأقل');
+    // } 
+    else {
+      this.uiProvider.showLoadingPopup("جاري رفع الصور");
+      let imagesToUpload = this.images.filter(image => image != null);
+      this.imageProvider.uploadImages(imagesToUpload)
+        .subscribe(
+          (result) => {
+            this.uiProvider.hideLoadingPopup();
+            console.log(result);
+          },
+          (error) => {
+            this.uiProvider.hideLoadingPopup();
+            this.uiProvider.showToastMessage(JSON.stringify(error));
+          }
+        );
+
+      // let data = BikeModel.mapModelToApiModel(this.carModel);
+      // console.log(this.carModel);
+      // console.log(data);
+
+      // this.advertismentProvider.postCarAdvertisment(data)
+      //   .subscribe(
+      //     (result) => {
+
+      //     },
+      //     (error) => {
+
+      //     }
+      //   )
+    }
+  }
+
+  addCarNumber() {
+
+  }
+
+  addMobileNumber() {
+
+  }
+
+  getSelectMenusOptions() {
+    // Get Remote Options from API and filter them
     this.uiProvider.showLoadingPopup("جاري جلب البيانات");
-    this.advertismentProvider.getCarKeys()
+    this.advertismentProvider.getSelectOptions()
       .subscribe(
         (result) => {
           this.uiProvider.hideLoadingPopup();
+
+          this.carSelectOptions = this.selectOptionsProvider.getCarOptions(result[2].data);
+          this.bikeSelectOptions = this.selectOptionsProvider.getBikeSelectOptions(result[2].data);
+          this.boatSelectOptions = this.selectOptionsProvider.getBikeSelectOptions(result[2].data);
+          this.truckSelectOptions = this.selectOptionsProvider.getTruckSelectOptions(result[2].data);
+          this.carPalleteSelectsOptions = this.selectOptionsProvider.getCarPalleteSelectOptions(result[2].data);
+          this.mobileNumbersSelectOptions = this.selectOptionsProvider.getMobileNumberSelectOptions(result[2].data);
+          this.countries = result[0].data;
+          this.cities = result[0].data;
+          this.types = result[1].data;
+          this.models = result[1].data;
+          this.metaDataLoaded = true;
           console.log(result);
+          console.log(this.bikeSelectOptions);
         },
         (error) => {
           this.uiProvider.hideLoadingPopup();
           console.log(error);
         }
-      )
+      );
+
+    // Generate Years
+    let startYear = Number(moment().subtract('50', 'years').format('YYYY'));
+    for (let index = 0; index <= 50; index++) {
+      this.years.push(startYear + index);
+    }
+
   }
 
-  public presentActionSheet(id) {
-    this.id = id;
+  public presentActionSheet(imageIndex) {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Select Image Source',
       buttons: [
         {
           text: 'Load from Library',
           handler: () => {
-            this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY,id);
+            this.imageProvider.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY)
+              .subscribe(
+                (result) => {
+                  this.images[imageIndex] = result;
+                  console.log(result);
+                  console.log(this.carModel);
+                },
+                (error) => {
+                  console.log(error);
+                }
+              )
           }
         },
         {
           text: 'Use Camera',
           handler: () => {
-            this.takePicture(this.camera.PictureSourceType.CAMERA,id);
+            this.imageProvider.takePicture(this.camera.PictureSourceType.CAMERA)
+              .subscribe(
+                (result) => {
+                  this.images[imageIndex] = result;
+                  console.log(result);
+                  console.log(this.carModel);
+                },
+                (error) => {
+                  console.log(error);
+                }
+              )
           }
         },
         {
@@ -166,156 +301,4 @@ export class AddAdvertismentPage {
     });
     actionSheet.present();
   }
-
-
-  public takePicture(sourceType,id) {
-    // Create options for the Camera Dialog
-    var options = {
-      quality: 100,
-      sourceType: sourceType,
-      saveToPhotoAlbum: false,
-      correctOrientation: true
-    };
-   
-    // Get the data of an image
-    this.camera.getPicture(options).then((imagePath) => {
-      // Special handling for Android library
-      if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
-        this.filePath.resolveNativePath(imagePath)
-          .then(filePath => {
-            let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-            let currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
-            this.copyFileToLocalDir(correctPath, currentName, this.createFileName(),id);
-          });
-      } else {
-        var currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
-        var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
-        this.copyFileToLocalDir(correctPath, currentName, this.createFileName(),id);
-      }
-    }, (err) => {
-      this.presentToast('Error while selecting image.');
-    });
-  }
-
-
-  // Create a new name for the image
-  private createFileName() {
-    var d = new Date(),
-    n = d.getTime(),
-    newFileName =  n + ".jpg";
-    return newFileName;
-  }
-   
-  // Copy the image to a local folder
-  private copyFileToLocalDir(namePath, currentName, newFileName,id) {
-    this.file.copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(success => {
-      switch (id) {
-        case "0": 
-          this.lastImage = newFileName;
-          break;
-        case "1":
-          this.lastImage1 = newFileName;
-          break;
-        case "2":
-          this.lastImage2 = newFileName;
-          break;
-        case "3": 
-          this.lastImage3 = newFileName;
-          break;
-        case "4":
-          this.lastImage4 = newFileName;
-          break;
-        default:
-          this.lastImage = newFileName;
-          break;
-      }
-      this.images.push(newFileName);
-    }, error => {
-      this.presentToast('Error while storing file.');
-    });
-  }
-   
-  private presentToast(text) {
-    let toast = this.toastCtrl.create({
-      message: text,
-      duration: 3000,
-      position: 'top'
-    });
-    toast.present();
-  }
-   
-  // Always get the accurate path to your apps folder
-  public pathForImage(img) {
-    if (img === null) {
-      return '';
-    } else {
-      return cordova.file.dataDirectory + img;
-    }
-  }
-  public  add() {
-     this.uploadImage();
-    //console.log('string2:', JSON.stringify(this.images_reponce_names));
-  }
-
-
-  public uploadImage() {
-    // Destination URL
-    var url = "http://automark.ae:3000/api/images/uploads/upload";
-     this.loading = this.loadingCtrl.create({
-        content: 'جاري رفع الصور...',
-      });
-      this.loading.present();
-      var j=0;
-    for(this.i=0; this.i<this.images.length; this.i++)
-    {
-      // File for Upload
-      var targetPath = this.pathForImage(this.images[this.i]);
-     
-      // File name only
-      var filename = this.images[this.i];
-     
-      var options = {
-        fileKey: "file",
-        fileName: filename,
-        chunkedMode: false,
-        mimeType: "multipart/form-data",
-        params : {'fileName': filename}
-      };
-     
-      const fileTransfer: TransferObject = this.transfer.create();
-     
-      
-     
-      // Use the FileTransfer to upload the image
-      fileTransfer.upload(targetPath, url, options).then(data1 => {
-        j++;
-        //this.upload_responce = data1["response"];
-        this.images_reponce_names.push(JSON.parse(data1["response"]).data.result.files.file[0].name);
-        //console.log(data1+"sss");
-        //this.navCtrl.setRoot(HomePage);
-        /*console.log('string1:', JSON.stringify(JSON.parse(data1["response"]).data.result.files.file[0].name));
-        console.log('length:',JSON.stringify(this.images.length));
-        console.log('i:',JSON.stringify(this.i));*/
-        if ( j == this.images.length){
-          console.log('string2:', JSON.stringify(this.images_reponce_names));
-          this.loading.dismissAll()
-           
-          this.add_car();
-        }
-        
-        //console.log('string1:', data1["response"]);
-        //console.log('string2:', JSON.parse(JSON.stringify(data1["response"]))[0].data);
-       // console.log('string3:', data1.response.data.result);
-        //console.log('string4:', data1.response.data.result.files);
-        //console.log('string5:', data1.response.data.result.files.file);
-     
-        //this.add_car();   
-      }, err => {
-        this.loading.dismissAll()
-        this.presentToast('يوجد خطأ في رفع الصورة.');
-      });
-    }
-    //console.log('string2:', JSON.stringify(this.images_reponce_names));
-  } 
 }
-  

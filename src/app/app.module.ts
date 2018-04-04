@@ -46,6 +46,7 @@ import { SafePipe } from '../pipes/safe.pipe';
 import { AdvertismentProvider } from '../providers/advertisment/advertisment.provider';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { CallNumber } from '@ionic-native/call-number';
+import { SelectsOptionsProvider } from '../providers/select-options.provider';
 
 
 @NgModule({
@@ -126,7 +127,8 @@ import { CallNumber } from '@ionic-native/call-number';
     AdvertismentProvider,
     SocialSharing,
     CallNumber,
-    SearchProvider
+    SearchProvider,
+    SelectsOptionsProvider
   ]
 })
 export class AppModule { }

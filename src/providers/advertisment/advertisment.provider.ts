@@ -10,34 +10,22 @@ export class AdvertismentProvider {
         console.log('Hello RestProvider Provider');
     }
 
-    getCarKeys() {
+    getSelectOptions() {
         
         let countriesAndCities = this.http.get('cities');
         let carTypes = this.http.get('cars_types');
-        let carModels = this.http.get('option_cars?filter[include]=value_option&filter[where][id_o]=16');
-        let carStatus = this.http.get('option_cars?filter[include]=value_option&filter[where][id_o]=22');
-        let producationYear = this.http.get('option_cars?filter[include]=value_option&filter[where][id_o]=20');
-        let carColors = this.http.get('option_cars?filter[include]=value_option&filter[where][id_o]=15');
-        let kiloMeters = this.http.get('option_cars?filter[include]=value_option&filter[where][id_o]=50');
-        let carSpecs = this.http.get('option_cars?filter[include]=value_option&filter[where][id_o]=13');
-        let carGuarantee = this.http.get('option_cars?filter[include]=value_option&filter[where][id_o]=61');
+        let selectOptions = this.http.get('option_cars?filter[include]=value_option');
 
-        let carKeysObservables = [
+        let optionsObservables = [
             countriesAndCities,
             carTypes,
-            carModels,
-            carStatus,
-            producationYear,
-            carColors,
-            kiloMeters,
-            carSpecs,
-            carGuarantee
+            selectOptions
         ];
 
-        return Observable.forkJoin(carKeysObservables);
+        return Observable.forkJoin(optionsObservables);
     }
 
-    postCarAdvertisment(carModel): Observable<any> {
-        return null;
+    postCarAdvertisment(data): Observable<any> {
+        return this.http.post('cars', data);
     }
 }

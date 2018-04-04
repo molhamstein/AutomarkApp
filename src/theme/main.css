@@ -168,6 +168,7 @@ h6 {
     padding: 3px;
     font-size: 10px;
     font-weight: bold;
+    min-height: 26px;
 }
 
 .item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
@@ -200,7 +201,9 @@ ion-label.field-label {
 button.font-large {
     font-size: 20px !important;
 }
-
+.item-input ion-input, .item-input ion-textarea {
+    padding: 13px 8px 13px 16px;
+}
 /*===============================================*/
 
 

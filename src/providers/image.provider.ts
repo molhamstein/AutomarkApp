@@ -9,6 +9,7 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromPromise';
 import { config } from '../config';
+import { AuthProvider } from '../auth/auth.provider';
 
 declare var cordova: any;
 @Injectable()
@@ -17,7 +18,17 @@ export class ImageProvider {
   loadingPopup;
 
   
-  constructor(private camera: Camera, private transfer: Transfer, private file: File, private filePath: FilePath, public platform: Platform, public uiProvider: UiProvider) { }
+  constructor(
+    private camera: Camera, 
+    private transfer: Transfer, 
+    private file: File, 
+    private filePath: FilePath, 
+    public platform: Platform, 
+    public uiProvider: UiProvider,
+    public authProvider: AuthProvider
+  ) {
+
+    }
 
   public takePicture(sourceType): Observable<any> {
 
@@ -95,7 +106,6 @@ export class ImageProvider {
   public uploadImage(imagePath): Observable<any> {
     // Destination URL
     let url = this.baseUrl + "images/uploads/upload";
-    // 'images/uploads/upload";
 
     // File for Upload
     var targetPath = this.pathForImage(imagePath);
@@ -103,12 +113,22 @@ export class ImageProvider {
     // File name only
     var filename = imagePath;
 
+    let headers = {};
+    let authInfo = this.authProvider.getAuthInfo();
+    if (authInfo != null) {
+        let access_token = authInfo.id;
+        headers['Authorization'] = access_token;
+        headers['token'] = access_token;
+        headers['Content-Type'] = 'multipart/form-data';
+    }
+  
     var options = {
       fileKey: "file",
       fileName: filename,
-      chunkedMode: false,
-      mimeType: "multipart/form-data",
-      params: { 'fileName': filename }
+      chunkedMode: true,
+      mimeType: "image/jpeg",
+      params: { 'fileName': filename },
+      headers: headers
     };
 
     const fileTransfer: TransferObject = this.transfer.create();
@@ -118,9 +138,17 @@ export class ImageProvider {
         observer.next({ message: "sucess", result: result });
       },
         (error) => {
+          console.log(error);
           observer.error(error);
         });
     });
   }
 
+  public uploadImages(imagesArray: any[]): Observable<any> {
+    let observableArray: Array<Observable<any>> = [];
+    for (let index = 0; index < imagesArray.length; index++) {
+      observableArray.push(this.uploadImage(imagesArray[index]));
+    }
+    return Observable.forkJoin(...observableArray)
+  }
 }

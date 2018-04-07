@@ -16,8 +16,11 @@
         <ion-col [class.active]="activeTab == 4" (click)="setActiveTab(4)">
           <ion-label>قوارب</ion-label>
         </ion-col>
-        <ion-col class="last" [class.active]="activeTab == 5" (click)="setActiveTab(5)">
+        <ion-col [class.active]="activeTab == 5" (click)="setActiveTab(5)">
           <ion-label>ارقام</ion-label>
+        </ion-col>
+        <ion-col class="last" [class.active]="activeTab == 6" (click)="setActiveTab(6)">
+          <ion-label>لوحة سيارة</ion-label>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -33,14 +36,14 @@
             <p class="danger text-field-error" [class.visible]="carAddTitle.errors && (carAddTitle.dirty || carAddTitle.touched)">عنوان الإعلان مطلوب</p>
           </ion-col>
 
-          <ion-col col-3>
+          <ion-col col-6>
             <ion-item>
               <ion-input [(ngModel)]="carModel.price" name="price" type="text" placeholder="السعر" #carPrice="ngModel" [ngModelOptions]="{ updateOn: 'blur' }"
                 required></ion-input>
             </ion-item>
             <p class="danger text-field-error" [class.visible]="carPrice.errors && (carPrice.dirty || carPrice.touched)">السعر مطلوب</p>
           </ion-col>
-          <ion-col col-3>
+          <ion-col col-6>
             <ion-item>
               <ion-label>السنة</ion-label>
               <ion-select [placeholder]="'السنة'" [(ngModel)]="carModel.year" name="year" okText="إختيار" cancelText="إغلاق" #carYear="ngModel"
@@ -85,9 +88,10 @@
 
           <ion-col col-6>
             <ion-item>
+              <ion-label>الدولة</ion-label>
               <ion-select [placeholder]="'الدولة'" name="country" [(ngModel)]="carModel.country" okText="إختيار" cancelText="إغلاق">
                 <ng-container *ngFor="let country of countries">
-                  <ion-option *ngIf="country.sub_c == 0" value="{{country.id_c}}">{{country.name_c}}</ion-option>
+                  <ion-option *ngIf="country.sub_c == 0" value="{{country.id_c}}">{{country.name_c_ar}}</ion-option>
                 </ng-container>
               </ion-select>
             </ion-item>
@@ -95,9 +99,10 @@
           </ion-col>
           <ion-col col-6>
             <ion-item>
+              <ion-label>المدينة</ion-label>
               <ion-select [placeholder]="'المدينة'" [(ngModel)]="carModel.city" name="city" okText="إختيار" cancelText="إغلاق">
                 <ng-container *ngFor="let city of cities">
-                  <ion-option *ngIf="city.sub_c != 0 && city.sub_c == carModel.country" value="{{city.id_c}}">{{city.name_c}}</ion-option>
+                  <ion-option *ngIf="city.sub_c != 0 && city.sub_c == carModel.country" value="{{city.id_c}}">{{city.name_c_ar}}</ion-option>
                 </ng-container>
               </ion-select>
             </ion-item>
@@ -153,7 +158,7 @@
             <ion-item>
               <ion-label>نوع ناقل الحركة</ion-label>
               <ion-select [placeholder]="'ناقل الحركة'" [(ngModel)]="carModel.transmission" name="transmission" okText="إختيار" cancelText="إغلاق">
-                <ion-option *ngFor="let transmission of carSelectOptions.transmission.value_option" value="{{transmission.id_v}}">{{transmission.value_v}} </ion-option>
+                <ion-option *ngFor="let transmission of carSelectOptions.transmission.value_option" value="{{transmission.id_v}}">{{transmission.value_v_ar}} </ion-option>
               </ion-select>
             </ion-item>
             <p class="danger text-field-error"></p>
@@ -267,14 +272,14 @@
             <p class="danger text-field-error" [class.visible]="bikeAddTitle.errors && (bikeAddTitle.dirty || bikeAddTitle.touched)">عنوان الإعلان مطلوب</p>
           </ion-col>
 
-          <ion-col col-3>
+          <ion-col col-6>
             <ion-item>
               <ion-input [(ngModel)]="bikeModel.price" name="price" type="text" placeholder="السعر" #bikePrice="ngModel" [ngModelOptions]="{ updateOn: 'blur' }"
                 required></ion-input>
             </ion-item>
             <p class="danger text-field-error" [class.visible]="bikePrice.errors && (bikePrice.dirty || bikePrice.touched)">السعر مطلوب</p>
           </ion-col>
-          <ion-col col-3>
+          <ion-col col-6>
             <ion-item>
               <ion-label>السنة</ion-label>
               <ion-select [placeholder]="'السنة'" [(ngModel)]="bikeModel.year" name="year" okText="إختيار" cancelText="إغلاق" #bikeYear="ngModel"
@@ -293,9 +298,10 @@
 
           <ion-col col-6>
             <ion-item>
+              <ion-label>الدولة</ion-label>
               <ion-select [placeholder]="'الدولة'" name="country" [(ngModel)]="bikeModel.country" okText="إختيار" cancelText="إغلاق">
                 <ng-container *ngFor="let country of countries">
-                  <ion-option *ngIf="country.sub_c == 0" value="{{country.id_c}}">{{country.name_c}}</ion-option>
+                  <ion-option *ngIf="country.sub_c == 0" value="{{country.id_c}}">{{country.name_c_ar}}</ion-option>
                 </ng-container>
               </ion-select>
             </ion-item>
@@ -303,9 +309,10 @@
           </ion-col>
           <ion-col col-6>
             <ion-item>
+              <ion-label>المدينة</ion-label>
               <ion-select [placeholder]="'المدينة'" [(ngModel)]="bikeModel.city" name="city" okText="إختيار" cancelText="إغلاق">
                 <ng-container *ngFor="let city of cities">
-                  <ion-option *ngIf="city.sub_c != 0 && city.sub_c == bikeModel.country" value="{{city.id_c}}">{{city.name_c}}</ion-option>
+                  <ion-option *ngIf="city.sub_c != 0 && city.sub_c == bikeModel.country" value="{{city.id_c}}">{{city.name_c_ar}}</ion-option>
                 </ng-container>
               </ion-select>
             </ion-item>
@@ -456,334 +463,623 @@
     </ion-grid>
 
     <ion-grid *ngIf="activeTab == 3">
-      <ion-row class="add-advertisment-form dark-controls">
-        <ion-col col-12>
-          <ion-item>
-            <ion-input type="text" placeholder="عنوان الإعلان"></ion-input>
-          </ion-item>
-        </ion-col>
+      <form #truckAddvertismentForm="ngForm" (ngSubmit)="addTruck(truckAddvertismentForm)">
+        <ion-row class="add-advertisment-form dark-controls">
+          <ion-col col-12>
+            <ion-item>
+              <ion-input name="title" type="text" placeholder="عنوان الإعلان" #truckAddTitle="ngModel" [(ngModel)]="truckModel['title']"
+                [ngModelOptions]="{ updateOn: 'blur' }" required></ion-input>
+            </ion-item>
+            <p class="danger text-field-error" [class.visible]="truckAddTitle.errors && (truckAddTitle.dirty || truckAddTitle.touched)">عنوان الإعلان مطلوب</p>
+          </ion-col>
 
-        <ion-col col-6>
-          <ion-item>
-            <ion-label>النوع</ion-label>
-            <ion-select [placeholder]="'النوع'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">كيا</ion-option>
-              <ion-option value="value2">مازدا</ion-option>
-              <ion-option value="value3">ميرسيدس</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-input [(ngModel)]="truckModel.price" name="price" type="text" placeholder="السعر" #truckPrice="ngModel" [ngModelOptions]="{ updateOn: 'blur' }"
+                required></ion-input>
+            </ion-item>
+            <p class="danger text-field-error" [class.visible]="truckPrice.errors && (truckPrice.dirty || truckPrice.touched)">السعر مطلوب</p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>السنة</ion-label>
+              <ion-select [placeholder]="'السنة'" [(ngModel)]="truckModel.year" name="year" okText="إختيار" cancelText="إغلاق" #truckYear="ngModel"
+                [ngModelOptions]="{ updateOn: 'blur' }" required>
+                <ion-option *ngFor="let year of years" value="{{year}}"> {{year}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error" [class.visible]="truckYear.errors && (truckYear.dirty || truckYear.touched)">سنة الصنع مطلوبة</p>
+          </ion-col>
 
-        <ion-col col-6>
-          <ion-item>
-            <ion-label>عدد الكيلومترات</ion-label>
-            <ion-select [placeholder]="'عدد الكيبلومترات'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">1</ion-option>
-              <ion-option value="value2">2</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col col-6>
-          <ion-item>
-            <ion-label>الموديل</ion-label>
-            <ion-select [placeholder]="'الموديل'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">1</ion-option>
-              <ion-option value="value2">2</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col col-6>
-          <ion-item>
-            <ion-label>الأبواب</ion-label>
-            <ion-select [placeholder]="'الأبواب'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">2</ion-option>
-              <ion-option value="value2">4</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col col-6>
-          <ion-item>
-            <ion-label>الهيئة</ion-label>
-            <ion-select [placeholder]="'الهيئة'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">نظيفة</ion-option>
-              <ion-option value="value2">حالة جيدة</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col col-6>
-          <ion-item>
-            <ion-label>مواصفات الصنع</ion-label>
-            <ion-select [placeholder]="'مواصفات الصنع'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">معايير عالية</ion-option>
-              <ion-option value="value2">معايير متوسطة</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col col-6>
-          <ion-item>
-            <ion-label>سنة الصنع</ion-label>
-            <ion-select [placeholder]="'سنة الصنع'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">2010</ion-option>
-              <ion-option value="value2">2012</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col col-6>
-          <ion-item>
-            <ion-label>الضمان</ion-label>
-            <ion-select [placeholder]="'الضمان'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">مع ضمان</ion-option>
-              <ion-option value="value2">بدون ضمان</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col col-6>
-          <ion-item>
-            <ion-label>اللون</ion-label>
-            <ion-select [placeholder]="'الصنع'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">أحمر</ion-option>
-              <ion-option value="value2">أسود</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col col-6>
-          <ion-item>
-            <ion-label>حالة الدراجة</ion-label>
-            <ion-select [placeholder]="'حالة السيارة'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">نظيفة</ion-option>
-              <ion-option value="value2">غير نظيفة</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col col-12>
-          <ion-item>
-            <ion-textarea placeholder="ملاحظات" rows="5" name="notes"></ion-textarea>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row class="add-advertisment-images dark-controls">
-        <ion-col (click)="uploadImage($event)">
-          <div class="image-container">
-            <div class="empty-content">
-              <span class="add">+</span>
-              <span class="description">صورة</span>
+          <ion-col col-6>
+            <ion-item>
+              <ion-input [(ngModel)]="truckModel.passedKiloeters" name="passeedKilometers" type="text" placeholder="عدد الكيلومترات"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>الدولة</ion-label>
+              <ion-select [placeholder]="'الدولة'" name="country" [(ngModel)]="truckModel.country" okText="إختيار" cancelText="إغلاق">
+                <ng-container *ngFor="let country of countries">
+                  <ion-option *ngIf="country.sub_c == 0" value="{{country.id_c}}">{{country.name_c_ar}}</ion-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>المدينة</ion-label>
+              <ion-select [placeholder]="'المدينة'" [(ngModel)]="truckModel.city" name="city" okText="إختيار" cancelText="إغلاق">
+                <ng-container *ngFor="let city of cities">
+                  <ion-option *ngIf="city.sub_c != 0 && city.sub_c == truckModel.country" value="{{city.id_c}}">{{city.name_c_ar}}</ion-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>الحالة</ion-label>
+              <ion-select [placeholder]="'الحالة'" [(ngModel)]="truckModel.truckCase" name="truckCase" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let truckCase of truckSelectOptions.thecaseofthetruck.value_option" value="{{truckCase.id_v}}">{{truckCase.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>نوع الوقود</ion-label>
+              <ion-select [placeholder]="'نوع الوقود'" name="fuel" [(ngModel)]="truckModel.fuel" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let fuel of truckSelectOptions.fuel.value_option" value="{{fuel.id_v}}">{{fuel.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>اللون</ion-label>
+              <ion-select [placeholder]="'اللون'" name="color" [(ngModel)]="truckModel.color" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let color of truckSelectOptions.color.value_option" value="{{color.id_v}}">{{color.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>عدد السلندرات</ion-label>
+              <ion-select [placeholder]="'عدد السلندرات'" name="cylinderNumber" [(ngModel)]="truckModel.cylindersNumber" okText="إختيار"
+                cancelText="إغلاق">
+                <ion-option *ngFor="let cylinder of truckSelectOptions.numberselender.value_option" value="{{cylinder.id_v}}">{{cylinder.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>قوة المحرك</ion-label>
+              <ion-select [placeholder]="'قوة المحرك'" [(ngModel)]="truckModel.enginePower" name="enginePower" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let enginePower of truckSelectOptions.enginepower.value_option" value="{{enginePower.id_v}}">{{enginePower.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>حجم الحمولة</ion-label>
+              <ion-select [placeholder]="'حجم الحمولة'" [(ngModel)]="truckModel.loadQuantity" name="loadQuantity" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let loadQuantity of truckSelectOptions.howmuchload.value_option" value="{{loadQuantity.id_v}}">{{loadQuantity.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>نوع ناقل الحركة</ion-label>
+              <ion-select [placeholder]="'ناقل الحركة'" [(ngModel)]="truckModel.transmission" name="transmission" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let transmission of carSelectOptions.transmission.value_option" value="{{transmission.id_v}}">{{transmission.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+          <ion-col col-12>
+            <ion-item>
+              <ion-textarea [(ngModel)]="truckModel.specifications" name="specification" placeholder="ملاحظات" rows="5" name="specificarion"></ion-textarea>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+        </ion-row>
+        <ion-row class="add-advertisment-images dark-controls">
+          <ion-col [hidden]="images[4] !== null" (click)="presentActionSheet('4')">
+            <div class="image-container">
+              <div class="empty-content">
+                <span class="add">+</span>
+                <span class="description">صورة</span>
+              </div>
             </div>
-          </div>
-        </ion-col>
-        <ion-col (click)="uploadImage($event)">
-          <div class="image-container">
-            <div class="empty-content">
-              <span class="add">+</span>
-              <span class="description">صورة</span>
+          </ion-col>
+          <ion-col [hidden]="images[4] === null" align-self-center>
+            <div class="image-container main-image">
+              <div class="empty-content">
+                <img src="{{imageProvider.pathForImage(images[4])}}" style="width: 100%" imageViewer>
+              </div>
             </div>
-          </div>
-        </ion-col>
-        <ion-col (click)="uploadImage($event)">
-          <div class="image-container">
-            <div class="empty-content">
-              <span class="add">+</span>
-              <span class="description">صورة</span>
+          </ion-col>
+          <ion-col [hidden]="images[3] !== null" (click)="presentActionSheet('3')">
+            <div class="image-container">
+              <div class="empty-content">
+                <span class="add">+</span>
+                <span class="description">صورة</span>
+              </div>
             </div>
-          </div>
-        </ion-col>
-        <ion-col (click)="uploadImage($event)">
-          <div class="image-container">
-            <div class="empty-content">
-              <span class="add">+</span>
-              <span class="description">صورة</span>
+          </ion-col>
+          <ion-col [hidden]="images[3] === null" align-self-center>
+            <div class="image-container main-image">
+              <div class="empty-content">
+                <img src="{{imageProvider.pathForImage(images[3])}}" style="width: 100%" imageViewer>
+              </div>
             </div>
-          </div>
-        </ion-col>
-        <ion-col align-self-center (click)="uploadImage($event)">
-          <div class="image-container main-image">
-            <div class="empty-content">
-              <span class="add">+</span>
-              <span class="description">الصورة الرئيسية</span>
+          </ion-col>
+          <ion-col [hidden]="images[2] !== null" (click)="presentActionSheet('2')">
+            <div class="image-container">
+              <div class="empty-content">
+                <span class="add">+</span>
+                <span class="description">صورة</span>
+              </div>
             </div>
-          </div>
-          <div class="main-image-title">
-            لواجهة الدراجة
-          </div>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-12>
-          <button ion-button full class="submit-advertisment">انشر الإعلان</button>
-        </ion-col>
-      </ion-row>
+          </ion-col>
+          <ion-col [hidden]="images[2] === null" align-self-center>
+            <div class="image-container main-image">
+              <div class="empty-content">
+                <img src="{{imageProvider.pathForImage(images[2])}}" style="width: 100%" imageViewer>
+              </div>
+            </div>
+          </ion-col>
+          <ion-col [hidden]="images[1] !== null" (click)="presentActionSheet('1')">
+            <div class="image-container">
+              <div class="empty-content">
+                <span class="add">+</span>
+                <span class="description">صورة</span>
+              </div>
+            </div>
+          </ion-col>
+          <ion-col [hidden]="images[1] === null" align-self-center>
+            <div class="image-container main-image">
+              <div class="empty-content">
+                <img src="{{imageProvider.pathForImage(images[1])}}" style="width: 100%" imageViewer>
+              </div>
+            </div>
+          </ion-col>
+          <ion-col [hidden]="images[0] !== null" align-self-center (click)="presentActionSheet('0')">
+            <div class="image-container main-image">
+              <div class="empty-content">
+                <span class="add">+</span>
+                <span class="description">الصورة الرئيسية</span>
+              </div>
+            </div>
+            <div class="main-image-title">
+              لواجهة الشاحنة
+            </div>
+          </ion-col>
+          <ion-col [hidden]="images[0] === null" align-self-center>
+            <div class="image-container main-image">
+              <div class="empty-content">
+                <img src="{{imageProvider.pathForImage(images[0])}}" style="width: 100%" imageViewer>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <button type="submit" ion-button full class="submit-advertisment">انشر الإعلان</button>
+          </ion-col>
+        </ion-row>
+      </form>
     </ion-grid>
 
     <ion-grid *ngIf="activeTab == 4">
-      <ion-row class="add-advertisment-form dark-controls">
-        <ion-col col-12>
-          <ion-item>
-            <ion-input type="text" placeholder="عنوان الإعلان"></ion-input>
-          </ion-item>
-        </ion-col>
+      <form #boatAddvertismentForm="ngForm" (ngSubmit)="addBoat(boatAddvertismentForm)">
+        <ion-row class="add-advertisment-form dark-controls">
+          <ion-col col-12>
+            <ion-item>
+              <ion-input name="title" type="text" placeholder="عنوان الإعلان" #boatAddTitle="ngModel" [(ngModel)]="boatModel.title" [ngModelOptions]="{ updateOn: 'blur' }"
+                required></ion-input>
+            </ion-item>
+            <p class="danger text-field-error" [class.visible]="boatAddTitle.errors && (boatAddTitle.dirty || boatAddTitle.touched)">عنوان الإعلان مطلوب</p>
+          </ion-col>
 
-        <ion-col col-6>
-          <ion-item>
-            <ion-label>النوع</ion-label>
-            <ion-select [placeholder]="'النوع'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">كيا</ion-option>
-              <ion-option value="value2">مازدا</ion-option>
-              <ion-option value="value3">ميرسيدس</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-input [(ngModel)]="boatModel.price" name="price" type="text" placeholder="السعر" #boatPrice="ngModel" [ngModelOptions]="{ updateOn: 'blur' }"
+                required></ion-input>
+            </ion-item>
+            <p class="danger text-field-error" [class.visible]="boatPrice.errors && (boatPrice.dirty || boatPrice.touched)">السعر مطلوب</p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>السنة</ion-label>
+              <ion-select [placeholder]="'السنة'" [(ngModel)]="boatModel.year" name="year" okText="إختيار" cancelText="إغلاق" #boatYear="ngModel"
+                [ngModelOptions]="{ updateOn: 'blur' }" required>
+                <ion-option *ngFor="let year of years" value="{{year}}"> {{year}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error" [class.visible]="boatYear.errors && (boatYear.dirty || boatYear.touched)">سنة الصنع مطلوبة</p>
+          </ion-col>
 
-        <ion-col col-6>
-          <ion-item>
-            <ion-label>عدد الكيلومترات</ion-label>
-            <ion-select [placeholder]="'عدد الكيبلومترات'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">1</ion-option>
-              <ion-option value="value2">2</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col col-6>
-          <ion-item>
-            <ion-label>الموديل</ion-label>
-            <ion-select [placeholder]="'الموديل'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">1</ion-option>
-              <ion-option value="value2">2</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col col-6>
-          <ion-item>
-            <ion-label>الأبواب</ion-label>
-            <ion-select [placeholder]="'الأبواب'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">2</ion-option>
-              <ion-option value="value2">4</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col col-6>
-          <ion-item>
-            <ion-label>الهيئة</ion-label>
-            <ion-select [placeholder]="'الهيئة'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">نظيفة</ion-option>
-              <ion-option value="value2">حالة جيدة</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col col-6>
-          <ion-item>
-            <ion-label>مواصفات الصنع</ion-label>
-            <ion-select [placeholder]="'مواصفات الصنع'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">معايير عالية</ion-option>
-              <ion-option value="value2">معايير متوسطة</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col col-6>
-          <ion-item>
-            <ion-label>سنة الصنع</ion-label>
-            <ion-select [placeholder]="'سنة الصنع'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">2010</ion-option>
-              <ion-option value="value2">2012</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col col-6>
-          <ion-item>
-            <ion-label>الضمان</ion-label>
-            <ion-select [placeholder]="'الضمان'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">مع ضمان</ion-option>
-              <ion-option value="value2">بدون ضمان</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-input [(ngModel)]="boatModel.passedKiloeters" name="passeedKilometers" type="text" placeholder="عدد الكيلومترات"></ion-input>
+            </ion-item>
+          </ion-col>
 
-        <ion-col col-12>
-          <ion-item>
-            <ion-textarea placeholder="ملاحظات" rows="5" name="notes"></ion-textarea>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row class="add-advertisment-images dark-controls">
-        <ion-col (click)="uploadImage($event)">
-          <div class="image-container">
-            <div class="empty-content">
-              <span class="add">+</span>
-              <span class="description">صورة</span>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>الدولة</ion-label>
+              <ion-select [placeholder]="'الدولة'" name="country" [(ngModel)]="boatModel.country" okText="إختيار" cancelText="إغلاق">
+                <ng-container *ngFor="let country of countries">
+                  <ion-option *ngIf="country.sub_c == 0" value="{{country.id_c}}">{{country.name_c_ar}}</ion-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>المدينة</ion-label>
+              <ion-select [placeholder]="'المدينة'" [(ngModel)]="boatModel.city" name="city" okText="إختيار" cancelText="إغلاق">
+                <ng-container *ngFor="let city of cities">
+                  <ion-option *ngIf="city.sub_c != 0 && city.sub_c == boatModel.country" value="{{city.id_c}}">{{city.name_c_ar}}</ion-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>الحالة</ion-label>
+              <ion-select [placeholder]="'الحالة'" [(ngModel)]="boatModel.boatCase" name="boatCase" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let boatCase of boatSelectOptions.thecaseoftheboat.value_option" value="{{boatCase.id_v}}">{{boatCase.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>نوع الوقود</ion-label>
+              <ion-select [placeholder]="'نوع الوقود'" name="fuel" [(ngModel)]="boatModel.fuel" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let fuel of boatSelectOptions.fuel.value_option" value="{{fuel.id_v}}">{{fuel.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>اللون</ion-label>
+              <ion-select [placeholder]="'اللون'" name="color" [(ngModel)]="boatModel.color" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let color of boatSelectOptions.color.value_option" value="{{color.id_v}}">{{color.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>قوة المحرك</ion-label>
+              <ion-select [placeholder]="'قوة المحرك'" [(ngModel)]="boatModel.enginePower" name="enginePower" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let enginePower of boatSelectOptions.enginepower.value_option" value="{{enginePower.id_v}}">{{enginePower.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>حجم الحمولة</ion-label>
+              <ion-select [placeholder]="'حجم الحمولة'" [(ngModel)]="boatModel.loadQuantity" name="loadQuantity" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let loadQuantity of boatSelectOptions.howmuchload.value_option" value="{{loadQuantity.id_v}}">{{loadQuantity.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>سرعة المحرك</ion-label>
+              <ion-select [placeholder]="'سرعة المحرك'" [(ngModel)]="boatModel.engineSpeed" name="engineSpeed" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let engineSpeed of boatSelectOptions.enginespeed.value_option" value="{{engineSpeed.id_v}}">{{engineSpeed.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>طول القارب</ion-label>
+              <ion-select [placeholder]="'طول القارب'" [(ngModel)]="boatModel.boatLength" name="boatLength" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let boatLength of boatSelectOptions.lengthoftheboat.value_option" value="{{boatLength.id_v}}">{{boatLength.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+          <ion-col col-12>
+            <ion-item>
+              <ion-textarea [(ngModel)]="boatModel.specifications" name="specification" placeholder="ملاحظات" rows="5" name="specificarion"></ion-textarea>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+        </ion-row>
+        <ion-row class="add-advertisment-images dark-controls">
+          <ion-col [hidden]="images[4] !== null" (click)="presentActionSheet('4')">
+            <div class="image-container">
+              <div class="empty-content">
+                <span class="add">+</span>
+                <span class="description">صورة</span>
+              </div>
             </div>
-          </div>
-        </ion-col>
-        <ion-col (click)="uploadImage($event)">
-          <div class="image-container">
-            <div class="empty-content">
-              <span class="add">+</span>
-              <span class="description">صورة</span>
+          </ion-col>
+          <ion-col [hidden]="images[4] === null" align-self-center>
+            <div class="image-container main-image">
+              <div class="empty-content">
+                <img src="{{imageProvider.pathForImage(images[4])}}" style="width: 100%" imageViewer>
+              </div>
             </div>
-          </div>
-        </ion-col>
-        <ion-col (click)="uploadImage($event)">
-          <div class="image-container">
-            <div class="empty-content">
-              <span class="add">+</span>
-              <span class="description">صورة</span>
+          </ion-col>
+          <ion-col [hidden]="images[3] !== null" (click)="presentActionSheet('3')">
+            <div class="image-container">
+              <div class="empty-content">
+                <span class="add">+</span>
+                <span class="description">صورة</span>
+              </div>
             </div>
-          </div>
-        </ion-col>
-        <ion-col (click)="uploadImage($event)">
-          <div class="image-container">
-            <div class="empty-content">
-              <span class="add">+</span>
-              <span class="description">صورة</span>
+          </ion-col>
+          <ion-col [hidden]="images[3] === null" align-self-center>
+            <div class="image-container main-image">
+              <div class="empty-content">
+                <img src="{{imageProvider.pathForImage(images[3])}}" style="width: 100%" imageViewer>
+              </div>
             </div>
-          </div>
-        </ion-col>
-        <ion-col align-self-center (click)="uploadImage($event)">
-          <div class="image-container main-image">
-            <div class="empty-content">
-              <span class="add">+</span>
-              <span class="description">الصورة الرئيسية</span>
+          </ion-col>
+          <ion-col [hidden]="images[2] !== null" (click)="presentActionSheet('2')">
+            <div class="image-container">
+              <div class="empty-content">
+                <span class="add">+</span>
+                <span class="description">صورة</span>
+              </div>
             </div>
-          </div>
-          <div class="main-image-title">
-            لواجهة القارب
-          </div>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-12>
-          <button ion-button full class="submit-advertisment">انشر الإعلان</button>
-        </ion-col>
-      </ion-row>
+          </ion-col>
+          <ion-col [hidden]="images[2] === null" align-self-center>
+            <div class="image-container main-image">
+              <div class="empty-content">
+                <img src="{{imageProvider.pathForImage(images[2])}}" style="width: 100%" imageViewer>
+              </div>
+            </div>
+          </ion-col>
+          <ion-col [hidden]="images[1] !== null" (click)="presentActionSheet('1')">
+            <div class="image-container">
+              <div class="empty-content">
+                <span class="add">+</span>
+                <span class="description">صورة</span>
+              </div>
+            </div>
+          </ion-col>
+          <ion-col [hidden]="images[1] === null" align-self-center>
+            <div class="image-container main-image">
+              <div class="empty-content">
+                <img src="{{imageProvider.pathForImage(images[1])}}" style="width: 100%" imageViewer>
+              </div>
+            </div>
+          </ion-col>
+          <ion-col [hidden]="images[0] !== null" align-self-center (click)="presentActionSheet('0')">
+            <div class="image-container main-image">
+              <div class="empty-content">
+                <span class="add">+</span>
+                <span class="description">الصورة الرئيسية</span>
+              </div>
+            </div>
+            <div class="main-image-title">
+              لواجهة القارب
+            </div>
+          </ion-col>
+          <ion-col [hidden]="images[0] === null" align-self-center>
+            <div class="image-container main-image">
+              <div class="empty-content">
+                <img src="{{imageProvider.pathForImage(images[0])}}" style="width: 100%" imageViewer>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <button type="submit" ion-button full class="submit-advertisment">انشر الإعلان</button>
+          </ion-col>
+        </ion-row>
+      </form>
     </ion-grid>
 
     <ion-grid *ngIf="activeTab == 5">
-      <ion-row class="add-advertisment-form dark-controls">
-        <ion-col col-12>
-          <ion-item>
-            <ion-input type="text" placeholder="عنوان الإعلان"></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col col-6>
-          <ion-item>
-            <ion-input type="text" placeholder="الرقم"></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col col-6>
-          <ion-item>
-            <ion-label>الشركة</ion-label>
-            <ion-select [placeholder]="'الشركة'" okText="تم" cancelText="إغلاق">
-              <ion-option value="value1">اتصالات</ion-option>
-              <ion-option value="value2">دو</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
 
-      </ion-row>
-      <ion-row>
-        <ion-col col-12>
-          <button ion-button full class="submit-advertisment">انشر الإعلان</button>
-        </ion-col>
-      </ion-row>
+      <form #mobileNumberAddvertismentForm="ngForm" (ngSubmit)="addMobileNumber(mobileNumberAddvertismentForm)">
+        <ion-row class="add-advertisment-form dark-controls">
+          <ion-col col-12>
+            <ion-item>
+              <ion-input name="title" type="text" placeholder="عنوان الإعلان" #mobileNumberAddTitle="ngModel" [(ngModel)]="mobileNumberModel.title"
+                [ngModelOptions]="{ updateOn: 'blur' }" required></ion-input>
+            </ion-item>
+            <p class="danger text-field-error" [class.visible]="mobileNumberAddTitle.errors && (mobileNumberAddTitle.dirty || mobileNumberAddTitle.touched)">عنوان الإعلان مطلوب</p>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-input [(ngModel)]="mobileNumberModel.price" name="price" type="text" placeholder="السعر" #mobileNumberPrice="ngModel"
+                [ngModelOptions]="{ updateOn: 'blur' }" required></ion-input>
+            </ion-item>
+            <p class="danger text-field-error" [class.visible]="mobileNumberPrice.errors && (mobileNumberPrice.dirty || mobileNumberPrice.touched)">السعر مطلوب</p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>الشركة</ion-label>
+              <ion-select [placeholder]="'الشركة'" [(ngModel)]="mobileNumberModel.mobileProviderCompany" name="mobileProviderCompany" okText="إختيار"
+                cancelText="إغلاق" #mobileProviderCompany="ngModel" [ngModelOptions]="{ updateOn: 'blur' }" required>
+                <ion-option *ngFor="let providerCompany of mobileNumbersSelectOptions.the_company_provided_the_service.value_option" value="{{providerCompany.id_v}}">
+                  {{providerCompany.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error" [class.visible]="mobileProviderCompany.errors && (mobileProviderCompany.dirty || mobileProviderCompany.touched)">
+              مزود الخدمة مطلوب </p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-input [(ngModel)]="mobileNumberModel.mobileNumber" name="mobileNumber" type="tel" placeholder="رقم  الجوال" #mobileNumber="ngModel"
+                [ngModelOptions]="{ updateOn: 'blur' }" required></ion-input>
+            </ion-item>
+            <p class="danger text-field-error" [class.visible]="mobileNumber.errors && (mobileNumber.dirty || mobileNumber.touched)">
+              رقم الجوال مطلوب </p>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>الدولة</ion-label>
+              <ion-select [placeholder]="'الدولة'" name="country" [(ngModel)]="mobileNumberModel.country" okText="إختيار" cancelText="إغلاق">
+                <ng-container *ngFor="let country of countries">
+                  <ion-option *ngIf="country.sub_c == 0" value="{{country.id_c}}">{{country.name_c_ar}}</ion-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>المدينة</ion-label>
+              <ion-select [placeholder]="'المدينة'" [(ngModel)]="mobileNumberModel.city" name="city" okText="إختيار" cancelText="إغلاق">
+                <ng-container *ngFor="let city of cities">
+                  <ion-option *ngIf="city.sub_c != 0 && city.sub_c == mobileNumberModel.country" value="{{city.id_c}}">{{city.name_c_ar}}</ion-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+
+          <ion-col col-12>
+            <ion-item>
+              <ion-textarea [(ngModel)]="mobileNumberModel.specification" name="specification" placeholder="ملاحظات" rows="5" name="specificarion"></ion-textarea>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-12>
+            <button type="submit" ion-button full class="submit-advertisment">انشر الإعلان</button>
+          </ion-col>
+        </ion-row>
+      </form>
     </ion-grid>
 
+    <ion-grid *ngIf="activeTab == 6">
+      <form #carPalleteAddvertismentForm="ngForm" (ngSubmit)="addCarNumber(carPalleteAddvertismentForm)">
+        <ion-row class="add-advertisment-form dark-controls">
+          <ion-col col-12>
+            <ion-item>
+              <ion-input name="title" type="text" placeholder="عنوان الإعلان" #carPalleteAddTitle="ngModel" [(ngModel)]="carPalleteModel.title"
+                [ngModelOptions]="{ updateOn: 'blur' }" required></ion-input>
+            </ion-item>
+            <p class="danger text-field-error" [class.visible]="carPalleteAddTitle.errors && (carPalleteAddTitle.dirty || carPalleteAddTitle.touched)">عنوان الإعلان مطلوب</p>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-input [(ngModel)]="carPalleteModel.price" name="price" type="text" placeholder="السعر" #carPalletePrice="ngModel" [ngModelOptions]="{ updateOn: 'blur' }"
+                required></ion-input>
+            </ion-item>
+            <p class="danger text-field-error" [class.visible]="carPalletePrice.errors && (carPalletePrice.dirty || carPalletePrice.touched)">السعر مطلوب</p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>السنة</ion-label>
+              <ion-select [placeholder]="'السنة'" [(ngModel)]="carPalleteModel.year" name="year" okText="إختيار" cancelText="إغلاق" [ngModelOptions]="{ updateOn: 'blur' }">
+                <ion-option *ngFor="let year of years" value="{{year}}"> {{year}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label> تصنيف لوحة السيارة</ion-label>
+              <ion-select [placeholder]="'تصنيف لوحة السيارة'" [(ngModel)]="carPalleteModel.carPalleteCategory" name="carPalleteCategory"
+                okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let category of carPalleteSelectOptions.category.value_option" value="{{category.id_v}}">
+                  {{category.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>نوع اللوحة</ion-label>
+              <ion-select [placeholder]="'نوع اللوحة'" [(ngModel)]="carPalleteModel.carPalleteType" name="carPalleteType" okText="إختيار"
+                cancelText="إغلاق">
+                <ion-option *ngFor="let carPalleteType of carPalleteSelectOptions.type_lo7a.value_option" value="{{carPalleteType.id_v}}">
+                  {{carPalleteType.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>رمز اللوحة</ion-label>
+              <ion-select [placeholder]="'رمز اللوحة'" [(ngModel)]="carPalleteModel.carPalleteSymbol" name="carPalleteSymbol" okText="إختيار"
+                cancelText="إغلاق">
+                <ion-option *ngFor="let carPalleteSymbol of carPalleteSelectOptions.symbol.value_option" value="{{carPalleteSymbol.id_v}}">
+                  {{carPalleteSymbol.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-input [(ngModel)]="carPalleteModel.palleteNumber" name="palleteNumber" type="text" placeholder="رقم اللوحة" #carPalleteNumber="ngModel"
+                [ngModelOptions]="{ updateOn: 'blur' }" required></ion-input>
+            </ion-item>
+            <p class="danger text-field-error" [class.visible]="carPalleteNumber.errors && (carPalleteNumber.dirty || carPalleteNumber.touched)">
+              رقم اللوحة مطلوب </p>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>الدولة</ion-label>
+              <ion-select [placeholder]="'الدولة'" name="country" [(ngModel)]="carPalleteModel.country" okText="إختيار" cancelText="إغلاق">
+                <ng-container *ngFor="let country of countries">
+                  <ion-option *ngIf="country.sub_c == 0" value="{{country.id_c}}">{{country.name_c_ar}}</ion-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>المدينة</ion-label>
+              <ion-select [placeholder]="'المدينة'" [(ngModel)]="carPalleteModel.city" name="city" okText="إختيار" cancelText="إغلاق">
+                <ng-container *ngFor="let city of cities">
+                  <ion-option *ngIf="city.sub_c != 0 && city.sub_c == carPalleteModel.country" value="{{city.id_c}}">{{city.name_c_ar}}</ion-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+          <ion-col col-12>
+            <ion-item>
+              <ion-textarea [(ngModel)]="carPalleteModel.specifications" name="specifications" placeholder="ملاحظات" rows="5"></ion-textarea>
+            </ion-item>
+            <p class="danger text-field-error"></p>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-12>
+            <button type="submit" ion-button full class="submit-advertisment">انشر الإعلان</button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-grid>
   </div>
 
 </ion-content>

@@ -56,7 +56,7 @@ export class LoginPage {
 
   register(form) {
     if (form.valid) {
-      this.uiProvider.showLoadingPopup('جاري تسجيل الدخول')
+      this.uiProvider.showLoadingPopup('جاري إنشاء حساب')
       this.authProvider.register(this.registerModel)
         .subscribe(
           (result) => {

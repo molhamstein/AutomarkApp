@@ -202,7 +202,15 @@ button.font-large {
     font-size: 20px !important;
 }
 .item-input ion-input, .item-input ion-textarea {
-    padding: 13px 8px 13px 16px;
+    padding: 8px;
+    font-size: 12px !important;
+}
+imput.text-input, input.text-input-md {
+    margin: 0px !important;
+}
+ion-select, .select-md {
+    padding: 8px !important;
+    font-size: 12px !important;
 }
 /*===============================================*/
 
@@ -563,6 +571,7 @@ li.nav-item .nav-label {
 .advertisment-type ion-label {
     background-color: transparent !important;
     color: #e7e7e7;
+    font-size: 9px !important;
 }
 
 .advertisment-type ion-col {
@@ -633,10 +642,10 @@ li.nav-item .nav-label {
     padding: 2px;
 }
 
-.submit-advertisment {
+button.submit-advertisment {
     background-color: #D53731 !important;
     font-weight: bold;
-    font-size: 20px !important;
+    font-size: 18px !important;
     height: 50px !important;
     margin-top: 15px !important;
 }
@@ -1286,7 +1295,7 @@ ion-select,
 .dark-controls .select-md .select-icon .select-icon-inner,
 .dark-controls ion-select .select-icon .select-icon-inner {
     left: 5px;
-    top: 50%;
+    top: 30%;
     position: absolute;
     width: auto !important;
     height: auto !important;

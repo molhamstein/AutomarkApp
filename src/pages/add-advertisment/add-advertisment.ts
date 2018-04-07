@@ -11,10 +11,12 @@ import { RestProvider } from '../../providers/rest/rest';
 import { UiProvider } from '../../providers/ui.provider';
 import { AdvertismentProvider } from '../../providers/advertisment/advertisment.provider';
 import { SelectsOptionsProvider } from '../../providers/select-options.provider';
-import { CarModel, BikeModel } from './advertisment.model';
+import { CarModel, BikeModel, TruckModel, BoatModel, MobileNumberModel, CarPalleteModel } from './advertisment.model';
 import { ImageProvider } from '../../providers/image.provider';
 import * as moment from 'moment';
 import { AuthProvider } from '../../auth/auth.provider';
+import { ResourceLoader } from '@angular/compiler';
+import { ItemDetailsPage } from '../item-details/item-details';
 
 declare var cordova: any;
 @Component({
@@ -28,7 +30,7 @@ export class AddAdvertismentPage {
   boatSelectOptions: any;
   truckSelectOptions: any;
   mobileNumbersSelectOptions: any;
-  carPalleteSelectsOptions: any;
+  carPalleteSelectOptions: any;
   bikeSelectOptions: any;
 
   countries: any[];
@@ -43,6 +45,11 @@ export class AddAdvertismentPage {
 
   carModel: CarModel;
   bikeModel: BikeModel;
+  truckModel: TruckModel;
+  boatModel: BoatModel;
+  mobileNumberModel: MobileNumberModel;
+  carPalleteModel: CarPalleteModel;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -56,31 +63,37 @@ export class AddAdvertismentPage {
   ) {
     this.carModel = new CarModel();
     this.carModel.user = this.authProvider.getAuthInfo().userId;
-
   }
 
   setActiveTab(index) {
     if (index != this.activeTab) {
+      this.images = [null, null, null, null, null];
       this.activeTab = index;
       switch (index) {
         case 1:
           this.carModel = new CarModel();
-          this.images = [null, null, null, null, null];
+          this.carModel.user = this.authProvider.getAuthInfo().userId;
           break;
         case 2:
           this.bikeModel = new BikeModel();
-          this.images = [null, null, null, null, null];
+          this.bikeModel.user = this.authProvider.getAuthInfo().userId;
           break;
         case 3:
-
+          this.truckModel = new TruckModel();
+          this.truckModel.user = this.authProvider.getAuthInfo().userId;
           break;
         case 4:
-
+          this.boatModel = new BoatModel();
+          this.boatModel.user = this.authProvider.getAuthInfo().userId;
           break;
         case 5:
-
+          this.mobileNumberModel = new MobileNumberModel();
+          this.mobileNumberModel.user = this.authProvider.getAuthInfo().userId;
           break;
-
+        case 6:
+          this.carPalleteModel = new CarPalleteModel();
+          this.carPalleteModel.user = this.authProvider.getAuthInfo().userId;
+          break;
         default:
           break;
       }
@@ -114,9 +127,9 @@ export class AddAdvertismentPage {
     if (form.valid == false) {
       this.uiProvider.showToastMessage('تأكد من صحة جميع الحقول');
     }
-    // else if(this.images.filter( image => image != null).length == 0) {
-    //   this.uiProvider.showToastMessage('يجب رفع صورة احدة على الأقل');
-    // } 
+    else if(this.images.filter( image => image != null).length == 0) {
+      this.uiProvider.showToastMessage('يجب رفع صورة احدة على الأقل');
+    } 
     else {
       this.uiProvider.showLoadingPopup("جاري رفع الصور");
       let imagesToUpload = this.images.filter(image => image != null);
@@ -124,7 +137,107 @@ export class AddAdvertismentPage {
         .subscribe(
           (result) => {
             this.uiProvider.hideLoadingPopup();
-            console.log(result);
+            for (let index = 0; index < result.length; index++) {
+              const element = result[index];
+              let response = JSON.parse(element.response);
+              this.carModel.images.push(response.data.result.files.file[0].name);  
+            }
+            let data = CarModel.mapModelToApiModel(this.carModel);      
+            this.postAdvertisment(data);
+          },
+          (error) => {
+            this.uiProvider.hideLoadingPopup();
+            this.uiProvider.showToastMessage(JSON.stringify(error));
+          }
+        );
+    }
+  }
+
+  addBoat(form) {
+
+    let formData = form.form.value;
+
+    this.boatModel.boatCase = Number(formData.boatCase);
+    this.boatModel.city = Number(formData.city);
+    this.boatModel.country = Number(formData.country);
+    this.boatModel.enginePower = Number(formData.enginePower);
+    this.boatModel.fuel = Number(formData.fuel);
+    this.boatModel.engineSpeed = Number(formData.engineSpeed);
+    this.boatModel.passedKiloeters = formData.passeedKilometers;
+    this.boatModel.price = formData.price;
+    this.boatModel.specifications = formData.specificarion;
+    this.boatModel.boatLength = Number(formData.boatLength);
+    this.boatModel.title = formData.title;
+    this.boatModel.loadQuantity = Number(formData.loadQuantity);
+    this.boatModel.year = Number(formData.year);
+
+    if (form.valid == false) {
+      this.uiProvider.showToastMessage('تأكد من صحة جميع الحقول');
+    }
+    else if(this.images.filter( image => image != null).length == 0) {
+      this.uiProvider.showToastMessage('يجب رفع صورة احدة على الأقل');
+    } 
+    else {
+      this.uiProvider.showLoadingPopup("جاري رفع الصور");
+      let imagesToUpload = this.images.filter(image => image != null);
+      this.imageProvider.uploadImages(imagesToUpload)
+        .subscribe(
+          (result) => {
+            this.uiProvider.hideLoadingPopup();
+            for (let index = 0; index < result.length; index++) {
+              const element = result[index];
+              let response = JSON.parse(element.response);
+              this.boatModel.images.push(response.data.result.files.file[0].name);  
+            }
+            let data = BoatModel.mapModelToApiModel(this.boatModel);
+            this.postAdvertisment(data);
+          },
+          (error) => {
+            this.uiProvider.hideLoadingPopup();
+            this.uiProvider.showToastMessage(JSON.stringify(error));
+          }
+        );
+    }
+  }
+
+  addTruck(form) {
+    let formData = form.form.value;
+
+    this.truckModel.truckCase = Number(formData.truckCase);
+    this.truckModel.city = Number(formData.city);
+    this.truckModel.country = Number(formData.country);
+    this.truckModel.cylindersNumber = Number(formData.cylinderNumber);
+    this.truckModel.fuel = Number(formData.fuel);
+    this.truckModel.transmission = Number(formData.transmission);
+    this.truckModel.passedKiloeters = formData.passeedKilometers;
+    this.truckModel.price = formData.price;
+    this.truckModel.specifications = formData.specificarion;
+    this.truckModel.enginePower = Number(formData.enginePower);
+    this.truckModel.title = formData.title;
+    this.truckModel.color = Number(formData.color);
+    this.truckModel.year = Number(formData.year);
+    this.truckModel.loadQuantity = formData.loadQuantity;
+
+    if (form.valid == false) {
+      this.uiProvider.showToastMessage('تأكد من صحة جميع الحقول');
+    }
+    else if(this.images.filter( image => image != null).length == 0) {
+      this.uiProvider.showToastMessage('يجب رفع صورة احدة على الأقل');
+    } 
+    else {
+      this.uiProvider.showLoadingPopup("جاري رفع الصور");
+      let imagesToUpload = this.images.filter(image => image != null);
+      this.imageProvider.uploadImages(imagesToUpload)
+        .subscribe(
+          (result) => {
+            this.uiProvider.hideLoadingPopup();
+            for (let index = 0; index < result.length; index++) {
+              const element = result[index];
+              let response = JSON.parse(element.response);
+              this.truckModel.images.push(response.data.result.files.file[0].name);  
+            }
+            let data = TruckModel.mapModelToApiModel(this.truckModel);
+            this.postAdvertisment(data);
           },
           (error) => {
             this.uiProvider.hideLoadingPopup();
@@ -132,33 +245,12 @@ export class AddAdvertismentPage {
           }
         );
 
-      // let data = CarModel.mapModelToApiModel(this.carModel);
-      // console.log(this.carModel);
-      // console.log(data);
-
-      // this.advertismentProvider.postCarAdvertisment(data)
-      //   .subscribe(
-      //     (result) => {
-
-      //     },
-      //     (error) => {
-
-      //     }
-      //   )
     }
-  }
-
-  addBoat() {
-
-  }
-
-  addTruck() {
-
   }
 
   addBike(form) {
     let formData = form.form.value;
-    
+
 
     this.bikeModel.bikeCase = Number(formData.bikeCase);
     this.bikeModel.city = Number(formData.city);
@@ -179,9 +271,9 @@ export class AddAdvertismentPage {
     if (form.valid == false) {
       this.uiProvider.showToastMessage('تأكد من صحة جميع الحقول');
     }
-    // else if(this.images.filter( image => image != null).length == 0) {
-    //   this.uiProvider.showToastMessage('يجب رفع صورة احدة على الأقل');
-    // } 
+    else if(this.images.filter( image => image != null).length == 0) {
+      this.uiProvider.showToastMessage('يجب رفع صورة احدة على الأقل');
+    } 
     else {
       this.uiProvider.showLoadingPopup("جاري رفع الصور");
       let imagesToUpload = this.images.filter(image => image != null);
@@ -189,36 +281,80 @@ export class AddAdvertismentPage {
         .subscribe(
           (result) => {
             this.uiProvider.hideLoadingPopup();
-            console.log(result);
+            for (let index = 0; index < result.length; index++) {
+              const element = result[index];
+              let response = JSON.parse(element.response);
+              this.bikeModel.images.push(response.data.result.files.file[0].name);  
+            }
+            let data = BikeModel.mapModelToApiModel(this.bikeModel);
+            this.postAdvertisment(data);
           },
           (error) => {
             this.uiProvider.hideLoadingPopup();
             this.uiProvider.showToastMessage(JSON.stringify(error));
           }
         );
-
-      // let data = BikeModel.mapModelToApiModel(this.carModel);
-      // console.log(this.carModel);
-      // console.log(data);
-
-      // this.advertismentProvider.postCarAdvertisment(data)
-      //   .subscribe(
-      //     (result) => {
-
-      //     },
-      //     (error) => {
-
-      //     }
-      //   )
     }
   }
 
-  addCarNumber() {
+  addCarNumber(form) {
+    let formData = form.form.value;
 
+    
+    this.carPalleteModel.title = formData.title;
+    this.carPalleteModel.country = Number(formData.country);
+    this.carPalleteModel.city = Number(formData.city);
+    this.carPalleteModel.price = formData.price;
+    this.carPalleteModel.specifications = formData.specifications;
+    this.carPalleteModel.carPalleteCategory = formData.carPalleteCategory;
+    this.carPalleteModel.year = Number(formData.year);
+    this.carPalleteModel.carPalleteType = formData.carPalleteType;
+    this.carPalleteModel.carPalleteSymbol = formData.carPalleteSymbol;
+    this.carPalleteModel.palleteNumber = formData.palleteNumber;
+
+    if (form.valid == false) {
+      this.uiProvider.showToastMessage('تأكد من صحة جميع الحقول');
+    }
+    else {
+      let data = CarPalleteModel.mapModelToApiModel(this.carPalleteModel);
+      this.postAdvertisment(data);
+    }
   }
 
-  addMobileNumber() {
+  addMobileNumber(form) {
+    let formData = form.form.value;
 
+    this.mobileNumberModel.city = Number(formData.city);
+    this.mobileNumberModel.country = Number(formData.country);
+    this.mobileNumberModel.price = formData.price;
+    this.mobileNumberModel.specification = formData.specificarion;
+    this.mobileNumberModel.mobileProviderCompany = Number(formData.mobileProviderCompany);
+    this.mobileNumberModel.title = formData.title;
+    this.mobileNumberModel.mobileNumber = Number(formData.mobileNumber);
+
+    if (form.valid == false) {
+      this.uiProvider.showToastMessage('تأكد من صحة جميع الحقول');
+    } else {
+      let data = MobileNumberModel.mapModelToApiModel(this.mobileNumberModel);
+      this.postAdvertisment(data);
+    }
+  }
+
+  postAdvertisment(data) {
+    console.log(data);
+    this.uiProvider.showLoadingPopup("جاري نشر الإعلان");
+    this.advertismentProvider.postAdvertisment(data)
+      .subscribe(
+        (result) => {
+          this.uiProvider.hideLoadingPopup();
+          this.uiProvider.showToastMessage("تم إضافة الإعلان بنجاح");
+          this.navCtrl.push(ItemDetailsPage, { item_id: result.data.id_c });
+        },
+        (error) => {
+          this.uiProvider.hideLoadingPopup();
+          this.uiProvider.showToastMessage(JSON.stringify(error));
+        }
+      );
   }
 
   getSelectMenusOptions() {
@@ -228,24 +364,21 @@ export class AddAdvertismentPage {
       .subscribe(
         (result) => {
           this.uiProvider.hideLoadingPopup();
-
           this.carSelectOptions = this.selectOptionsProvider.getCarOptions(result[2].data);
           this.bikeSelectOptions = this.selectOptionsProvider.getBikeSelectOptions(result[2].data);
-          this.boatSelectOptions = this.selectOptionsProvider.getBikeSelectOptions(result[2].data);
+          this.boatSelectOptions = this.selectOptionsProvider.getBoatSelectOptions(result[2].data);
           this.truckSelectOptions = this.selectOptionsProvider.getTruckSelectOptions(result[2].data);
-          this.carPalleteSelectsOptions = this.selectOptionsProvider.getCarPalleteSelectOptions(result[2].data);
+          this.carPalleteSelectOptions = this.selectOptionsProvider.getCarPalleteSelectOptions(result[2].data);
           this.mobileNumbersSelectOptions = this.selectOptionsProvider.getMobileNumberSelectOptions(result[2].data);
           this.countries = result[0].data;
           this.cities = result[0].data;
           this.types = result[1].data;
           this.models = result[1].data;
           this.metaDataLoaded = true;
-          console.log(result);
-          console.log(this.bikeSelectOptions);
+          console.log(this.carPalleteSelectOptions);
         },
         (error) => {
           this.uiProvider.hideLoadingPopup();
-          console.log(error);
         }
       );
 

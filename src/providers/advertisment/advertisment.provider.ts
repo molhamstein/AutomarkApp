@@ -11,7 +11,7 @@ export class AdvertismentProvider {
     }
 
     getSelectOptions() {
-        
+
         let countriesAndCities = this.http.get('cities');
         let carTypes = this.http.get('cars_types');
         let selectOptions = this.http.get('option_cars?filter[include]=value_option');
@@ -25,7 +25,7 @@ export class AdvertismentProvider {
         return Observable.forkJoin(optionsObservables);
     }
 
-    postCarAdvertisment(data): Observable<any> {
+    postAdvertisment(data): Observable<any> {
         return this.http.post('cars', data);
     }
 }

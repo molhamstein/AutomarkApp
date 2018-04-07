@@ -115,33 +115,25 @@ export class ImageProvider {
 
     let headers = {};
     let authInfo = this.authProvider.getAuthInfo();
-    if (authInfo != null) {
-        let access_token = authInfo.id;
-        headers['Authorization'] = access_token;
-        headers['token'] = access_token;
-        headers['Content-Type'] = 'multipart/form-data';
-    }
+    // if (authInfo != null) {
+    //     let access_token = authInfo.id;
+    //     headers['Authorization'] = access_token;
+    //     headers['token'] = access_token;
+    //     headers['Content-Type'] = 'multipart/form-data';
+    // }
   
     var options = {
       fileKey: "file",
       fileName: filename,
-      chunkedMode: true,
-      mimeType: "image/jpeg",
+      chunkedMode: false,
+      mimeType: "multipart/form-data",
       params: { 'fileName': filename },
       headers: headers
     };
 
     const fileTransfer: TransferObject = this.transfer.create();
-    return new Observable(observer => {
-      // Use the FileTransfer to upload the image
-      fileTransfer.upload(targetPath, url, options).then((result) => {
-        observer.next({ message: "sucess", result: result });
-      },
-        (error) => {
-          console.log(error);
-          observer.error(error);
-        });
-    });
+    return Observable.fromPromise(fileTransfer.upload(targetPath, url, options)); 
+    
   }
 
   public uploadImages(imagesArray: any[]): Observable<any> {

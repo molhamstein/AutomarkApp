@@ -84,6 +84,7 @@
     <engine name="android" spec="^7.0.0" />
     <engine name="ios" spec="^4.5.4" />
     <plugin name="call-number" spec="^1.0.1" />
+    <plugin name="cordova-filepath-resolver" spec="^1.0.5" />
     <plugin name="cordova-plugin-camera" spec="^4.0.2" />
     <plugin name="cordova-plugin-device" spec="^2.0.1" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
@@ -91,6 +92,12 @@
     <plugin name="cordova-plugin-filepath" spec="^1.3.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.19" />
+    <plugin name="cordova-plugin-ios-camera-permissions" spec="^1.2.0">
+        <variable name="CAMERA_USAGE_DESCRIPTION" value="take photos of items to be added from user" />
+        <variable name="PHOTOLIBRARY_ADD_USAGE_DESCRIPTION" value="upload photos of addvertisment to be added  from user" />
+        <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="let user select photos of addvertisment to upload when submit addvertisment" />
+        <variable name="MICROPHONE_USAGE_DESCRIPTION" value="This app needs microphone access" />
+    </plugin>
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />

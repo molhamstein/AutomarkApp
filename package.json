@@ -33,6 +33,7 @@
         "@ionic/storage": "2.1.3",
         "call-number": "^1.0.1",
         "cordova-android": "^7.0.0",
+        "cordova-filepath-resolver": "^1.0.5",
         "cordova-ios": "^4.5.4",
         "cordova-plugin-camera": "^4.0.2",
         "cordova-plugin-device": "^2.0.1",
@@ -41,6 +42,8 @@
         "cordova-plugin-filepath": "^1.3.0",
         "cordova-plugin-ionic-keyboard": "^2.0.5",
         "cordova-plugin-ionic-webview": "^1.1.19",
+        "cordova-plugin-ios-camera-permissions": "^1.2.0",
+        "cordova-plugin-photo-library": "^2.1.1",
         "cordova-plugin-splashscreen": "^5.0.2",
         "cordova-plugin-statusbar": "^2.4.1",
         "cordova-plugin-whitelist": "^1.3.3",
@@ -76,7 +79,14 @@
             "cordova-plugin-x-socialsharing": {},
             "mx.ferreyra.callnumber": {},
             "cordova-plugin-ionic-keyboard": {},
-            "call-number": {}
+            "call-number": {},
+            "cordova-plugin-ios-camera-permissions": {
+                "CAMERA_USAGE_DESCRIPTION": "take photos of items to be added from user",
+                "PHOTOLIBRARY_ADD_USAGE_DESCRIPTION": "upload photos of addvertisment to be added  from user",
+                "PHOTOLIBRARY_USAGE_DESCRIPTION": "let user select photos of addvertisment to upload when submit addvertisment",
+                "MICROPHONE_USAGE_DESCRIPTION": "This app needs microphone access"
+            },
+            "cordova-filepath-resolver": {}
         },
         "platforms": [
             "android",

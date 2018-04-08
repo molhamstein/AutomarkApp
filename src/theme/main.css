@@ -207,6 +207,7 @@ button.font-large {
 }
 imput.text-input, input.text-input-md {
     margin: 0px !important;
+    text-align: right;
 }
 ion-select, .select-md {
     padding: 8px !important;
@@ -597,7 +598,9 @@ li.nav-item .nav-label {
 }
 
 .add-advertisment-form input,
-.add-advertisment-form ion-textarea {
+.add-advertisment-form ion-textarea,
+.search-advertisment-form input,
+{
     text-align: right;
     color: #c7c7c7;
     font-weight: 600;

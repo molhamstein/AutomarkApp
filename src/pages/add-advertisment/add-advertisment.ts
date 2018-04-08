@@ -300,7 +300,6 @@ export class AddAdvertismentPage {
   addCarNumber(form) {
     let formData = form.form.value;
 
-    
     this.carPalleteModel.title = formData.title;
     this.carPalleteModel.country = Number(formData.country);
     this.carPalleteModel.city = Number(formData.city);
@@ -341,7 +340,6 @@ export class AddAdvertismentPage {
   }
 
   postAdvertisment(data) {
-    console.log(data);
     this.uiProvider.showLoadingPopup("جاري نشر الإعلان");
     this.advertismentProvider.postAdvertisment(data)
       .subscribe(
@@ -375,7 +373,6 @@ export class AddAdvertismentPage {
           this.types = result[1].data;
           this.models = result[1].data;
           this.metaDataLoaded = true;
-          console.log(this.carPalleteSelectOptions);
         },
         (error) => {
           this.uiProvider.hideLoadingPopup();
@@ -399,10 +396,8 @@ export class AddAdvertismentPage {
           handler: () => {
             this.imageProvider.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY)
               .subscribe(
-                (result) => {
-                  this.images[imageIndex] = result;
-                  console.log(result);
-                  console.log(this.carModel);
+                (result) => {                  
+                    this.images[imageIndex] = result;
                 },
                 (error) => {
                   console.log(error);
@@ -417,11 +412,8 @@ export class AddAdvertismentPage {
               .subscribe(
                 (result) => {
                   this.images[imageIndex] = result;
-                  console.log(result);
-                  console.log(this.carModel);
                 },
                 (error) => {
-                  console.log(error);
                 }
               )
           }

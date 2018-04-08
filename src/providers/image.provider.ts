@@ -17,18 +17,18 @@ export class ImageProvider {
   baseUrl = config.baseUrl;
   loadingPopup;
 
-  
+
   constructor(
-    private camera: Camera, 
-    private transfer: Transfer, 
-    private file: File, 
-    private filePath: FilePath, 
-    public platform: Platform, 
+    private camera: Camera,
+    private transfer: Transfer,
+    private file: File,
+    private filePath: FilePath,
+    public platform: Platform,
     public uiProvider: UiProvider,
     public authProvider: AuthProvider
   ) {
 
-    }
+  }
 
   public takePicture(sourceType): Observable<any> {
 
@@ -43,10 +43,12 @@ export class ImageProvider {
     return new Observable(observer => {
       // Get the data of an image
       this.camera.getPicture(options).then((imagePath) => {
+        console.log(imagePath);
         // Special handling for Android library
         if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
           this.filePath.resolveNativePath(imagePath)
             .then(filePath => {
+              console.log(filePath);
               let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
               let currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
               let newFileName = this.createFileName();
@@ -99,7 +101,9 @@ export class ImageProvider {
     if (img === null) {
       return '';
     } else {
-      return cordova.file.dataDirectory + img;
+      let path = cordova.file.dataDirectory + img;
+      this.platform.is('ios') ? path = path.replace(/^file:\/\//, '') : path = path;
+      return path;
     }
   }
 
@@ -121,7 +125,7 @@ export class ImageProvider {
     //     headers['token'] = access_token;
     //     headers['Content-Type'] = 'multipart/form-data';
     // }
-  
+
     var options = {
       fileKey: "file",
       fileName: filename,
@@ -132,8 +136,8 @@ export class ImageProvider {
     };
 
     const fileTransfer: TransferObject = this.transfer.create();
-    return Observable.fromPromise(fileTransfer.upload(targetPath, url, options)); 
-    
+    return Observable.fromPromise(fileTransfer.upload(targetPath, url, options));
+
   }
 
   public uploadImages(imagesArray: any[]): Observable<any> {

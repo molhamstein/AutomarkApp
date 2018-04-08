@@ -39,32 +39,31 @@ export class SearchResultPage {
     this.cat_id = navParams.data.cat_id;
     this.city = navParams.data.city;
 
-    this.filters = [
-      navParams.data.city,
-      navParams.data.country,
-      navParams.data.type,
-      navParams.data.model,
-      navParams.data.status,
-      navParams.data.from_year,
-      navParams.data.to_year,
-      navParams.data.from_price,
-      navParams.data.to_price,
-      navParams.data.from_kilom,
-      navParams.data.to_kilom,
-      /* navParams.data.doors,
-       navParams.data.speceific,
-       navParams.data.qarantee,*/
-    ];
-    console.log(this.filters);
+    this.filters = {
+      city: navParams.data.city,
+      country: navParams.data.country,
+      type: navParams.data.type,
+      model: navParams.data.model,
+      case: navParams.data.case,
+      yearFrom: navParams.data.yearFrom,
+      yearTo: navParams.data.yearTo,
+      priceFrom: navParams.data.priceFrom,
+      priceTo: navParams.data.priceTo,
+      passedKiloetersFrom: navParams.data.passedKiloetersFrom,
+      passedKiloetersTo: navParams.data.passedKiloetersTo,
+    }
   }
 
   ionViewDidLoad() {
     this.setCategoryMame();
     if (this.cat_id == -1) {
       this.searchType = 1;
-      return this.getFiltersResults();
+      console.log("in get filtger result");
+      console.log(this.filters);
+      return this.getFiltersResults(5, 0);
     } else {
       this.searchType = 2;
+      console.log("in get categories");
       return this.getCategoryItems(5, 0);
     }
   }
@@ -114,21 +113,28 @@ export class SearchResultPage {
       );
   }
 
-  getFiltersResults() {
+  getFiltersResults(limit, skip) {
     this.uiProvider.showLoadingPopup('جاري جلب البيانات');
 
-    return this.restProvider.get_filter_result(this.filters)
-      .then(data2 => {
-        this.items = data2;
-        this.uiProvider.hideLoadingPopup();
-        this.items_count = this.items.data.length;
-      });
+    return this.searchProvider.searchByFilters(this.filters, 5, 0)
+      .subscribe(
+        (result) => {
+          this.uiProvider.hideLoadingPopup();
+          this.items = result.data;
+          this.items_count = this.items.length;
+        },
+        (error) => {
+          this.uiProvider.hideLoadingPopup();
+          this.uiProvider.showToastMessage(error);
+          console.log(error);
+        }
+      );
   }
 
   showMore() {
     switch (this.searchType) {
       case 1:
-        this.getFiltersResults();
+        this.getFiltersResults(5, this.items.length);
         break;
       case 2:
         this.getCategoryItems(5, this.items.length);

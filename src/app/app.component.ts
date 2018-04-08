@@ -94,8 +94,10 @@ export class MyApp {
   }
 
   add_ad() {
-    if (this.navCtrl.getActive().component != AddAdvertismentPage) {
+    if(this.authProvider.isLoggedIn() && this.navCtrl.getActive().component != AddAdvertismentPage) {
       this.navCtrl.push(AddAdvertismentPage);
+    } else {
+      this.uiProvider.showToastMessage('من فضلك قم بتسجيل الدخول أولاً');
     }
   }
 

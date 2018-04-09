@@ -1,4 +1,4 @@
-<ion-content no-padding *ngIf="showroomInfo != null">
+<ion-content no-padding *ngIf="showroomInfo != null && metaDataLoaded == true">
   <div class="showroom">
     <div class="showroom-header bg-dark">
       <h2 class="section-title white padding-r-20"> المعارض
@@ -18,7 +18,7 @@
         </div>
         <div class="showroom-info-row">
           <span class="title">الأرضي:</span>
-          <span class="value">  </span>
+          <span class="value"> </span>
         </div>
         <div class="showroom-info-row">
           <span class="title">الموبايل:</span>
@@ -29,18 +29,17 @@
           <span class="value"> {{showroomInfo.email_s}} </span>
         </div>
       </div>
-    </div> 
+    </div>
     <div class="showroom-image">
-      <img *ngIf="showroomInfo.images_s != null && showroomInfo.images_s != ''" src="{{assetBaseurl}}{{showroomInfo.images_s}}" />
+      <img *ngIf="showroomInfo.images_s != null && showroomInfo.images_s != ''" src="{{'http://automark.ae/Public/uploads/thumb/thumb_'}}{{showroomInfo.images_s}}"
+      />
       <div class="icons-container">
-        <ion-icon name="mail"></ion-icon>
-        <ion-icon name="md-share"></ion-icon>
-        <span (click)="toggleLike()">
-          <ion-icon name="heart" class="like" [class.liked]="liked==true"></ion-icon>
-        </span>
+        <ion-icon name="mail" (click)="sendMessage(showroomInfo.user_id)"></ion-icon>
+        <ion-icon name="md-share" (click)="share()"></ion-icon>
       </div>
     </div>
   </div>
+
   <div class="showroom-filters padding-v-10">
     <h2 class="red padding-v-10" text-center>سيارات المعرض</h2>
     <div class="filters-control light-controls">
@@ -49,37 +48,38 @@
           <ion-col col-4>
             <ion-item no-padding>
               <ion-label>النوع</ion-label>
-              <ion-select [placeholder]="'النوع'" okText="تم" cancelText="إغلاق">
-                <ion-option value="value1">كيا</ion-option>
-                <ion-option value="value2">ميرسيدس</ion-option>
+              <ion-select [placeholder]="'النوع'" okText="تم" [(ngModel)]="searchFilters.type" cancelText="إغلاق">
+                <ng-container *ngFor="let type of types">
+                  <ion-option *ngIf="type.sub_t == 0" value="{{type.id_t}}">{{type.name_t_ar}} </ion-option>
+                </ng-container>
               </ion-select>
             </ion-item>
-
           </ion-col>
+
           <ion-col col-4>
             <ion-item no-padding>
               <ion-label>الموديل</ion-label>
-              <ion-select [placeholder]="'الموديل'" okText="تم" cancelText="إغلاق">
-                <ion-option value="value1">ريو</ion-option>
-                <ion-option value="value2">سيراتو</ion-option>
+              <ion-select [placeholder]="'الموديل'" okText="تم" [(ngModel)]="searchFilters.model" cancelText="إغلاق">
+                <ng-container *ngFor="let model of models">
+                  <ion-option *ngIf="model.sub_t != 0 && model.sub_t == searchFilters.type" value="{{model.id_t}}">{{model.name_t_ar}} </ion-option>
+                </ng-container>
               </ion-select>
             </ion-item>
-
           </ion-col>
+
           <ion-col col-4>
             <ion-item no-padding>
               <ion-label>السنة</ion-label>
-              <ion-select [placeholder]="'السنة'" okText="تم" cancelText="إغلاق">
-                <ion-option value="value1">2018</ion-option>
-                <ion-option value="value2">2017</ion-option>
+              <ion-select [placeholder]="'السنة'" okText="تم" [(ngModel)]="searchFilters.yearFrom" cancelText="إغلاق">
+                <ion-option *ngFor="let year of years" value="{{year}}"> {{year}} </ion-option>
               </ion-select>
             </ion-item>
-
           </ion-col>
         </ion-row>
+
         <ion-row justify-content-center>
           <ion-col col-12>
-            <button ion-button full class="showroom-search" color="dark"> ابحث </button>
+            <button ion-button full class="showroom-search" color="dark" (click)="searchInShowroom(5,0)"> ابحث </button>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -88,15 +88,43 @@
 
   <div class="showroom-items">
     <ion-grid justify-content-center>
-      <ion-row>
+        <ion-row *ngIf="seachReequestSent == true && searchRoomItems.length == 0 && isSearching == false">
+            لم يتم العثور على نتائج
+          </ion-row>
+        <ion-row no-margin>
+            <ion-col col-4 col-sm-3 col-md-2 *ngFor="let advertisment of searchRoomItems">
+              <ion-card class="card-search" (click)="ShowDetails(advertisment.id_c);">
+                <img class="advertisment-image" src="{{assetBaseurl}}{{advertisment.images_c[0]}}" />
+                <div class="search-details">
+                  <div class="item-title text-center">
+                    <strong>{{advertisment.title_c}}</strong>
+                  </div>
+                  <div class="item-footer">
+                    <span class="item-price fright ltr">{{advertisment.price_c}}</span>
+                  </div>
+                </div>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col col-12>
+                  <ion-col col-12 justify-content-center>
+                      <button ion-button full class="showmore" *ngIf="canLoadMore" color="dark" (click)="showMore()"> اعرض المزيد </button>
+                  </ion-col>
+              </ion-col>
+            </ion-row>
+      <!-- <ion-row>
         <ion-col col-4 col-sm-3 col-md-2>
           <ion-card class="card-showroom">
             <img src="assets/imgs/car.jpg" />
             <div class="showroom-details">
-              <div class="item-title text-left"><strong>Chevrolet corvet</strong></div>
+              <div class="item-title text-left">
+                <strong>Chevrolet corvet</strong>
+              </div>
               <div class="item-date text-left">10 November 1991</div>
               <div class="item-footer">
-                <span class="item-location fleft"><ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
+                <span class="item-location fleft">
+                  <ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
                 <span class="item-price fright">{{'1200' | number}} AED</span>
               </div>
             </div>
@@ -106,10 +134,13 @@
           <ion-card class="card-showroom">
             <img src="assets/imgs/car.jpg" />
             <div class="showroom-details">
-              <div class="item-title text-left"><strong>Chevrolet corvet</strong></div>
+              <div class="item-title text-left">
+                <strong>Chevrolet corvet</strong>
+              </div>
               <div class="item-date text-left">10 November 1991</div>
               <div class="item-footer">
-                <span class="item-location fleft"><ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
+                <span class="item-location fleft">
+                  <ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
                 <span class="item-price fright">{{'1200' | number}} AED</span>
               </div>
             </div>
@@ -119,10 +150,13 @@
           <ion-card class="card-showroom">
             <img src="assets/imgs/car.jpg" />
             <div class="showroom-details">
-              <div class="item-title text-left"><strong>Chevrolet corvet</strong></div>
+              <div class="item-title text-left">
+                <strong>Chevrolet corvet</strong>
+              </div>
               <div class="item-date text-left">10 November 1991</div>
               <div class="item-footer">
-                <span class="item-location fleft"><ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
+                <span class="item-location fleft">
+                  <ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
                 <span class="item-price fright">{{'1200' | number}} AED</span>
               </div>
             </div>
@@ -132,10 +166,13 @@
           <ion-card class="card-showroom">
             <img src="assets/imgs/car.jpg" />
             <div class="showroom-details">
-              <div class="item-title text-left"><strong>Chevrolet corvet</strong></div>
+              <div class="item-title text-left">
+                <strong>Chevrolet corvet</strong>
+              </div>
               <div class="item-date text-left">10 November 1991</div>
               <div class="item-footer">
-                <span class="item-location fleft"><ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
+                <span class="item-location fleft">
+                  <ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
                 <span class="item-price fright">{{'1200' | number}} AED</span>
               </div>
             </div>
@@ -145,10 +182,13 @@
           <ion-card class="card-showroom">
             <img src="assets/imgs/car.jpg" />
             <div class="showroom-details">
-              <div class="item-title text-left"><strong>Chevrolet corvet</strong></div>
+              <div class="item-title text-left">
+                <strong>Chevrolet corvet</strong>
+              </div>
               <div class="item-date text-left">10 November 1991</div>
               <div class="item-footer">
-                <span class="item-location fleft"><ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
+                <span class="item-location fleft">
+                  <ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
                 <span class="item-price fright">{{'1200' | number}} AED</span>
               </div>
             </div>
@@ -158,10 +198,13 @@
           <ion-card class="card-showroom">
             <img src="assets/imgs/car.jpg" />
             <div class="showroom-details">
-              <div class="item-title text-left"><strong>Chevrolet corvet</strong></div>
+              <div class="item-title text-left">
+                <strong>Chevrolet corvet</strong>
+              </div>
               <div class="item-date text-left">10 November 1991</div>
               <div class="item-footer">
-                <span class="item-location fleft"><ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
+                <span class="item-location fleft">
+                  <ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
                 <span class="item-price fright">{{'1200' | number}} AED</span>
               </div>
             </div>
@@ -171,10 +214,13 @@
           <ion-card class="card-showroom">
             <img src="assets/imgs/car.jpg" />
             <div class="showroom-details">
-              <div class="item-title text-left"><strong>Chevrolet corvet</strong></div>
+              <div class="item-title text-left">
+                <strong>Chevrolet corvet</strong>
+              </div>
               <div class="item-date text-left">10 November 1991</div>
               <div class="item-footer">
-                <span class="item-location fleft"><ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
+                <span class="item-location fleft">
+                  <ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
                 <span class="item-price fright">{{'1200' | number}} AED</span>
               </div>
             </div>
@@ -184,17 +230,20 @@
           <ion-card class="card-showroom">
             <img src="assets/imgs/car.jpg" />
             <div class="showroom-details">
-              <div class="item-title text-left"><strong>Chevrolet corvet</strong></div>
+              <div class="item-title text-left">
+                <strong>Chevrolet corvet</strong>
+              </div>
               <div class="item-date text-left">10 November 1991</div>
               <div class="item-footer">
-                <span class="item-location fleft"><ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
+                <span class="item-location fleft">
+                  <ion-icon class="fleft locatator-icon" name="ios-pin-outline"></ion-icon>Dubai</span>
                 <span class="item-price fright">{{'1200' | number}} AED</span>
               </div>
             </div>
           </ion-card>
         </ion-col>
-        
-      </ion-row>
+
+      </ion-row> -->
     </ion-grid>
   </div>
 

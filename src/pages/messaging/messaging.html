@@ -8,6 +8,6 @@
 </ion-header>
 
 
-<ion-content class="messaing-content" no-padding no-margin>
+<ion-content class="messaing-content" no-padding no-margin *ngIf="canLoadFrame == true">
   <iframe class="messaging-frame" [src]="src | safe" frameborder="0" (load)="refreshIframe();"></iframe>
 </ion-content>

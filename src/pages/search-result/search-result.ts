@@ -125,8 +125,8 @@ export class SearchResultPage {
         },
         (error) => {
           this.uiProvider.hideLoadingPopup();
-          this.uiProvider.showToastMessage(error);
-          console.log(error);
+          this.uiProvider.showToastMessage(error.json().error.message);
+          console.log(error.json().error.message);
         }
       );
   }

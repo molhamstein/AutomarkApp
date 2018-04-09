@@ -15,15 +15,21 @@ export class SearchProvider {
     return this.http.get(actionUrl);
   }
 
-  searchByFilters(filters, limit, skip) {
+  searchByFilters(filters, limit, skip): Observable<any> {
     let searchOptions = this.buildSearchOptionsForCar(filters)
+    const actionUrl = `cars/cars_advertisment?limit=${limit}&offset=${skip}&dynamic_filter=${searchOptions.dynamicFilter}&static_filter=${searchOptions.staticFilters}`;
+    return this.http.get(actionUrl);
+  }
+
+  searchInShowroom(filters, limit, skip) {
+    let searchOptions = this.buildSearchOptionsForShowroom(filters);
     const actionUrl = `cars/cars_advertisment?limit=${limit}&offset=${skip}&dynamic_filter=${searchOptions.dynamicFilter}&static_filter=${searchOptions.staticFilters}`;
     return this.http.get(actionUrl);
   }
 
   private buildSearchOptionsForCar(filters) {
     let staticFilters = [];
-    let dynamicFilter=[{"op":"between","_1":1,"_2":100000000,"code_m":"transmission"}]
+    let dynamicFilter = [{ "op": "between", "_1": 1, "_2": 100000000, "code_m": "transmission" }]
     for (var key in filters) {
       if (filters.hasOwnProperty(key)) {
         var value = filters[key];
@@ -39,20 +45,20 @@ export class SearchProvider {
               staticFilters.push({ "op": "like", "option": "model_c", "_1": Number(filters.model) });
             }
             break;
-          case "case":
-            if (value != null) {
-              staticFilters.push({ "op": "like", "option": "case_c", "_1": Number(filters.case) });
-            }
-            break;
+          // case "case":
+          //   if (value != null) {
+          //     staticFilters.push({ "op": "like", "option": "case_c", "_1": Number(filters.case) });
+          //   }
+          //   break;
           case "yearFrom":
             if (value != null && filters["yearTo"] != null) {
-              staticFilters.push({ "op": "between", "_1": Number(filters.yearFrom), "_2": Number(filters.yearTo), "option": "yeat_c" });
+              staticFilters.push({ "op": "between", "_1": Number(filters.yearFrom), "_2": Number(filters.yearTo), "option": "year_c" });
             }
             if (value == null && filters["yearTo"] != null) {
-              staticFilters.push(staticFilters.push({ "op": "between", "_1": 0, "_2": Number(filters.yearTo), "option": "yeat_c" }))
+              staticFilters.push(staticFilters.push({ "op": "between", "_1": 0, "_2": Number(filters.yearTo), "option": "year_c" }))
             }
             if (value != null && filters["yearTo"] == null) {
-              staticFilters.push(staticFilters.push({ "op": "between", "_1": Number(filters.yearFrom), "_2": 100000000000, "option": "yeat_c" }))
+              staticFilters.push(staticFilters.push({ "op": "between", "_1": Number(filters.yearFrom), "_2": 100000000000, "option": "year_c" }))
             }
             break;
 
@@ -83,8 +89,43 @@ export class SearchProvider {
         }
       }
     }
-    
-    return { staticFilters : JSON.stringify(staticFilters), dynamicFilter: JSON.stringify(dynamicFilter) };
+
+    return { staticFilters: JSON.stringify(staticFilters), dynamicFilter: JSON.stringify(dynamicFilter) };
+  }
+
+  private buildSearchOptionsForShowroom(filters) {
+    let staticFilters = [];
+    let dynamicFilter = [{ "op": "between", "_1": 1, "_2": 100000000, "code_m": "transmission" }]
+    for (var key in filters) {
+      if (filters.hasOwnProperty(key)) {
+        var value = filters[key];
+        switch (key) {
+          case "type":
+            if (value != null) {
+              staticFilters.push({ "op": "like", "option": "type_c", "_1": Number(filters.type) });
+            }
+            break;
+          case "showroom":
+            if (value != null) {
+              staticFilters.push({ "op": "like", "option": "shows_c", "_1": Number(filters.showroom) });
+            }
+            break;
+          case "model":
+            if (value != null) {
+              staticFilters.push({ "op": "like", "option": "model_c", "_1": Number(filters.model) });
+            }
+            break;
+          case "yearFrom":
+            if (value != null) {
+              staticFilters.push({ "op": "between", "_1": Number(filters.yearFrom), "_2": 100000000000, "option": "year_c" });
+            }
+            break;
+          default:
+            break;
+        }
+      }
+    }
+    return { staticFilters: JSON.stringify(staticFilters), dynamicFilter: JSON.stringify(dynamicFilter) };
   }
 
 }

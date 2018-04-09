@@ -26,4 +26,8 @@ export class ShowroomProvider {
     return this.http.get(actionUrl);
   }
 
+  getCarTypesAndModels(): Observable<any> {
+    return this.http.get('cars_types');
+  }
+
 }

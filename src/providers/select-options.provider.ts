@@ -68,5 +68,4 @@ export class SelectsOptionsProvider {
         }
         return carPalleteOptions;
     }
-
 }

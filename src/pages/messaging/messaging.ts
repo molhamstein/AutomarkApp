@@ -13,6 +13,7 @@ export class MessagingPage {
   isRefreshed = false;
   userId;
   targetId;
+  canLoadFrame = false;
   constructor(public navCtrl: NavController, public navParams: NavParams, public uiProvider: UiProvider, public authProvider: AuthProvider) { }
 
   ionViewDidLoad() {
@@ -24,7 +25,8 @@ export class MessagingPage {
     } else {
       this.src = `http://automark.ae/arrowchat/public/mobile/?userid=${this.userId}`;
     }
-
+    this.canLoadFrame = true;
+    console.log(this.src);
     this.uiProvider.showLoadingPopup("انتظر قليلاً من فضلك");
   }
 

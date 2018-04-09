@@ -7,6 +7,8 @@ import { Camera } from '@ionic-native/camera';
 import { ImageProvider } from '../../providers/image.provider';
 import { config } from '../../config';
 import { Events } from 'ionic-angular'
+import { SearchResultPage } from '../search-result/search-result';
+import { MessagingPage } from '../messaging/messaging';
 
 @Component({
   selector: 'page-my-account',
@@ -130,5 +132,18 @@ export class MyAccountPage {
           this.uiProvider.showToastMessage(error.error.message);
         }
       );
+  }
+
+  showMyAddvertisments() {
+    this.navCtrl.push(SearchResultPage, {cat_id: -1, userId:this.userInfo.id_u})
+  }
+
+  showMessages() {
+      if(this.authProvider.isLoggedIn()) {
+        this.navCtrl.push(MessagingPage);
+      } else {
+        this.uiProvider.showToastMessage('من فضلك قم بتسجيل الدخول أولاً');
+      }
+    
   }
 }

@@ -51,6 +51,7 @@ export class SearchResultPage {
       priceTo: navParams.data.priceTo,
       passedKiloetersFrom: navParams.data.passedKiloetersFrom,
       passedKiloetersTo: navParams.data.passedKiloetersTo,
+      userId: navParams.data.userId
     }
   }
 

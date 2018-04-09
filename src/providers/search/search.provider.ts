@@ -16,7 +16,7 @@ export class SearchProvider {
   }
 
   searchByFilters(filters, limit, skip): Observable<any> {
-    let searchOptions = this.buildSearchOptionsForCar(filters)
+    let searchOptions = this.buildSearchOptions(filters)
     const actionUrl = `cars/cars_advertisment?limit=${limit}&offset=${skip}&dynamic_filter=${searchOptions.dynamicFilter}&static_filter=${searchOptions.staticFilters}`;
     return this.http.get(actionUrl);
   }
@@ -27,7 +27,7 @@ export class SearchProvider {
     return this.http.get(actionUrl);
   }
 
-  private buildSearchOptionsForCar(filters) {
+  private buildSearchOptions(filters) {
     let staticFilters = [];
     let dynamicFilter = [{ "op": "between", "_1": 1, "_2": 100000000, "code_m": "transmission" }]
     for (var key in filters) {
@@ -81,6 +81,11 @@ export class SearchProvider {
           case "city":
             if (value != null) {
               staticFilters.push({ "op": "like", "option": "city_c", "_1": Number(filters.city) });
+            }
+            break;
+          case "userId":
+            if (value != null) {
+              staticFilters.push({ "op": "like", "option": "id_user", "_1": Number(filters.userId) });
             }
             break;
 

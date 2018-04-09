@@ -45,11 +45,10 @@
 		</div>
 	</div>
 	<ion-list no-padding no-margin>
-		<ion-item no-padding class="bg-dark profile-list-item">
+		<ion-item no-padding class="bg-dark profile-list-item" (click)="showMessages()">
 			<div class="icon-container">
 				<span class="profile-list-item-icon">
 					<ion-icon class="red" name="mail"></ion-icon>
-					<ion-badge class="custom-badge">5</ion-badge>
 				</span>
 			</div>
 			<div class="description-container">
@@ -59,29 +58,17 @@
 
 
 		</ion-item>
-		<ion-item no-padding class="bg-dark profile-list-item">
+		<ion-item no-padding class="bg-dark profile-list-item" (click)="showMyAddvertisments()">
 			<div class="icon-container">
 
 				<span class="profile-list-item-icon">
 					<ion-icon class="red" name="document"></ion-icon>
-					<ion-badge class="custom-badge">5</ion-badge>
 				</span>
 			</div>
 			<div class="description-container">
 				<span class="profile-list-item-description"> قائمة إعلاناتي </span>
 			</div>
 		</ion-item>
-		<!-- <ion-item no-padding class="bg-dark profile-list-item">
-			<div class="icon-container">
-				<span class="profile-list-item-icon">
-					<ion-icon class="red" name="heart"></ion-icon>
-					<ion-badge class="custom-badge">5</ion-badge>
-				</span>
-			</div>
-			<div class="description-container">
-				<span class="profile-list-item-description"> الإعلانات المفضلة </span>
-			</div>
-		</ion-item> -->
 	</ion-list>
 </ion-content>
 

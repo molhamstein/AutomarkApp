@@ -1,33 +1,26 @@
-<ion-content>
+<ion-content class="item-details-container">
 	<ion-grid no-margin no-padding>
-		<ion-row>
-			<ion-col col-1>
-			</ion-col>
-			<ion-col col-10>
-				<ion-row style="padding-top: 3%;">
-					<ion-col col-6>
-						{{details.data[0].title_c}}
-					</ion-col>
-					<ion-col col-6 align-self-end>
-						<ion-row justify-content-end align-items-end>
-							<b style="color:#ed1c24;">AED {{details.data[0].price_c}}</b>
-						</ion-row>
-					</ion-col>
-				</ion-row>
-				<ion-row>
-					<ion-col col-4>
-						<ion-row *ngFor="let image of details.data[0].images_c | slice:1">
-							<img class="img_gallery" src="http://automark.ae/Public/uploads/{{image}}" imageViewer/>
-						</ion-row>
-					</ion-col>
-					<ion-col col-8>
-						<img src="http://automark.ae/Public/uploads/{{details.data[0].images_c[0]}}" imageViewer/>
-					</ion-col>
-				</ion-row>
-			</ion-col>
-			<ion-col col-1>
+		<ion-row justify-content-center>
+			<ion-col col-12 class="item-header">
+				<span class="item-title">{{details.data[0].title_c}}</span>
+				<span class="item-price">
+					<strong class="red">{{details.data[0].price_c}}</strong>
+				</span>
 			</ion-col>
 		</ion-row>
+		<ion-row justify-content-center class="gallery-container">
+			<ion-col col-2 col-sm-2 col-md-1>
+				<div class="thumbnail-image" *ngFor="let image of details.data[0].images_c | slice:1">
+					<img src="http://automark.ae/Public/uploads/{{image}}" imageViewer/>
+				</div>
+			</ion-col>
+			<ion-col col-9 col-sm-8 col-md-7>
+				<div class="full-image">
+					<img src="http://automark.ae/Public/uploads/{{details.data[0].images_c[0]}}" imageViewer/>
+				</div>
+			</ion-col>
+		</ion-row>
+
 		<ion-row style="background-color: #363636;padding: 12px;">
 			<ion-col col-12>
 				<ion-row>
@@ -131,6 +124,7 @@
 					</ion-col>
 				</ion-row>
 			</ion-col>
+
 			<ion-col col-8 align-self-end>
 				<div class="social-icons-container">
 					<strong class="share-title">مشاركة</strong>

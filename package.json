@@ -88,8 +88,7 @@
             "cordova-filepath-resolver": {}
         },
         "platforms": [
-            "android",
-            "ios"
+            "android"
         ]
     }
 }

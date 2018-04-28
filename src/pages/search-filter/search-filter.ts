@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { SearchResultPage } from '../search-result/search-result';
 import { SelectsOptionsProvider } from '../../providers/select-options.provider';
 import { UiProvider } from '../../providers/ui.provider';
-import { SearchCarModel } from "./search-filter.model";
+import { SearchCarModel, SearchBikeModel, SearchTruckModel, SearchBoatModel, SearchMobileNumberModel, SearchCarPalleteModel } from "./search-filter.model";
 import { AdvertismentProvider } from '../../providers/advertisment/advertisment.provider';
 import * as moment from 'moment';
 
@@ -13,7 +13,19 @@ import * as moment from 'moment';
 })
 export class SearchFilterPage {
   searchCarModel: SearchCarModel;
+  searchBikeModel: SearchBikeModel;
+  searchTruckModel: SearchTruckModel;
+  searchBoatModel: SearchBoatModel;
+  searchMobileNumberModel: SearchMobileNumberModel;
+  searchCarPalleteModel: SearchCarPalleteModel;
+
   searchCarSelectOptions: any;
+  searchBikeSelectOptions: any;
+  searchBoatSelectOptions: any;
+  searchTruckSelectOptions: any;
+  searchCarPalleteSelectOptions: any;
+  searchMobileNumbersSelectOptions: any;
+
   activeTab = 1;
 
   countries: any[];
@@ -36,9 +48,35 @@ export class SearchFilterPage {
     this.getSelectMenusOptions();
   }
 
+
   setActiveTab(index) {
-    //Should Be Implemented to Add Search for Other types
+    if (index != this.activeTab) {
+      this.activeTab = index;
+      switch (index) {
+        case 1:
+          this.searchCarModel = new SearchCarModel();
+          break;
+        case 2:
+          this.searchBikeModel = new SearchBikeModel();
+          break;
+        case 3:
+          this.searchTruckModel = new SearchTruckModel();
+          break;
+        case 4:
+          this.searchBoatModel = new SearchBoatModel();
+          break;
+        case 5:
+          this.searchMobileNumberModel = new SearchMobileNumberModel();
+          break;
+        case 6:
+          this.searchCarPalleteModel = new SearchCarPalleteModel();
+          break;
+        default:
+          break;
+      }
+    }
   }
+
 
   getSelectMenusOptions() {
     // Get Remote Options from API and filter them
@@ -48,6 +86,12 @@ export class SearchFilterPage {
         (result) => {
           this.uiProvider.hideLoadingPopup();
           this.searchCarSelectOptions = this.selectOptionsProvider.getCarOptions(result[2].data);
+          this.searchBikeSelectOptions = this.selectOptionsProvider.getBikeSelectOptions(result[2].data);
+          this.searchBoatSelectOptions = this.selectOptionsProvider.getBoatSelectOptions(result[2].data);
+          this.searchTruckSelectOptions = this.selectOptionsProvider.getTruckSelectOptions(result[2].data);
+          this.searchCarPalleteSelectOptions = this.selectOptionsProvider.getCarPalleteSelectOptions(result[2].data);
+          this.searchMobileNumbersSelectOptions = this.selectOptionsProvider.getMobileNumberSelectOptions(result[2].data);
+          console.log(this.searchCarPalleteSelectOptions);
           this.countries = result[0].data;
           this.cities = result[0].data;
           this.types = result[1].data;
@@ -81,7 +125,33 @@ export class SearchFilterPage {
         priceFrom: this.searchCarModel.priceFrom,
         priceTo: this.searchCarModel.priceTo,
         passedKiloetersFrom: this.searchCarModel.passedKiloetersFrom,
-        passedKiloetersTo: this.searchCarModel.passedKiloetersTo
+        passedKiloetersTo: this.searchCarModel.passedKiloetersTo,
+        category: this.searchCarModel.category
       });
+  }
+
+  searchBike() {
+    let searchResultParameters = Object.assign({cat_id: -1}, this.searchBikeModel);
+    this.navCtrl.push(SearchResultPage, searchResultParameters);
+  }
+
+  searchTruck() {
+    let searchResultParameters = Object.assign({cat_id: -1}, this.searchTruckModel);
+    this.navCtrl.push(SearchResultPage, searchResultParameters);
+  }
+
+  searchBoat() {
+    let searchResultParameters = Object.assign({cat_id: -1}, this.searchBoatModel);
+    this.navCtrl.push(SearchResultPage, searchResultParameters);
+  }
+
+  searchMobileNumber() {
+    let searchResultParameters = Object.assign({cat_id: -1}, this.searchMobileNumberModel);
+    this.navCtrl.push(SearchResultPage, searchResultParameters);
+  }
+
+  searchCarPallete() {
+    let searchResultParameters = Object.assign({cat_id: -1}, this.searchCarPalleteModel);
+    this.navCtrl.push(SearchResultPage, searchResultParameters);
   }
 }

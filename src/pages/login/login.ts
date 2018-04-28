@@ -45,8 +45,6 @@ export class LoginPage {
           },
           (error) => {
             this.uiProvider.hideLoadingPopup();
-            console.log("error");
-            // this.uiProvider.showToastMessage(error.error.message);
           }
         );
     } else {
@@ -64,7 +62,7 @@ export class LoginPage {
             this.loginModel.password = this.registerModel.password;
             this.uiProvider.hideLoadingPopup();
             this.uiProvider.showToastMessage('تم انشاء الحساب بنجاح');
-            this.login({valid: true});            
+            this.login({valid: true});
           },
           (error) => {
             this.uiProvider.hideLoadingPopup();
@@ -97,9 +95,4 @@ export class LoginPage {
     }
   }
 
-  
-  // "username":"MolTemp25",
-  // "password": "123456"
-
-  
 }

@@ -1,194 +1,459 @@
 <ion-content class="advanced-search-content bg-grey" no-padding *ngIf="metaDataLoaded == true">
-	<h2 class="container-title padding-h-20 padding-t-20 padding-b-10 text-right white">البحث المتقدم</h2>
-	<div class="advanced-search-container">
-		<ion-grid>
-			<ion-row class="advertisment-type" justify-content-center>
-				<ion-col [class.active]="activeTab == 1" (click)="setActiveTab(1)">
-					<ion-label>سيارات</ion-label>
-				</ion-col>
-				<ion-col [class.active]="activeTab == 2" (click)="setActiveTab(2)">
-					<ion-label>دراجات</ion-label>
-				</ion-col>
-				<ion-col [class.active]="activeTab == 3" (click)="setActiveTab(3)">
-					<ion-label>شاحنات</ion-label>
-				</ion-col>
-				<ion-col [class.active]="activeTab == 4" (click)="setActiveTab(4)">
-					<ion-label>قوارب</ion-label>
-				</ion-col>
-				<ion-col [class.active]="activeTab == 5" (click)="setActiveTab(5)">
-					<ion-label>ارقام</ion-label>
-				</ion-col>
-				<ion-col class="last" [class.active]="activeTab == 6" (click)="setActiveTab(6)">
-					<ion-label>لوحة سيارة</ion-label>
-				</ion-col>
-			</ion-row>
-		</ion-grid>
+  <h2 class="container-title padding-h-20 padding-t-20 padding-b-10 text-right white">البحث المتقدم</h2>
+  <div class="advanced-search-container">
+    <ion-grid>
+      <ion-row class="advertisment-type" justify-content-center>
+        <ion-col [class.active]="activeTab == 1" (click)="setActiveTab(1)">
+          <ion-label>سيارات</ion-label>
+        </ion-col>
+        <ion-col [class.active]="activeTab == 2" (click)="setActiveTab(2)">
+          <ion-label>دراجات</ion-label>
+        </ion-col>
+        <ion-col [class.active]="activeTab == 3" (click)="setActiveTab(3)">
+          <ion-label>شاحنات</ion-label>
+        </ion-col>
+        <ion-col [class.active]="activeTab == 4" (click)="setActiveTab(4)">
+          <ion-label>قوارب</ion-label>
+        </ion-col>
+        <ion-col [class.active]="activeTab == 5" (click)="setActiveTab(5)">
+          <ion-label>ارقام</ion-label>
+        </ion-col>
+        <ion-col class="last" [class.active]="activeTab == 6" (click)="setActiveTab(6)">
+          <ion-label>لوحة سيارة</ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-		<ion-grid *ngIf="activeTab == 1">
-			<form #searchCarAddvertismentForm="ngForm" (ngSubmit)="searchCar(searchCarAddvertismentForm)">
-				<ion-row class="search-advertisment-form dark-controls">
-					<ion-col col-6>
-						<ion-item>
-							<ion-label>الدولة</ion-label>
-							<ion-select [placeholder]="'الدولة'" name="country" [(ngModel)]="searchCarModel.country" okText="إختيار" cancelText="إغلاق">
-								<ng-container *ngFor="let country of countries">
-									<ion-option *ngIf="country.sub_c == 0" value="{{country.id_c}}">{{country.name_c_ar}}</ion-option>
-								</ng-container>
-							</ion-select>
-						</ion-item>
-					</ion-col>
-					<ion-col col-6>
-						<ion-item>
-							<ion-label>المدينة</ion-label>
-							<ion-select [placeholder]="'المدينة'" [(ngModel)]="searchCarModel.city" name="city" okText="إختيار" cancelText="إغلاق">
-								<ng-container *ngFor="let city of cities">
-									<ion-option *ngIf="city.sub_c != 0 && city.sub_c == searchCarModel.country" value="{{city.id_c}}">{{city.name_c_ar}}</ion-option>
-								</ng-container>
-							</ion-select>
-						</ion-item>
-					</ion-col>
-					<ion-col col-6>
-						<ion-item>
-							<ion-label>النوع</ion-label>
-							<ion-select [placeholder]="'النوع'" name="type" [(ngModel)]="searchCarModel.type" okText="إختيار" cancelText="إغلاق">
-								<ng-container *ngFor="let type of types">
-									<ion-option *ngIf="type.sub_t == 0" value="{{type.id_t}}">{{type.name_t_ar}} </ion-option>
-								</ng-container>
-							</ion-select>
-						</ion-item>
-					</ion-col>
+    <ion-grid *ngIf="activeTab == 1">
+      <form #searchCarAddvertismentForm="ngForm" (ngSubmit)="searchCar(searchCarAddvertismentForm)">
+        <ion-row class="search-advertisment-form dark-controls">
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>الدولة</ion-label>
+              <ion-select [placeholder]="'الدولة'" name="country" [(ngModel)]="searchCarModel.country" okText="إختيار" cancelText="إغلاق">
+                <ng-container *ngFor="let country of countries">
+                  <ion-option *ngIf="country.sub_c == 0" value="{{country.id_c}}">{{country.name_c_ar}}</ion-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>المدينة</ion-label>
+              <ion-select [placeholder]="'المدينة'" [(ngModel)]="searchCarModel.city" name="city" okText="إختيار" cancelText="إغلاق">
+                <ng-container *ngFor="let city of cities">
+                  <ion-option *ngIf="city.sub_c != 0 && city.sub_c == searchCarModel.country" value="{{city.id_c}}">{{city.name_c_ar}}</ion-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>النوع</ion-label>
+              <ion-select [placeholder]="'النوع'" name="type" [(ngModel)]="searchCarModel.type" okText="إختيار" cancelText="إغلاق">
+                <ng-container *ngFor="let type of types">
+                  <ion-option *ngIf="type.sub_t == 0" value="{{type.id_t}}">{{type.name_t_ar}} </ion-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+          </ion-col>
 
-					<ion-col col-6>
-						<ion-item>
-							<ion-label> الموديل </ion-label>
-							<ion-select [placeholder]="'الموديل'" name="model" [(ngModel)]="searchCarModel.model" okText="إختيار" cancelText="إغلاق">
-								<ng-container *ngFor="let model of models">
-									<ion-option *ngIf="model.sub_t != 0 && model.sub_t == searchCarModel.type" value="{{model.id_t}}">{{model.name_t_ar}} </ion-option>
-								</ng-container>
-							</ion-select>
-						</ion-item>
-					</ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label> الموديل </ion-label>
+              <ion-select [placeholder]="'الموديل'" name="model" [(ngModel)]="searchCarModel.model" okText="إختيار" cancelText="إغلاق">
+                <ng-container *ngFor="let model of models">
+                  <ion-option *ngIf="model.sub_t != 0 && model.sub_t == searchCarModel.type" value="{{model.id_t}}">{{model.name_t_ar}} </ion-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+          </ion-col>
 
-					<ion-col col-6>
-						<ion-item>
-							<ion-input [(ngModel)]="searchCarModel.priceFrom" name="priceFrom" type="text" placeholder="من السعر"></ion-input>
-						</ion-item>
-					</ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-input [(ngModel)]="searchCarModel.priceFrom" name="priceFrom" type="text" placeholder="من السعر"></ion-input>
+            </ion-item>
+          </ion-col>
 
-					<ion-col col-6>
-						<ion-item>
-							<ion-input [(ngModel)]="searchCarModel.priceTo" name="priceTo" type="text" placeholder="إلى السعر"></ion-input>
-						</ion-item>
-					</ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-input [(ngModel)]="searchCarModel.priceTo" name="priceTo" type="text" placeholder="إلى السعر"></ion-input>
+            </ion-item>
+          </ion-col>
 
-					<ion-col col-6>
-						<ion-item>
-							<ion-label>من السنة</ion-label>
-							<ion-select [placeholder]="'من السنة'" [(ngModel)]="searchCarModel.yearFrom" name="yearFrom" okText="إختيار" cancelText="إغلاق">
-								<ion-option *ngFor="let year of years" value="{{year}}"> {{year}} </ion-option>
-							</ion-select>
-						</ion-item>
-					</ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>من السنة</ion-label>
+              <ion-select [placeholder]="'من السنة'" [(ngModel)]="searchCarModel.yearFrom" name="yearFrom" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let year of years" value="{{year}}"> {{year}} </ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
 
-					<ion-col col-6>
-						<ion-item>
-							<ion-label>إلى السنة</ion-label>
-							<ion-select [placeholder]="'إلى السنة'" [(ngModel)]="searchCarModel.yearTo" name="yearTo" okText="إختيار" cancelText="إغلاق">
-									<ng-container *ngFor="let year of years">
-										<ion-option *ngIf="searchCarModel.yearFrom != null && year > searchCarModel.yearFrom" value="{{year}}">{{year}} </ion-option>
-									</ng-container>
-							</ion-select>
-						</ion-item>
-					</ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>إلى السنة</ion-label>
+              <ion-select [placeholder]="'إلى السنة'" [(ngModel)]="searchCarModel.yearTo" name="yearTo" okText="إختيار" cancelText="إغلاق">
+                <ng-container *ngFor="let year of years">
+                  <ion-option *ngIf="searchCarModel.yearFrom != null && year > searchCarModel.yearFrom" value="{{year}}">{{year}} </ion-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+          </ion-col>
 
-					<ion-col col-6>
-						<ion-item>
-							<ion-input [(ngModel)]="searchCarModel.passedKiloetersFrom" name="passeedKilometersFrom" type="text" placeholder="عدد الكيلومترات من"></ion-input>
-						</ion-item>
-					</ion-col>
-					<ion-col col-6>
-						<ion-item>
-							<ion-input [(ngModel)]="searchCarModel.passedKiloetersTo" name="passeedKilometersTo" type="text" placeholder="عدد الكيلومترات إلى"></ion-input>
-						</ion-item>
-					</ion-col>
-					<ion-col col-6>
-						<ion-item>
-							<ion-label>الهيئة</ion-label>
-							<ion-select [placeholder]="'الهيئة'" [(ngModel)]="searchCarModel.case" name="case" okText="إختيار" cancelText="إغلاق">
-								<ion-option *ngFor="let case of searchCarSelectOptions.case.value_option" value="{{case.id_v}}">{{case.value_v_ar}} </ion-option>
-							</ion-select>
-						</ion-item>
-					</ion-col>
-					<!-- <ion-col col-6>
-						<ion-item>
-							<ion-label>نوع الوقود</ion-label>
-							<ion-select [placeholder]="'نوع الوقود'" name="fuel" [(ngModel)]="searchCarModel.fuel" okText="إختيار" cancelText="إغلاق">
-								<ion-option *ngFor="let fuel of searchCarSelectOptions.fuel.value_option" value="{{fuel.id_v}}">{{fuel.value_v_ar}} </ion-option>
-							</ion-select>
-						</ion-item>
-					</ion-col>
-					<ion-col col-6>
-						<ion-item>
-							<ion-label>تصنيف السيارة</ion-label>
-							<ion-select [placeholder]="'تصنيف السيارة'" name="carClass" [(ngModel)]="searchCarModel.carClass" okText="إختيار" cancelText="إغلاق">
-								<ion-option *ngFor="let class of searchCarSelectOptions.claas_car.value_option" value="{{class.id_v}}">{{class.value_v_ar}} </ion-option>
-							</ion-select>
-						</ion-item>
-					</ion-col>
-					<ion-col col-6>
-						<ion-item>
-							<ion-label>المورد</ion-label>
-							<ion-select [placeholder]="'المورد'" name="supplier" [(ngModel)]="searchCarModel.supplier" okText="إختيار" cancelText="إغلاق">
-								<ion-option *ngFor="let supplier of searchCarSelectOptions.supplier.value_option" value="{{supplier.id_v}}">{{supplier.value_v_ar}} </ion-option>
-							</ion-select>
-						</ion-item>
-					</ion-col>
-					<ion-col col-6>
-						<ion-item>
-							<ion-label>عدد السلندرات</ion-label>
-							<ion-select [placeholder]="'عدد السلندرات'" name="cylinderNumber" [(ngModel)]="searchCarModel.cylindersNumber" okText="إختيار"
-							 cancelText="إغلاق">
-								<ion-option *ngFor="let cylinder of searchCarSelectOptions.numberselender.value_option" value="{{cylinder.id_v}}">{{cylinder.value_v_ar}} </ion-option>
-							</ion-select>
-						</ion-item>
-					</ion-col>
-					<ion-col col-6>
-						<ion-item>
-							<ion-label>نوع ناقل الحركة</ion-label>
-							<ion-select [placeholder]="'ناقل الحركة'" [(ngModel)]="searchCarModel.transmission" name="transmission" okText="إختيار" cancelText="إغلاق">
-								<ion-option *ngFor="let transmission of searchCarSelectOptions.transmission.value_option" value="{{transmission.id_v}}">{{transmission.value_v_ar}} </ion-option>
-							</ion-select>
-						</ion-item>
-					</ion-col> -->
-				</ion-row>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>الهيئة</ion-label>
+              <ion-select [placeholder]="'الهيئة'" [(ngModel)]="searchCarModel.case" name="case" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let case of searchCarSelectOptions.case.value_option" value="{{case.id_v}}">{{case.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
 
-				<ion-row>
-					<ion-col col-12>
-						<button type="submit" ion-button full class="submit-advertisment">ابحث الآن</button>
-					</ion-col>
-				</ion-row>
-			</form>
-		</ion-grid>
+        <ion-row>
+          <ion-col col-12>
+            <button type="submit" ion-button full class="submit-advertisment">ابحث الآن</button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-grid>
 
-		<ion-grid *ngIf="activeTab == 2">
-			
-		</ion-grid>
+    <ion-grid *ngIf="activeTab == 2">
+      <form #searchBikeAddvertismentForm="ngForm" (ngSubmit)="searchBike(searchBikeAddvertismentForm)">
+        <ion-row class="search-advertisment-form dark-controls">
+          <ion-col col-6>
+            <ion-item>
+              <ion-input [(ngModel)]="searchBikeModel.priceFrom" name="priceFrom" type="text" placeholder="من السعر"></ion-input>
+            </ion-item>
+          </ion-col>
 
-		<ion-grid *ngIf="activeTab == 3">
-			
-		</ion-grid>
+          <ion-col col-6>
+            <ion-item>
+              <ion-input [(ngModel)]="searchBikeModel.priceTo" name="priceTo" type="text" placeholder="إلى السعر"></ion-input>
+            </ion-item>
+          </ion-col>
 
-		<ion-grid *ngIf="activeTab == 4">
-			
-		</ion-grid>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>من السنة</ion-label>
+              <ion-select [placeholder]="'من السنة'" [(ngModel)]="searchBikeModel.yearFrom" name="yearFrom" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let year of years" value="{{year}}"> {{year}} </ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
 
-		<ion-grid *ngIf="activeTab == 5">
-			
-		</ion-grid>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>إلى السنة</ion-label>
+              <ion-select [placeholder]="'إلى السنة'" [(ngModel)]="searchBikeModel.yearTo" name="yearTo" okText="إختيار" cancelText="إغلاق">
+                <ng-container *ngFor="let year of years">
+                  <ion-option *ngIf="searchBikeModel.yearFrom != null && year > searchBikeModel.yearFrom" value="{{year}}">{{year}} </ion-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+          </ion-col>
 
-		<ion-grid *ngIf="activeTab == 6">
-			
-		</ion-grid>
-	</div>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>الدولة</ion-label>
+              <ion-select [placeholder]="'الدولة'" name="country" [(ngModel)]="searchBikeModel.country" okText="إختيار" cancelText="إغلاق">
+                <ng-container *ngFor="let country of countries">
+                  <ion-option *ngIf="country.sub_c == 0" value="{{country.id_c}}">{{country.name_c_ar}}</ion-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>المدينة</ion-label>
+              <ion-select [placeholder]="'المدينة'" [(ngModel)]="searchBikeModel.city" name="city" okText="إختيار" cancelText="إغلاق">
+                <ng-container *ngFor="let city of cities">
+                  <ion-option *ngIf="city.sub_c != 0 && city.sub_c == searchBikeModel.country" value="{{city.id_c}}">{{city.name_c_ar}}</ion-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>الحالة</ion-label>
+              <ion-select [placeholder]="'الحالة'" [(ngModel)]="searchBikeModel.bikeCase" name="bikeCase" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let bikeCase of searchBikeSelectOptions.bikecase.value_option" value="{{bikeCase.id_v}}">{{bikeCase.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>نوع الوقود</ion-label>
+              <ion-select [placeholder]="'نوع الوقود'" name="fuel" [(ngModel)]="searchBikeModel.fuel" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let fuel of searchBikeSelectOptions.fuel.value_option" value="{{fuel.id_v}}">{{fuel.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>اللون</ion-label>
+              <ion-select [placeholder]="'اللون'" name="color" [(ngModel)]="searchBikeModel.color" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let color of searchBikeSelectOptions.color.value_option" value="{{color.id_v}}">{{color.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>قوة المحرك</ion-label>
+              <ion-select [placeholder]="'قوة المحرك'" [(ngModel)]="searchBikeModel.enginePower" name="enginePower" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let enginePower of searchBikeSelectOptions.enginepower.value_option" value="{{enginePower.id_v}}">{{enginePower.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <button type="submit" ion-button full class="submit-advertisment">ابحث الآن</button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-grid>
 
+    <ion-grid *ngIf="activeTab == 3">
+      <form #searchTruckAddvertismentForm="ngForm" (ngSubmit)="searchTruck(searchTruckAddvertismentForm)">
+        <ion-row class="add-advertisment-form dark-controls">
+          <ion-col col-6>
+            <ion-item>
+              <ion-input [(ngModel)]="searchTruckModel.priceFrom" name="priceFrom" type="text" placeholder="من السعر"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-input [(ngModel)]="searchTruckModel.priceTo" name="priceTo" type="text" placeholder="إلى السعر"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>من السنة</ion-label>
+              <ion-select [placeholder]="'من السنة'" [(ngModel)]="searchTruckModel.yearFrom" name="yearFrom" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let year of years" value="{{year}}"> {{year}} </ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>إلى السنة</ion-label>
+              <ion-select [placeholder]="'إلى السنة'" [(ngModel)]="searchTruckModel.yearTo" name="yearTo" okText="إختيار" cancelText="إغلاق">
+                <ng-container *ngFor="let year of years">
+                  <ion-option *ngIf="searchTruckModel.yearFrom != null && year > searchTruckModel.yearFrom" value="{{year}}">{{year}} </ion-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>الدولة</ion-label>
+              <ion-select [placeholder]="'الدولة'" name="country" [(ngModel)]="searchTruckModel.country" okText="إختيار" cancelText="إغلاق">
+                <ng-container *ngFor="let country of countries">
+                  <ion-option *ngIf="country.sub_c == 0" value="{{country.id_c}}">{{country.name_c_ar}}</ion-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>المدينة</ion-label>
+              <ion-select [placeholder]="'المدينة'" [(ngModel)]="searchTruckModel.city" name="city" okText="إختيار" cancelText="إغلاق">
+                <ng-container *ngFor="let city of cities">
+                  <ion-option *ngIf="city.sub_c != 0 && city.sub_c == searchTruckModel.country" value="{{city.id_c}}">{{city.name_c_ar}}</ion-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>اللون</ion-label>
+              <ion-select [placeholder]="'اللون'" name="color" [(ngModel)]="searchTruckModel.color" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let color of searchTruckSelectOptions.color.value_option" value="{{color.id_v}}">{{color.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>حجم الحمولة</ion-label>
+              <ion-select [placeholder]="'حجم الحمولة'" [(ngModel)]="searchTruckModel.loadQuantity" name="loadQuantity" okText="إختيار"
+                cancelText="إغلاق">
+                <ion-option *ngFor="let loadQuantity of searchTruckSelectOptions.howmuchload.value_option" value="{{loadQuantity.id_v}}">{{loadQuantity.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>نوع ناقل الحركة</ion-label>
+              <ion-select [placeholder]="'ناقل الحركة'" [(ngModel)]="searchTruckModel.transmission" name="transmission" okText="إختيار"
+                cancelText="إغلاق">
+                <ion-option *ngFor="let transmission of searchTruckSelectOptions.transmission.value_option" value="{{transmission.id_v}}">{{transmission.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <button type="submit" ion-button full class="submit-advertisment">ابحث الآن</button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-grid>
+
+    <ion-grid *ngIf="activeTab == 4">
+      <form #searchBoatAddvertismentForm="ngForm" (ngSubmit)="searchBoat(searchBoatAddvertismentForm)">
+        <ion-row class="add-advertisment-form dark-controls">
+          <ion-col col-6>
+            <ion-item>
+              <ion-input [(ngModel)]="searchBoatModel.priceFrom" name="priceFrom" type="text" placeholder="من السعر"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-input [(ngModel)]="searchBoatModel.priceTo" name="priceTo" type="text" placeholder="إلى السعر"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>من السنة</ion-label>
+              <ion-select [placeholder]="'من السنة'" [(ngModel)]="searchBoatModel.yearFrom" name="yearFrom" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let year of years" value="{{year}}"> {{year}} </ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>إلى السنة</ion-label>
+              <ion-select [placeholder]="'إلى السنة'" [(ngModel)]="searchBoatModel.yearTo" name="yearTo" okText="إختيار" cancelText="إغلاق">
+                <ng-container *ngFor="let year of years">
+                  <ion-option *ngIf="searchBoatModel.yearFrom != null && year > searchBoatModel.yearFrom" value="{{year}}">{{year}} </ion-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>الدولة</ion-label>
+              <ion-select [placeholder]="'الدولة'" name="country" [(ngModel)]="searchBoatModel.country" okText="إختيار" cancelText="إغلاق">
+                <ng-container *ngFor="let country of countries">
+                  <ion-option *ngIf="country.sub_c == 0" value="{{country.id_c}}">{{country.name_c_ar}}</ion-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>المدينة</ion-label>
+              <ion-select [placeholder]="'المدينة'" [(ngModel)]="searchBoatModel.city" name="city" okText="إختيار" cancelText="إغلاق">
+                <ng-container *ngFor="let city of cities">
+                  <ion-option *ngIf="city.sub_c != 0 && city.sub_c == searchBoatModel.country" value="{{city.id_c}}">{{city.name_c_ar}}</ion-option>
+                </ng-container>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>اللون</ion-label>
+              <ion-select [placeholder]="'اللون'" name="color" [(ngModel)]="searchBoatModel.color" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let color of searchBoatSelectOptions.color.value_option" value="{{color.id_v}}">{{color.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>حجم الحمولة</ion-label>
+              <ion-select [placeholder]="'حجم الحمولة'" [(ngModel)]="searchBoatModel.loadQuantity" name="loadQuantity" okText="إختيار"
+                cancelText="إغلاق">
+                <ion-option *ngFor="let loadQuantity of searchBoatSelectOptions.howmuchload.value_option" value="{{loadQuantity.id_v}}">{{loadQuantity.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>حالة القارب</ion-label>
+              <ion-select [placeholder]="'حالة القارب'" [(ngModel)]="searchBoatModel.boatCase" name="boatCase" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let boatCase of searchBoatSelectOptions.thecaseoftheboat.value_option" value="{{boatCase.id_v}}">{{boatCase.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <button type="submit" ion-button full class="submit-advertisment">ابحث الآن</button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-grid>
+
+    <ion-grid *ngIf="activeTab == 5">
+      <form #searchMobileNumberAddvertismentForm="ngForm" (ngSubmit)="searchMobileNumber(searchMobileNumberAddvertismentForm)">
+        <ion-row class="add-advertisment-form dark-controls">
+          <ion-col col-12>
+            <ion-item>
+              <ion-label>مزود الخدمة</ion-label>
+              <ion-select [placeholder]="'مزود الخدمة'" [(ngModel)]="searchMobileNumberModel.companyProvider" name="companyProvider" okText="إختيار"
+                cancelText="إغلاق">
+                <ion-option *ngFor="let serviceProvider of searchMobileNumbersSelectOptions.the_company_provided_the_service.value_option"
+                  value="{{serviceProvider.id_v}}">{{serviceProvider.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <button type="submit" ion-button full class="submit-advertisment">ابحث الآن</button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-grid>
+
+    <ion-grid *ngIf="activeTab == 6">
+      <form #searchCarPalleteAddvertismentForm="ngForm" (ngSubmit)="searchCarPallete(searchCarPalleteAddvertismentForm)">
+        <ion-row class="add-advertisment-form dark-controls">
+          <ion-col col-6>
+            <ion-item>
+              <ion-input [(ngModel)]="searchCarPalleteModel.priceFrom" name="priceFrom" type="text" placeholder="من السعر"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col col-6>
+            <ion-item>
+              <ion-input [(ngModel)]="searchCarPalleteModel.priceTo" name="priceTo" type="text" placeholder="إلى السعر"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>تصنيف اللوحة</ion-label>
+              <ion-select [placeholder]="'تصنيف اللوحة'" [(ngModel)]="searchCarPalleteModel.carPalleteCategory" name="carPalleteCategory"
+                okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let category of searchCarPalleteSelectOptions.category.value_option" value="{{category.id_v}}">{{category.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>رمز اللوحة</ion-label>
+              <ion-select [placeholder]="'رمز اللوحة'" [(ngModel)]="searchCarPalleteModel.symbol" name="symbol" okText="إختيار" cancelText="إغلاق">
+                <ion-option *ngFor="let symbol of searchCarPalleteSelectOptions.symbol.value_option" value="{{symbol.id_v}}">{{symbol.value_v_ar}} </ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <button type="submit" ion-button full class="submit-advertisment">ابحث الآن</button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-grid>
+  </div>
 </ion-content>

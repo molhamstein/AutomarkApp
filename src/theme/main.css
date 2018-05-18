@@ -8,7 +8,6 @@ Last updated: 5 March 2018
 Application: Auto Market
 ================================================*/
 
-
 /*
 [Table of Contents]
 
@@ -32,7 +31,7 @@ Application: Auto Market
     10-1 CARDS
     10-2 MAPS
     10-3 COMMENTS WIDGET
-    10-4 DATE PICKER 
+    10-4 DATE PICKER
     10-5 PRAY TIME TABLE
 11. PHOTO GALLERY
 12. BLOG LAYOUT
@@ -44,18 +43,15 @@ Application: Auto Market
 15. MEDIA QUERIES
     - @media screen and (max-width: 480px)
 16. HELPER CLASSES
-17. MISCELLANEOUS CLASSES 
+17. MISCELLANEOUS CLASSES
 18. COLORS AND BACKGROUNDS
-19. ANIMATIONS 
+19. ANIMATIONS
 20. MISCELLANEOUS
 */
 
-
 /*===============================================*/
 
-
 /* 2. GENERAL                */
-
 
 /*===============================================*/
 
@@ -201,50 +197,46 @@ ion-label.field-label {
 button.font-large {
     font-size: 20px !important;
 }
-.item-input ion-input, .item-input ion-textarea {
+
+.item-input ion-input,
+.item-input ion-textarea {
     padding: 8px;
     font-size: 12px !important;
 }
-imput.text-input, input.text-input-md {
+
+imput.text-input,
+input.text-input-md {
     margin: 0px !important;
     text-align: right;
 }
-ion-select, .select-md {
+
+ion-select,
+.select-md {
     padding: 8px !important;
     font-size: 12px !important;
 }
-/*===============================================*/
 
+/*===============================================*/
 
 /* 3. CUSTOM BUTTONS */
 
-
 /*===============================================*/
 
-
 /*===============================================*/
-
 
 /* 4. LEFT AND RIGHT SLIDE PANELS */
 
-
 /*===============================================*/
-
 
 /* 4-1. LEFT SLIDE PANEL */
 
-
 /* 4-2. RIGHT SLIDE PANEL */
 
-
 /*===============================================*/
-
 
 /* 5. MAIN NAVIGATION POPUP AND FOOTER TOOLBAR */
 
-
 /*===============================================*/
-
 
 /* 5-1. MAIN NAVIGATION */
 
@@ -253,6 +245,7 @@ ion-select, .select-md {
     background-color: #363636;
     padding: constant(safe-area-inset-top);
 }
+
 .main-header.extra-margin {
     margin-top: 20px;
 }
@@ -301,7 +294,6 @@ li.nav-item .nav-label {
     color: #f1f1f1;
 }
 
-
 /* 5-2 TABS NAVIGATION */
 
 .main-navigation {
@@ -309,6 +301,7 @@ li.nav-item .nav-label {
     z-index: 2;
     margin-top: 50px;
 }
+
 .main-navigation.extra-margin {
     margin-top: 70px !important
 }
@@ -358,6 +351,7 @@ li.nav-item .nav-label {
 .main-navigation .main-navigation-item-label.label-ios {
     bottom: 0px !important;
 }
+
 .tabs-custom {
     margin-top: 50px;
 }
@@ -389,7 +383,6 @@ li.nav-item .nav-label {
     left: 50%;
     transform: translate(-50%, -50%) !important;
 }
-
 
 /*5-2. FOOTER TOOLBAR */
 
@@ -444,27 +437,19 @@ li.nav-item .nav-label {
     text-align: center;
 }
 
-
 /*===============================================*/
-
 
 /* 6. HOME PAGE LAYOUT */
 
-
 /*===============================================*/
-
 
 /* 6-1. HOME PAGE WITH SLIDER */
 
-
 /*===============================================*/
-
 
 /* 7. PAGES LAYOUT */
 
-
 /*===============================================*/
-
 
 /* HOME PAGE */
 
@@ -479,6 +464,7 @@ li.nav-item .nav-label {
     width: calc(33.33vw - 13.3px) !important;
     height: calc(33.33vw - 13.3px) !important;
 }
+
 .card.card-home.card-ios {
     margin: 0px !important;
 }
@@ -547,7 +533,6 @@ li.nav-item .nav-label {
     width: 100px;
 }
 
-
 /* 7-1 PHONENUMBER PAGE */
 
 .phone-number-content .scroll-content {
@@ -561,7 +546,6 @@ li.nav-item .nav-label {
 .phone-numeber-odd-container {
     background-color: #ebebeb;
 }
-
 
 /* 7-2 ADVERTISMENT PAGE */
 
@@ -600,7 +584,7 @@ li.nav-item .nav-label {
 .add-advertisment-form input,
 .add-advertisment-form ion-textarea,
 .search-advertisment-form input,
-{
+    {
     text-align: right;
     color: #c7c7c7;
     font-weight: 600;
@@ -653,11 +637,12 @@ button.submit-advertisment {
     margin-top: 15px !important;
 }
 
-
 /* 7-3. PROFILE PAGE */
+
 .my-account {
- position: relative;   
+    position: relative;
 }
+
 .my-account-header {
     height: 50px;
     display: -ms-flexbox;
@@ -706,11 +691,13 @@ button.submit-advertisment {
     left: 20px;
     bottom: -10px;
 }
+
 .my-account .edit-profile-button {
     background-color: transparent !important;
     box-shadow: none !important;
     font-size: 12px !important;
 }
+
 .profile-list-item {
     height: 100px;
 }
@@ -760,12 +747,13 @@ button.submit-advertisment {
     font-weight: bold;
 }
 
-
 /* 7-4 EDIT PROFILE PAGE */
+
 .edit-profile-content {
     height: 100% !important;
     margin-top: 60px !important;
 }
+
 .edit-profile-content input,
 .edit-profile-content ion-textarea,
 .edit-profile-content ion-datetime {
@@ -788,7 +776,6 @@ button.submit-advertisment {
     padding-left: 10px;
     color: #e7e7e7;
 }
-
 
 /* 7-5 SHOWROOM PAGE */
 
@@ -864,7 +851,6 @@ button.submit-advertisment {
     width: 250px;
     margin: 0px auto;
 }
-
 
 /* 7-6 LOGIN PAGE */
 
@@ -955,7 +941,6 @@ button.submit-advertisment {
     background-color: #363636;
 }
 
-
 /* 7-7 SHOWROOMS PAGE */
 
 .card-showroom-header {
@@ -1030,6 +1015,7 @@ button.submit-advertisment {
     position: relative;
     display: block;
 }
+
 .card.card-search {
     width: calc(33.33vw - 13.3px) !important;
     height: calc(33.33vw - 13.3px) !important;
@@ -1071,9 +1057,11 @@ button.submit-advertisment {
 }
 
 /* Messaing Page */
+
 .messaing-content {
     height: calc(100% - 100px) !important;
 }
+
 .messaging-frame {
     width: 100%;
     height: 100%;
@@ -1084,15 +1072,17 @@ button.submit-advertisment {
 }
 
 /* ITEM DETAILS PAGE */
+
 .item-details-container .item-header {
     text-align: center;
     margin: 10px 0px;
 }
+
 .item-details-container .item-header .item-title {
     font-weight: bold;
     margin: 0px 20px;
     padding-left: 5px;
-    border-left: 2px solid #000; 
+    border-left: 2px solid #000;
 }
 
 .item-details-container .gallery-container {
@@ -1104,6 +1094,7 @@ button.submit-advertisment {
     padding-top: 100%;
     position: relative;
 }
+
 .item-details-container .thumbnail-image img {
     width: 100%;
     height: 100%;
@@ -1116,15 +1107,30 @@ button.submit-advertisment {
     right: 0;
     padding: 5px;
 }
+
 .item-details-container .full-image {
     width: 100%;
     height: 100%;
 }
+
 .item-details-container .full-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     padding: 0px 10px;
+}
+
+.item-details-container .item-heading {
+    color: #d1d1d1;
+    font-size: 12px;
+}
+
+.item-details-container .item-value {
+    color: #e7e7e7;
+    float: left;
+    font-weight: 500;
+    padding: 0px 20px;
+    font-size: 12px;
 }
 
 .social-icons-container {
@@ -1135,28 +1141,32 @@ button.submit-advertisment {
     text-align: left;
 }
 
-.social-icons-list  {
+.social-icons-list {
     display: inline-block;
     list-style: none;
     padding: 0px !important;
 }
 
-.social-icons-list > li {
+.social-icons-list>li {
     display: inline;
     padding: 0px 5px;
 }
+
 .social-icon {
     font-size: 2rem !important;
     opacity: 0.5;
     transition: all 0.3s ease-in-out;
     -webkit-transition: all 0.3 ease-in-out;
 }
+
 .social-icon:hover {
     opacity: 1;
 }
+
 .contact-option-containers {
     margin: 0px;
 }
+
 .contact-options-list {
     list-style: none;
     display: flex;
@@ -1164,41 +1174,33 @@ button.submit-advertisment {
     float: left;
     margin: 0px;
 }
-.contact-options-list > li {
+
+.contact-options-list>li {
     display: inline;
     padding: 0 5px;
 }
-.contact-options-list > li:not(:last-child) {
+
+.contact-options-list>li:not(:last-child) {
     border-left: 1px solid #D53731;
 }
 
-
 /*===============================================*/
-
 
 /* 8. FEATURED LISTS */
 
-
 /*===============================================*/
 
-
 /*===============================================*/
-
 
 /* 9. POPUPS */
 
-
 /*===============================================*/
 
-
 /*===============================================*/
-
 
 /* 10. WIDGETS */
 
-
 /*===============================================*/
-
 
 /* 10-1 CARD */
 
@@ -1264,12 +1266,9 @@ button.submit-advertisment {
     margin: 0px !important;
 }
 
-
 /* 10-2 MAPS */
 
-
 /* 10-3 COMMENTS WIDGET */
-
 
 /* 10-4 DATE PICKER */
 
@@ -1283,7 +1282,6 @@ button.submit-advertisment {
 .picker-md .picker-button.activated {
     color: #D53731 !important;
 }
-
 
 /* 10-5 ALERT DIALOG */
 
@@ -1318,7 +1316,6 @@ button.submit-advertisment {
 .alert-ios .alert-button {
     color: #D53731 !important;
 }
-
 
 /* 10-5 SELECT MENU */
 
@@ -1404,7 +1401,6 @@ ion-select,
     font-weight: bold;
 }
 
-
 /* 10-6 BADGES */
 
 .custom-badge {
@@ -1413,7 +1409,6 @@ ion-select,
     border: 1px solid #fff !important;
     font-weight: bold !important;
 }
-
 
 /* 10-7 INPUT GROUP */
 
@@ -1441,33 +1436,23 @@ ion-select,
     padding-right: 0px !important;
 }
 
-
 /*===============================================*/
-
 
 /* 11. PHOTO GALLERY */
 
-
 /*===============================================*/
 
-
 /*===============================================*/
-
 
 /* 12. BLOG LAYOUT */
 
-
 /*===============================================*/
 
-
 /*===============================================*/
-
 
 /* 13. FORMS */
 
-
 /*===============================================*/
-
 
 /* 13.1 DARK CONTROL FORM STYLE */
 
@@ -1480,33 +1465,31 @@ ion-select,
     border: none !important;
 }
 
-
 /* 13.2 MATERIAL DESIGN */
 
 .text-input-md {
     margin: 0px 8px !important;
 }
 
-
 /* 13-2. LOGIN / SIGNUP / FORGOT PASS FORM */
 
-
 /*===============================================*/
-
 
 /* 14. TABS & ACCORDION */
 
-
 /*===============================================*/
 
-
 /*===============================================*/
-
 
 /* 15. MEDIA QUERIES */
 
-
 /*===============================================*/
+@media (max-width: 576px) {
+  .details-column {
+    display: flex !important;
+    justify-content: center !important;
+  }
+}
 
 @media (min-width: 576px) {
     .card.card-home {
@@ -1534,12 +1517,9 @@ ion-select,
 
 @media (min-width: 1200px) {}
 
-
 /*===============================================*/
 
-
 /* 16. HELPER CLASSES */
-
 
 /*===============================================*/
 
@@ -2288,18 +2268,13 @@ ion-select,
     display: flex;
 }
 
-
 /*===============================================*/
-
 
 /* 17. MISCELLANEOUS CLASSES */
 
-
 /*===============================================*/
 
-
 /*===============================================*/
-
 
 /* 18. COLORS AND BACKGROUNDS */
 
@@ -2323,24 +2298,17 @@ ion-select,
     background-color: #252525 !important;
 }
 
-
 /*===============================================*/
 
-
 /*===============================================*/
-
 
 /* 19. ANIMATIONS */
 
-
 /*===============================================*/
 
-
 /*===============================================*/
-
 
 /* 20. MISCELLANEOUS */
-
 
 /*===============================================*/
 

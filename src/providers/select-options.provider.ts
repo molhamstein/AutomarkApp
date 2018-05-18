@@ -3,10 +3,11 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 import { includes } from 'lodash';
+import { HttpProvider } from './http.provider';
 
 @Injectable()
 export class SelectsOptionsProvider {
-    constructor() {
+    constructor(public http: HttpProvider) {
     }
 
     getCarOptions(options) {
@@ -38,7 +39,7 @@ export class SelectsOptionsProvider {
         }
         return truckOptions;
     }
-    
+
     getBikeSelectOptions(options) {
         let neededOptions = [15, 36, 57, 45, 22, 52];
         let bikeOptionsArray = options.filter( option => {return includes(neededOptions, option.id_o)});
@@ -50,7 +51,7 @@ export class SelectsOptionsProvider {
     }
 
     getMobileNumberSelectOptions(options) {
-        let neededOptions = [61,,47];
+        let neededOptions = [61,47];
         let mobileOptionsArray = options.filter( option => {return includes(neededOptions, option.id_o)});
         let mobileOptions = {};
         for (let index = 0; index < mobileOptionsArray.length; index++) {

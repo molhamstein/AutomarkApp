@@ -7,7 +7,9 @@ import { UiProvider } from '../../providers/ui.provider';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromPromise';
+import 'rxjs/add/observable/forkJoin';
 import { CallNumber } from '@ionic-native/call-number';
+import { AdvertismentProvider } from '../../providers/advertisment/advertisment.provider';
 
 @Component({
   selector: 'page-item-details',
@@ -17,6 +19,7 @@ export class ItemDetailsPage {
   details: any;
   item_id: any;
   images: any;
+  optionsValues: any[];
 
   constructor(
     public navCtrl: NavController,
@@ -25,11 +28,11 @@ export class ItemDetailsPage {
     private loadingCtrl: LoadingController,
     public authProvider: AuthProvider,
     public uiProvider: UiProvider,
-    public socialSharing: SocialSharing, 
-    public callNumber: CallNumber
+    public socialSharing: SocialSharing,
+    public callNumber: CallNumber,
+    public advertismentProvider: AdvertismentProvider
   ) {
     this.item_id = navParams.data.item_id;
-    console.log(this.item_id);
   }
 
   ionViewDidLoad() {
@@ -37,27 +40,36 @@ export class ItemDetailsPage {
   }
 
   ionViewCanEnter() {
-    return this.getitem_details();
+    return this.getItemDetails();
   }
 
   show_model() {
   }
 
-  getitem_details() {
-    let loadingPopup = this.loadingCtrl.create({
-      content: 'جاري جلب البيانات ....'
-    });
+  getItemDetails() {
+    this.uiProvider.showLoadingPopup('جاري جلب البيانات...');
+    Observable.forkJoin(this.advertismentProvider.getAdvertismentDetails(this.item_id), this.advertismentProvider.getOptionsValues())
+      .subscribe(
+        (result) => {
+          this.details = result[0];
+          this.optionsValues = result[1].data;
+          console.log(this.optionsValues);
+          this.uiProvider.hideLoadingPopup();
+        },
+        (error) => {
+          console.log(error);
+          this.uiProvider.hideLoadingPopup();
+        }
+      );
+  }
 
-    // Show the popup
-    loadingPopup.present();
-    return this.restProvider.getitem_details(this.item_id)
-      .then(data2 => {
-        this.details = data2;
-        console.log(data2);
-        //this.images = JSON.parse("[" + data2.data.images_c + "]"); 
-        loadingPopup.dismiss();
-        //console.log(data2.data[0].id_c);            
-      });
+  getOptionValue(optionID) {
+    let index = this.optionsValues.findIndex( item => item.id_v == optionID);
+    if(index >= 0) {
+      return this.optionsValues[index]['value_v_ar'];
+    } else {
+      return optionID;
+    }
   }
 
   sendMessage(userID) {

@@ -10,7 +10,9 @@
       <ng-container *ngIf="category.data.length > 0">
         <ion-col col-4 col-sm-3 col-md-2 *ngFor="let advertisment of category.data">
        <ion-card class="card-home card-home" (click)="ShowDetails(advertisment.id_c);">
-            <img class="advertisment-image" src="{{assetsBaseUrl}}{{advertisment.images_c[0]}}" />
+            <img *ngIf="advertisment.category_c != 2 && advertisment.category_c != 3" class="advertisment-image" src="{{assetsBaseUrl}}{{advertisment.images_c[0]}}" />
+            <img *ngIf="advertisment.category_c == 2" class="advertisment-image" src="assets/imgs/plates.jpeg" />
+            <img *ngIf="advertisment.category_c == 3" class="advertisment-image" src="assets/imgs/numbers.jpeg" />
             <div class="home-details">
               <div class="item-title text-center">
                 <strong>{{advertisment.title_c}}</strong>
@@ -18,7 +20,7 @@
               <div class="item-footer">
                 <span class="item-price fright ltr">{{advertisment.price_c}}</span>
               </div>
-            </div> 
+            </div>
           </ion-card>
         </ion-col>
         <ion-col col-12 justify-content-center>

@@ -53,7 +53,6 @@ export class ItemDetailsPage {
         (result) => {
           this.details = result[0];
           this.optionsValues = result[1].data;
-          console.log(this.optionsValues);
           this.uiProvider.hideLoadingPopup();
         },
         (error) => {
@@ -64,8 +63,8 @@ export class ItemDetailsPage {
   }
 
   getOptionValue(optionID) {
-    let index = this.optionsValues.findIndex( item => item.id_v == optionID);
-    if(index >= 0) {
+    let index = this.optionsValues.findIndex(item => item.id_v == optionID);
+    if (index >= 0) {
       return this.optionsValues[index]['value_v_ar'];
     } else {
       return optionID;
@@ -78,7 +77,6 @@ export class ItemDetailsPage {
     } else {
       this.uiProvider.showToastMessage('من فضلك قم بتسجيل الدخول أولاً');
     }
-
   }
 
   share() {
